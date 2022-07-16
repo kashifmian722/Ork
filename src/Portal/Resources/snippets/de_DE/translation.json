@@ -1,0 +1,154 @@
+{
+    "merchant": {
+        "contactInformation": "Kontaktinformation",
+        "phoneNumber": "Telefonnummer:",
+        "website": "Webseite:",
+        "ourProducts": "Unsere Produkte",
+        "email": "Email:",
+        "address": "Adresse:",
+        "openingTimes": "Öffnungszeiten:",
+        "description": "Beschreibung",
+        "publicOwner": "Inhaber",
+        "imprint": "Impressum",
+        "tos": "Allgemeine Geschäftsbedingungen",
+        "privacy": "Datenschutz",
+        "revocation": "Widerrufsrecht",
+        "modal": {
+            "closeModal": "Schließen"
+        }
+    },
+    "checkout": {
+        "cartContainsMultipleMerchants": "Es können nur Produkte von einem Händler gleichzeitig gekauft werden",
+        "cartHasInvalidShippingMethod": "Die ausgewählte Versandart steht nicht zur Verfügung.",
+        "cartWrongProductType": "Es können keine  Anzeigeprodukte gekauft werden.",
+        "cartContainsMultipleProductTypes": "Es kann nur ein Produkt-Typ gleichzeitig bestellt werden",
+        "acceptTos": "Ich habe die <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantTos\">AGB</a> des Händlers gelesen und bin mit deren Geltung einverstanden.",
+        "acceptPrivacy": "Ich habe die <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantPrivacy\">Datenschutzerklärung</a> des Händlers gelesen und bin mit deren Geltung einverstanden.",
+        "acceptRevocation": "Ich habe das <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantRevocation\">Wiederufsrecht</a> des Händlers gelesen und bin mit deren Geltung einverstanden."
+    },
+    "error": {
+        "cartHasInvalidShippingMethod": "Die ausgewählte Versandart steht nicht zur Verfügung.",
+        "cartContainsMultipleProductTypes": "Es kann nur ein Produkt-Typ gleichzeitig bestellt werden"
+    },
+    "mail": {
+        "merchant_order_confirmation": {
+            "subject": "Neue Bestellung bei Downtowns",
+            "hello": "Hallo %merchant%,",
+            "youHaveNewOrder": "Du hast eine neue Bestellung erhalten .",
+            "orderItems": "Bestellpositionen",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "amount": "Anzahl",
+                "price": "Preis",
+                "totalPrice": "Summe"
+            },
+            "totalPrice": "Gesammtsumme",
+            "invoiceAddress": "Rechnungsaddresse",
+            "deliveryAddress": "Lieferaddresse"
+        },
+        "merchant_registration": {
+            "subject": "Deine Registrierung bei Downtowns",
+            "hello": "Hallo %merchant%,",
+            "text": "Bitte bestätigen Sie Ihre E-Mail-Adresse. Nach der Bestätigung werden Sie zum Portal weitergeleitet und können Sich einloggen.",
+            "confirmButton": "E-Mail bestätigen"
+        },
+        "merchant_reset_password": {
+            "subject": "Passwort Vergessen Anfrage bei Downtowns",
+            "hello": "Hallo %merchant%,",
+            "text": "im Portal wurde eine Anfrage gestellt, um Ihr Passwort zurückzusetzen.<br>\nBitte bestätigen Sie den untenstehenden Link, um ein neues Passwort zu definieren.",
+            "confirmButton": "Passwort zurücksetzen"
+        },
+        "voucher_customer": {
+            "subject": "Ihr bestellter Gutschein",
+            "hello": "Hallo %name%,",
+            "youHaveNewOrder": "Im Anhang finden Sie den Gutschein als PDF.",
+            "orderItems": "Bestellpositionen",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "codes": "Codes",
+                "amount": "Anzahl",
+                "price": "Preis",
+                "totalPrice": "Summe"
+            },
+            "totalPrice": "Gesammtsumme"
+        },
+        "voucher_merchant": {
+            "subject": "Ein Gutschein wurde gekauft",
+            "hello": "Hallo %merchant%,",
+            "youHaveNewOrder": "Ein Gutschein wurde gerade gekauft und bezahlt",
+            "orderItems": "Bestellpositionen",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "codes": "Codes",
+                "amount": "Anzahl",
+                "price": "Preis",
+                "totalPrice": "Summe"
+            },
+            "totalPrice": "Gesammtsumme",
+            "invoiceAddress": "Rechnungsaddresse",
+            "deliveryAddress": "Lieferaddresse"
+        },
+        "organization_registration": {
+            "subject": "Ihr Benutzerkonto bei Downtown",
+            "hello": "Hallo %name%, <br>Ihr Organisationskonto wurde erstellt. Sie können sich jetzt mit den folgenden Anmeldedaten anmelden:",
+            "email": "E-Mail",
+            "password": "Passwort",
+            "loginButton": "Login"
+        },
+        "organization_reset_password": {
+            "subject": "Passwort vergessen Anfrage bei Downtown",
+            "hello": "Hallo %name%,",
+            "text": "im Portal wurde eine Anfrage gestellt, um Ihr Passwort zurückzusetzen.<br>\nBitte bestätigen Sie den untenstehenden Link, um ein neues Passwort zu definieren.",
+            "confirmButton": "Passwort zurücksetzen"
+        }
+    },
+    "voucher": {
+        "voucher": "GUTSCHEIN",
+        "redemptionAddress": "Einlöseaddresse",
+        "phone": "Telefon:",
+        "website": "Webseite:",
+        "email": "Email:",
+        "issuedOn": "Ausgestellt auf",
+        "createDate": "Ausstellungsdatum",
+        "number": "Gutscheinnummer"
+    },
+    "page": {
+        "imprint": "Impressum",
+        "tos": "Nutzungsbedingungen",
+        "privacy": "Datenschutzbestimmung"
+    },
+    "footer": {
+        "copyrightInfo": "Realised with Downtown",
+        "links": {
+            "merchant": "Händler-Login",
+            "imprint": "Impressum",
+            "generalTerms": "Nutzungsbestimmungen",
+            "privacy": "Datenschutz"
+        }
+    },
+    "merchantsBanner": {
+        "headline": "Gemeinsam helfen und da sein!",
+        "subline": "Nutze die Kraft unserer Community gegen die Corona Krise",
+        "button": {
+            "text": "Als Händler registrieren"
+        }
+    },
+    "merchantBox": {
+        "availabilityBadgeOpen": "Regulär geöffnet",
+        "availabilityBadgePickUp": "Nur Abholung",
+        "availabilityBadgeInactive": "Derzeit nicht verfügbar",
+        "serviceHeadline": "Unser Service:"
+    },
+    "account": {
+        "loginHeader": "Login"
+    },
+    "listing": {
+        "boxMerchantDetails": "Mehr Details anzeigen"
+    },
+    "general": {
+        "privacyNotice": "<a target=\"_blank\" href=\"%url%\" title=\"Datenschutzbestimmungen\">Ich habe die Datenschutzbestimmungen zur Kenntnis genommen.</a>"
+    }
+}

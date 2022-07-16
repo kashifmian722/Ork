@@ -1,0 +1,49 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_manufacturer_container %}
+        <div class="product-detail-manufacturer tab-pane-container">
+
+            <div class="media">
+                {% block page_product_detail_manufacturer_conent_logo %}
+                    {% if page.product.manufacturer.media|sw_encode_media_url  %}
+                        <img src="{{ page.product.manufacturer.media|sw_encode_media_url }}"
+                             class="product-detail-manufacturer-logo img-thumbnail align-self-start mr-3"
+                             alt="{{ page.product.manufacturer.translated.name }}"/>
+                    {% endif %}
+                {% endblock %}
+
+                <div class="media-body">
+                    {% block page_product_detail_manufacturer_title %}
+                        <div class="h3 product-detail-manufacturer-title">
+                            {{ page.product.manufacturer.translated.name }}
+                        </div>
+                    {% endblock %}
+
+                    {% block page_product_detail_manufacturer_content %}
+                        {% block page_product_detail_manufacturer_content_text %}
+                            <div class="product-detail-manufacturer-text mb-3"
+                                 itemprop="manufacturer">
+                                {{ page.product.manufacturer.translated.description|raw }}
+                            </div>
+                        {% endblock %}
+
+                        {% block page_product_detail_manufacturer_content_links %}
+                            {% if page.product.manufacturer.link %}
+                                <a class="btn btn-primary" href="{{ page.product.manufacturer.link }}"
+                                   role="button"
+                                   target="_blank" rel="noopener"
+                                   title="{{ page.product.manufacturer.translated.name }} - {{ 'zentheme.detail.manufacturerWebsite'|trans }}">
+                                    {{ 'zentheme.detail.manufacturerWebsite'|trans }}
+                                </a>
+                            {% endif %}
+                        {% endblock %}
+
+                    {% endblock %}
+                </div>
+            </div>
+
+        </div>
+
+    {% endblock %}
+{% endblock %}

@@ -1,0 +1,154 @@
+{
+    "merchant": {
+        "contactInformation": "Contact information",
+        "phoneNumber": "Phone number:",
+        "website": "Website:",
+        "ourProducts": "Our products",
+        "email": "Email:",
+        "address": "Address:",
+        "openingTimes": "Opening times:",
+        "description": "Description",
+        "publicOwner": "Owner",
+        "imprint": "Imprint",
+        "tos": "Terms of Service",
+        "privacy": "Privacy",
+        "revocation": "Revocation",
+        "modal": {
+            "closeModal": "Close"
+        }
+    },
+    "checkout": {
+        "cartContainsMultipleMerchants": "Products can be purchased from only one merchant at a time",
+        "cartHasInvalidShippingMethod": "The selected shipping method is not available.",
+        "cartWrongProductType": "Shown products cannot be purchased.",
+        "cartContainsMultipleProductTypes": "Only one product type can be ordered at a time",
+        "acceptTos": "I have read the <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantTos\">AGB</a> of the merchant and agree with their validity.",
+        "acceptPrivacy": "I have read the <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantPrivacy\">data protection declaration</a> of the merchant and agree with its validity.",
+        "acceptRevocation": "I have read the <a href=\"#\" data-toggle=\"modal\" data-target=\"#merchantRevocation\">revocation of the merchant and agree to its validity."
+    },
+    "error": {
+        "cartHasInvalidShippingMethod": "The selected shipping method is not available.",
+        "cartContainsMultipleProductTypes": "Only one product type can be ordered at a time"
+    },
+    "mail": {
+        "merchant_order_confirmation": {
+            "subject": "New order at Downtown",
+            "hello": "Hello %merchant%,",
+            "youHaveNewOrder": "You have received a new order.",
+            "orderItems": "Order items",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "amount": "Amount",
+                "price": "Price",
+                "totalPrice": "Total price"
+            },
+            "totalPrice": "Total price",
+            "invoiceAddress": "Invoice address",
+            "deliveryAddress": "Delivery address"
+        },
+        "merchant_registration": {
+            "subject": "Your registration at Downtown",
+            "hello": "Hello %merchant%,",
+            "text": "Please confirm your e-mail address. After confirming, you will be re-directed to the portal and be able to log in.",
+            "confirmButton": "Confirm e-mail"
+        },
+        "merchant_reset_password": {
+            "subject": "Forgotten password Downtown request",
+            "hello": "Hello %merchant%,",
+            "text": "A request has been made in the portal to reset your password.<br>\nPlease confirm the link below to define a new password.",
+            "confirmButton": "Reset password"
+        },
+        "voucher_customer": {
+            "subject": "Your ordered voucher",
+            "hello": "Hello %name%,",
+            "youHaveNewOrder": "In the attachment you will find the voucher as PDF.",
+            "orderItems": "Ordered items",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "codes": "Codes",
+                "amount": "Amount",
+                "price": "Price",
+                "totalPrice": "Total price"
+            },
+            "totalPrice": "Total price"
+        },
+        "voucher_merchant": {
+            "subject": "A voucher was bought",
+            "hello": "Hello %merchant%,",
+            "youHaveNewOrder": "A voucher has just been bought and paid",
+            "orderItems": "Ordered items",
+            "tableHeader": {
+                "pos": "Pos",
+                "name": "Name",
+                "codes": "Codes",
+                "amount": "Amount",
+                "price": "Price",
+                "totalPrice": "Total price"
+            },
+            "totalPrice": "Total price",
+            "invoiceAddress": "Invoice address",
+            "deliveryAddress": "Delivery address"
+        },
+        "organization_registration": {
+            "subject": "Your account at Downtown",
+            "hello": "Hello %name%, <br>your Organization account has been created. You can login now with the following credentials:",
+            "email": "E-Mail",
+            "password": "Password",
+            "loginButton": "Login"
+        },
+        "organization_reset_password": {
+            "subject": "Forgotten password Downtown request",
+            "hello": "Hello %name%,",
+            "text": "A request has been made in the portal to reset your password.<br>\nPlease confirm the link below to define a new password.",
+            "confirmButton": "Reset password"
+        }
+    },
+    "voucher": {
+        "voucher": "VOUCHER",
+        "redemptionAddress": "Redemption address",
+        "phone": "Phone:",
+        "website": "Website:",
+        "email": "E-Mail:",
+        "issuedOn": "Issued on",
+        "createDate": "Date of issue",
+        "number": "Voucher number"
+    },
+    "page": {
+        "imprint": "Imprint",
+        "tos": "Terms of use",
+        "privacy": "Privacy"
+    },
+    "footer": {
+        "copyrightInfo": "Realised with Downtown",
+        "links": {
+            "merchant": "Merchant Login",
+            "imprint": "Imprint",
+            "generalTerms": "Terms of use",
+            "privacy": "Privacy"
+        }
+    },
+    "merchantsBanner": {
+        "headline": "Help together and be there!",
+        "subline": "Use the power of our community against the Corona crisis",
+        "button": {
+            "text": "Register as a merchant"
+        }
+    },
+    "merchantBox": {
+        "availabilityBadgeOpen": "Regularly open",
+        "availabilityBadgePickUp": "Pick up only",
+        "availabilityBadgeInactive": "Currently not available",
+        "serviceHeadline": "Our services:"
+    },
+    "account": {
+        "loginHeader": "Login"
+    },
+    "listing": {
+        "boxMerchantDetails": "Show more details"
+    },
+    "general": {
+        "privacyNotice": "<a target=\"_blank\" href=\"%url%\" title=\"Privacy\">I have taken note of the privacy policy.</a>"
+    }
+}

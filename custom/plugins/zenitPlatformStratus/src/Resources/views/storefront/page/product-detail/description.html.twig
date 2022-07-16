@@ -1,0 +1,7 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
+
+{% block page_product_detail_description_content_properties %}
+    {% if zentheme['zen-product-tabs-properties'] is same as (false) %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

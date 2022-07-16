@@ -1,0 +1,43 @@
+{% sw_extends '@Storefront/storefront/layout/header/top-bar.html.twig' %}
+
+{% block layout_header_top_bar %}
+    <div class="top-bar d-none d-lg-block">
+        <div class="container">
+            <nav class="top-bar-nav">
+                {% block layout_header_top_bar_login_register %}
+                    {% if zentheme['zen-top-bar-style'] is not same as ('offcanvas') and zentheme['zen-header-style'] is not same as ('two-line')%}
+                        {% sw_include '@Storefront/storefront/component/login-register.html.twig' %}
+                    {% endif %}
+                {% endblock %}
+
+                {% block layout_header_top_bar_marketing %}
+                    {% if zentheme['zen-top-bar-style'] is not same as ('offcanvas') and zenconfig.marketingActive %}
+                        <div class="top-bar-nav-item top-bar-marketing">
+                            {% sw_include '@Storefront/storefront/component/text-slider.html.twig' with {
+                                active: zenconfig.marketingActive,
+                                text: zenconfig.marketingText,
+                                buttonText: zenconfig.marketingButtonText,
+                                buttonLink: zenconfig.marketingButtonLink,
+                                buttonTarget: zenconfig.marketingButtonTarget
+                            } %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+
+                {% if zentheme['zen-header-style'] is not same as ('two-line') or zentheme['zen-header-style'] is same as ('two-line') and zentheme['zen-top-bar-style'] is same as('offcanvas') %}
+                    {% block layout_header_top_bar_language %}
+                        {% sw_include '@Storefront/storefront/layout/header/actions/language-widget.html.twig' %}
+                    {% endblock %}
+
+                    {% block layout_header_top_bar_currency %}
+                        {% sw_include '@Storefront/storefront/layout/header/actions/currency-widget.html.twig' %}
+                    {% endblock %}
+
+                    {% block layout_header_top_bar_service %}
+                        {% sw_include '@Storefront/storefront/layout/header/actions/service-menu-widget.html.twig' %}
+                    {% endblock %}
+                {% endif %}
+            </nav>
+        </div>
+    </div>
+{% endblock %}

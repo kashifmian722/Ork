@@ -1,0 +1,221 @@
+/*
+Sidebar category navigation
+==============================================
+Styling for category navigation component.
+*/
+
+.category-navigation-link {
+    display: flex;
+    background: $zen-sidebar-navigation-bg;
+    color: $zen-sidebar-navigation-color;
+    font-weight: $zen-sidebar-navigation-font-weight;
+    line-height: 34px;
+    padding-top: px($zen-sidebar-navigation-pv);
+    padding-bottom: px($zen-sidebar-navigation-pv);
+    text-transform: $zen-sidebar-navigation-text-transform;
+    overflow: hidden;
+
+    @if $zen-sidebar-navigation-border == 1 {
+        border: 1px solid $zen-sidebar-navigation-border-color;
+    }
+
+    .icon-category-navigation-link-toggle {
+        margin-left: auto;
+
+        svg {
+            top: auto;
+            color: $zen-sidebar-navigation-color;
+        }
+    }
+
+    &:hover {
+        background: $zen-sidebar-navigation-hover-bg;
+        color: $zen-sidebar-navigation-hover-color;
+
+        @if $zen-sidebar-navigation-border == 1 {
+            border: 1px solid $zen-sidebar-navigation-border-hover-color;
+        }
+
+        .icon-category-navigation-link-toggle svg {
+            color: $zen-sidebar-navigation-hover-color;
+        }
+    }
+
+    &.is-active,
+    &.in-path {
+        background: $zen-sidebar-navigation-hover-bg;
+        color: $zen-sidebar-navigation-hover-color;
+        font-weight: $zen-sidebar-navigation-font-weight-hover;
+
+        @if $zen-sidebar-navigation-border == 1 {
+            border: 1px solid $zen-sidebar-navigation-border-hover-color;
+        }
+
+        .icon-category-navigation-link-toggle svg {
+            color: $zen-sidebar-navigation-hover-color;
+            transform: rotate(180deg);
+        }
+    }
+}
+
+.category-navigation {
+    &.level-0 {
+        font-size: px($zen-sidebar-navigation-font-size);
+
+        > .category-navigation-entry {
+            margin-bottom: px($zen-sidebar-navigation-mb);
+            border-bottom: 0;
+
+            @if $zen-sidebar-navigation-mb == 0 {
+                &:first-child {
+                    > .category-navigation-link {
+                        @if $zen-layout-button-radius == 100 {
+                            @include border-top-radius(25px);
+                        } @else {
+                            @include border-top-radius($zen-layout-button-radius * 1px);
+                        }
+                    }
+                }
+
+                &:last-child {
+                    > .category-navigation-link {
+                        @if $zen-layout-button-radius == 100 {
+                            @include border-bottom-radius(25px);
+                        } @else {
+                            @include border-bottom-radius($zen-layout-button-radius * 1px);
+                        }
+                    }
+                }
+
+                &:not(:first-child) {
+                    .category-navigation-link {
+                        @if $zen-sidebar-navigation-border == 1 {
+                            border-top: none;
+                        }
+                    }
+                }
+            } @else {
+                > .category-navigation-link {
+                    @if $zen-layout-button-radius == 100 {
+                        @include border-radius(25px);
+                    } @else {
+                        @include border-radius($zen-layout-button-radius * 1px);
+                    }
+
+                    &.is-active,
+                    &.in-path {
+                        ~ .level-1 {
+                            @if $zen-layout-button-radius == 100 {
+                                @include border-bottom-radius(25px);
+                            } @else {
+                                @include border-bottom-radius($zen-layout-button-radius * 1px);
+                            }
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+
+        .category-navigation-link {
+            &.is-active,
+            &.in-path {
+                @include border-bottom-radius(0);
+
+                &.has-children {
+                    border-bottom: 0 none;
+                }
+
+                ~ .level-1 {
+                    @if $zen-sidebar-navigation-border == 1 {
+                        border: 1px solid $zen-sidebar-navigation-border-hover-color;
+                        border-top: none;
+                    }
+                }
+            }
+        }
+    }
+
+    &.level-1 {
+        font-size: px($zen-sidebar-navigation-font-size - 2);
+        padding: 0;
+
+        .category-navigation-link {
+            background: $zen-sidebar-navigation-active-bg;
+            color: $zen-sidebar-navigation-active-color;
+            line-height: 24px;
+            @include border-radius(0);
+            border: none;
+            padding-left: 30px;
+
+            @if $zen-sidebar-navigation-hover-animation != "underlined" {
+                &:hover {
+                    background: $zen-sidebar-navigation-hover-bg;
+                    color: $zen-sidebar-navigation-hover-color;
+                }
+
+                &.is-active,
+                &.in-path {
+                    background: $zen-sidebar-navigation-hover-bg;
+                    color: $zen-sidebar-navigation-hover-color;
+                    font-weight: $zen-sidebar-navigation-font-weight-hover;
+                }
+            }
+        }
+    }
+
+    &.level-2 {
+        font-size: px($zen-sidebar-navigation-font-size - 2);
+        padding: 0;
+
+        .category-navigation-link {
+            padding-left: 40px;
+        }
+    }
+
+    &.level-3 {
+        font-size: px($zen-sidebar-navigation-font-size - 2);
+        padding: 0;
+    }
+}
+
+// underlined navigation link
+@if $zen-sidebar-navigation-hover-animation == "underlined" {
+    .category-navigation {
+        .category-navigation-link {
+            .category-navigation-link-inner {
+                position: relative;
+                display: inline-block;
+
+                &::after {
+                    @include transition($transition-base);
+                    content: '';
+                    position: absolute;
+                    top: 100%;
+                    left: 0;
+                    right: 0;
+                    background: $zen-sidebar-navigation-hover-color;
+                    height: 1px;
+                    transform: scaleX(0);
+                }
+            }
+
+            &:hover,
+            &.is-active {
+                span {
+                    &::after {
+                        transform: scaleX(1);
+                    }
+                }
+            }
+        }
+
+        &.level-1 {
+            .category-navigation-link-inner {
+                &::after {
+                    background: $zen-sidebar-navigation-active-color;
+                }
+            }
+        }
+    }
+}

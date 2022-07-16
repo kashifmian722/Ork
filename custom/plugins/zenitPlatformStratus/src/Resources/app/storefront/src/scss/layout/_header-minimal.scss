@@ -1,0 +1,35 @@
+.header-minimal {
+    background-color: $zen-header-bg;
+    color: $zen-header-color;
+}
+
+.header-minimal-logo {
+    height: px($zen-header-height-mobile);
+
+    @include media-breakpoint-up(lg) {
+        height: px($zen-header-height);
+    }
+}
+
+.header-minimal-contact a {
+    color: $zen-header-color;
+}
+
+.header-minimal-back-to-shop-button {
+    background: $zen-shop-navigation-bg;
+    color: $zen-shop-navigation-color;
+
+    .icon {
+        @include transition($transition-base);
+        color: $zen-shop-navigation-color;
+    }
+
+    &:hover {
+        background: $zen-shop-navigation-hover-bg;
+        color: $zen-shop-navigation-hover-color;
+
+        .icon {
+            color: $zen-shop-navigation-hover-color;
+        }
+    }
+}

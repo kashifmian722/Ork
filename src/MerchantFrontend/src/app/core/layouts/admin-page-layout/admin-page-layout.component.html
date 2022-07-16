@@ -1,0 +1,45 @@
+<clr-main-container>
+
+  <!-- Header Toolbar: only displayed for mobile version -->
+  <clr-header class="header portal-header clr-hidden-md-up">
+
+  </clr-header>
+
+  <!-- Content Area-->
+  <div class="content-container">
+
+    <!-- Content -->
+    <div class="content-area">
+      <router-outlet #content></router-outlet>
+    </div>
+    <!-- Sidebar Navigation -->
+    <clr-vertical-nav class="portal-vertical-nav" [clr-nav-level]="1">
+      <div class="sidenav-logo"><img src="assets/images/downtown.svg"></div>
+      <div class="sidenav-title">Merchant Portal</div>
+      <ng-container *ngFor="let nav of sidebarNav">
+        <!-- Navigation with children -->
+        <clr-vertical-nav-group *ngIf="nav.hasChildren()">
+          <clr-icon clrVerticalNavIcon [attr.shape]="nav.iconName"></clr-icon>
+          {{nav.title}}
+          <!-- Navigation Children -->
+          <clr-vertical-nav-group-children>
+            <a clrVerticalNavLink *ngFor="let child of nav.getChildren()" routerLink='{{child.route}}'
+               routerLinkActive='active'>
+              {{child.title | translate}}
+            </a>
+          </clr-vertical-nav-group-children>
+        </clr-vertical-nav-group>
+        <!-- Navigation without children -->
+        <a clrVerticalNavLink *ngIf="!nav.hasChildren()" routerLink='{{nav.route}}' routerLinkActive='active'>
+          <clr-icon *ngIf="nav.iconName" [attr.shape]="nav.iconName" clrVerticalNavIcon></clr-icon>
+          {{nav.title | translate}}
+        </a>
+      </ng-container>
+      <a (click)="doLogout()" [ngClass]="'logout-link'" routerLink='' clrVerticalNavLink>
+        <clr-icon shape="logout" clrVerticalNavIcon></clr-icon>
+        {{'SIDEBAR.LOGOUT' | translate}}
+      </a>
+    </clr-vertical-nav>
+  </div>
+
+</clr-main-container>

@@ -1,0 +1,83 @@
+.product-detail-headline {
+    margin-bottom: $spacer-md;
+}
+
+.product-detail-name-container {
+    flex-direction: column;
+    align-items: flex-start;
+
+    .product-detail-name {
+        margin-bottom: 0;
+        color: $zen-product-details-name-color;
+        font-size: px($zen-product-details-name-font-size);
+        font-weight: $zen-product-details-name-font-weight;
+        line-height: 1.2;
+    }
+
+    .product-detail-variant-characteristics {
+        padding-left: 0;
+    }
+}
+
+.product-detail-short-description {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacer-md;
+    margin-bottom: $spacer-md;
+}
+
+.product-detail-price {
+    @include font-size($zen-product-price-font-size);
+    color: $zen-product-details-price-color;
+    font-size: px($zen-product-details-price-font-size);
+    font-weight: $zen-product-details-price-font-weight;
+}
+
+// product details
+.product-detail-container {
+    border-top: 1px solid $border-color;
+    padding-top: $spacer-md;
+    margin-top: $spacer-md;
+    margin-bottom: $spacer-sm;
+
+    ~ .product-detail-container {
+        border-top: none;
+        padding-top: 0;
+        margin-top: 0;
+    }
+}
+
+.product-detail-label {
+    font-weight: $font-weight-bold;
+}
+
+// image gallery
+.gallery-slider-item-container {
+
+    .gallery-slider-item-wrap {
+        background: $zen-product-listing-card-img-bg;
+    }
+
+    .gallery-slider-item {
+        /*
+        Is needed to avoid flashing through the
+        background with pixel inaccuracies.
+         */
+        max-width: calc(100% + 2px);
+        width: calc(100% + 2px);
+        margin-left: -1px;
+    }
+
+    @if $zen-product-listing-card-img-color-overlay == 1 {
+        .gallery-slider-item {
+            background: #fff;
+            opacity: .97;
+        }
+    }
+}
+
+// ... breadcumbs
+.product-detail-content {
+    .product-breadcrumb {
+        margin-top: 0;
+    }
+}

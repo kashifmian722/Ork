@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel_element %}
+    {% set zenOpenFilterOptions = {
+        elements: zentheme['zen-category-filter-open-elements'],
+    } %}
+
+    {% if zentheme['zen-category-filter-open'] and sidebar %}
+        <div class="filter-panel{% if sidebar %} is--sidebar{% endif %}"
+             data-zen-open-filter="true"
+             data-zen-open-filter-options="{{ zenOpenFilterOptions|json_encode }}">
+            {% block component_filter_panel_items_container %}
+                {{ parent() }}
+            {% endblock %}
+            {% block component_filter_panel_active_container %}
+                {{ parent() }}
+            {% endblock %}
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

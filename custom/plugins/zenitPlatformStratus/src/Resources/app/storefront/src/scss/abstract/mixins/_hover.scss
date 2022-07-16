@@ -1,0 +1,572 @@
+@mixin main-navigation-hover($hover) {
+    @if $hover == "hover-0" { // hover-0: default
+        &:hover,
+        &.is-open,
+        &.active {
+            background: $zen-main-navigation-hover-bg;
+
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+
+    } @else if $hover == "hover-1" { // hover-1: brackets
+        &::before,
+        &::after {
+            position: absolute;
+            top: 50%;
+            display: inline-block;
+            transition: transform .3s, opacity .2s;
+            opacity: 0;
+        }
+
+        &::before {
+            left: 0;
+            margin-right: 10px;
+            content: '[';
+            transform: translate(20px, -50%);
+        }
+
+        &::after {
+            right: 0;
+            margin-left: 10px;
+            content: ']';
+            transform: translate(-20px, -50%);
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+
+            &::before,
+            &::after,
+            &::before,
+            &::after {
+                transform: translate(0, -50%);
+                opacity: 1;
+            }
+        }
+    } @else if $hover == "hover-2" { // hover-2: bottom border enlarge
+        .main-navigation-link-text {
+            position: relative;
+
+            &::after {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                height: 0;
+                content: '';
+                transition: height .3s, opacity .3s, transform .3s;
+                transform: translateY(-10px);
+                opacity: 0;
+                background: $zen-main-navigation-hover-color;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::after {
+                    height: 3px;
+                    transform: translateY(-3px);
+                    opacity: 1;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-3" { // hover-3: same word slide in
+        .main-navigation-link-text {
+            overflow: hidden;
+
+            span:not(.icon) {
+                position: relative;
+                display: inline-block;
+                transition: transform .3s;
+                padding: 0 px($zen-main-navigation-padding + 16.5) 0 px($zen-main-navigation-padding);
+
+                &::before {
+                    position: absolute;
+                    top: 100%;
+                    content: attr(data-hover);
+                    transform: translate3d(0,0,0);
+                    background: $zen-main-navigation-hover-bg;
+                    color: $zen-main-navigation-hover-color;
+                    padding: 0 px($zen-main-navigation-padding + 16.5) 0 px($zen-main-navigation-padding);
+                    margin: 0 px($zen-main-navigation-padding * -1) ;
+                }
+            }
+
+            .icon {
+                position: absolute;
+                top: 50%;
+                right: px($zen-main-navigation-padding);
+                transform: translateY(-50%);
+
+                > svg {
+                    top: 0;
+                }
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                span:not(.icon) {
+                    transform: translateY(-100%);
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-4" { // hover-4: reveal, push out
+        .main-navigation-link-text {
+            overflow: hidden;
+            position: relative;
+            z-index: 1;
+
+            span:not(.icon) {
+                display: block;
+                float: left;
+                transition: transform .3s;
+                background: $zen-main-navigation-bg;
+                padding: 0 px($zen-main-navigation-padding + 16.5) 0 px($zen-main-navigation-padding);
+            }
+
+            .icon {
+                position: absolute;
+                top: 50%;
+                right: px($zen-main-navigation-padding);
+                transform: translateY(-50%);
+
+                > svg {
+                    top: 0;
+                }
+            }
+
+            &::before {
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                content: attr(data-hover);
+                transition: transform .3s;
+                transform: translateX(-25%);
+                color: $zen-main-navigation-hover-color;
+                background: $zen-main-navigation-hover-bg;
+                padding: 0 px($zen-main-navigation-padding + 16.5) 0 px($zen-main-navigation-padding);
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                span:not(.icon) {
+                    transform: translateX(150%);
+                }
+                &::before {
+                    transform: translateX(0%);
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-5" { // hover-5: fill left to right
+        position: relative;
+        z-index: 1;
+
+        .main-navigation-link-text {
+            &::after {
+                position: absolute;
+                z-index: -1;
+                top: 0;
+                left: 0;
+                bottom: 100%;
+                overflow: hidden;
+                max-width: 0;
+                width: 0;
+                content: '';
+                transition: max-width .5s;
+                color: $zen-main-navigation-hover-color;
+                background: $zen-main-navigation-hover-bg;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::after {
+                    max-width: 100%;
+                    width: 100%;
+                    bottom: 0;
+                    color: $zen-main-navigation-hover-color;
+                    background: $zen-main-navigation-hover-bg;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-6" { // hover-6: three circles
+        .main-navigation-link-text {
+            position: relative;
+            transition: color .3s;
+
+            .icon {
+                transition: color .3s;
+            }
+
+            &::before {
+                position: absolute;
+                bottom: 0%;
+                left: 50%;
+                content: '•';
+                transition: text-shadow .3s, color .3s;
+                transform: translateX(-50%);
+                pointer-events: none;
+                color: transparent;
+                text-shadow: 0 0 transparent;
+                line-height: 1;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::before {
+                    color: $zen-main-navigation-hover-color;
+                    text-shadow: 10px 0 $zen-main-navigation-hover-color, -10px 0 $zen-main-navigation-hover-color;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-7" { // hover-7: border switch
+        .main-navigation-link-text {
+            position: relative;
+
+            &::before,
+            &::after {
+                position: absolute;
+                height: 2px;
+                content: '';
+                transition: all .3s;
+                pointer-events: none;
+                opacity: 0;
+                background: $zen-main-navigation-hover-color;
+                width: px($zen-main-navigation-height);
+            }
+
+            &::before {
+                top: 0;
+                left: 0;
+                transform: rotate(90deg);
+                transform-origin: 0 0;
+            }
+
+            &::after {
+                right: 0;
+                bottom: 0;
+                transform: rotate(90deg);
+                transform-origin: 100% 0;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::before,
+                &::after {
+                    opacity: 1;
+                }
+
+                &::before {
+                    left: 50%;
+                    transform: rotate(0deg) translateX(-50%);
+                }
+
+                &::after {
+                    right: 50%;
+                    transform: rotate(0deg) translateX(50%);
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-8" { // hover-8: scale down, reveal
+        .main-navigation-link-text {
+            &::before {
+                position: absolute;
+                content: attr(data-hover);
+                transition: transform .3s, opacity .3s;
+                color: $zen-main-navigation-color;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::before {
+                    transform: scale(.9);
+                    opacity: 0;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-9" { // hover-9: fall down
+        .main-navigation-link-text {
+            &::before {
+                position: absolute;
+                content: attr(data-hover);
+                transition: transform .3s, opacity .3s;
+                transform: scale(1.1) translateX(10px) translateY(-10px) rotate(4deg);
+                pointer-events: none;
+                opacity: 0;
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+
+        .icon {
+            transition: color .3s;
+            transition-delay: .15s;
+        }
+
+        &:hover,
+        &.is-open {
+            .main-navigation-link-text {
+                &::before {
+                    transform: scale(1) translateX(0px) translateY(0px) rotate(0deg);
+                    opacity: 1;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-10" { // hover-10: borders top & bottom
+        position: relative;
+        transition: color .3s;
+        text-shadow: none;
+
+        .main-navigation-link-text {
+            &::before,
+            &::after {
+                position: absolute;
+                left: 0;
+                width: 100%;
+                height: 2px;
+                content: '';
+                transition: opacity .3s, transform .3s;
+                transform: translateY(-10px);
+                opacity: 0;
+                background: $zen-main-navigation-hover-color;
+            }
+
+            &::before {
+                top: 0;
+                transform: translateY(-10px);
+            }
+
+            &::after {
+                bottom: 0;
+                transform: translateY(10px);
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+
+                &::before,
+                &::after {
+                    transform: translateY(0px);
+                    opacity: 1;
+                }
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-11" { // hover-11: text shadow
+        .main-navigation-link-text {
+            text-shadow: 0 0 0 $zen-main-navigation-hover-color;
+            transition: text-shadow .5s ease;
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-hover-color;
+                text-shadow: 0 0 10px $zen-main-navigation-hover-color;
+            }
+
+            .icon {
+                color: $zen-main-navigation-hover-color;
+            }
+        }
+    } @else if $hover == "hover-12" { // hover-12: bottom border enlarge from center
+        position: relative;
+
+        .main-navigation-link-text {
+            color: $zen-main-navigation-color;
+
+            &::after {
+                content: '';
+                position: absolute;
+                bottom: 0;
+                left: px($zen-main-navigation-padding);
+                right: px($zen-main-navigation-padding);
+                width: auto;
+                height: 2px;
+                transition: transform .3s ease;
+                transform: scale(0);
+                background: $zen-main-navigation-hover-color;
+                margin: auto;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-color;
+
+                &::after {
+                    transform: scale(1);
+                }
+            }
+        }
+    } @else if $hover == "hover-13" { // hover-13: bottom border enlarge from left
+        position: relative;
+
+        .main-navigation-link-text {
+            color: $zen-main-navigation-color;
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: px($zen-main-navigation-padding);
+                right: px($zen-main-navigation-padding);
+                width: auto;
+                height: 2px;
+                transition: transform .3s ease;
+                transform: scale(0);
+                transform-origin: 100% 50%;
+                background: $zen-main-navigation-hover-color;
+                margin: auto;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-color;
+
+                &::after {
+                    transform: scale(1);
+                    transform-origin: 0 50%;
+                }
+            }
+        }
+    } @else if $hover == "hover-14" { // hover-14: bottom border enlarge from right
+        position: relative;
+
+        .main-navigation-link-text {
+            color: $zen-main-navigation-color;
+
+            &::after {
+                content: '';
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: px($zen-main-navigation-padding);
+                right: px($zen-main-navigation-padding);
+                width: auto;
+                height: 2px;
+                transition: transform .3s ease;
+                transform: scale(0);
+                transform-origin: 0% 50%;
+                background: $zen-main-navigation-hover-color;
+                margin: auto 0 auto auto;
+            }
+        }
+
+        &:hover,
+        &.is-open,
+        &.active {
+            .main-navigation-link-text {
+                color: $zen-main-navigation-color;
+
+                &::after {
+                    transform: scale(1);
+                    transform-origin: 100% 50%;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,37 @@
+.breadcrumb {
+    justify-content: $zen-breadcrumbs-align;
+    padding: 0;
+
+    .breadcrumb-inner {
+        display: flex;
+        flex-wrap: wrap;
+        background: $zen-breadcrumbs-bg;
+        padding-top: $spacer-sm;
+        padding-bottom: $spacer-sm;
+
+        @if $zen-breadcrumbs-bg != transparent {
+            @include border-radius($zen-layout-button-radius * 1px);
+            padding-left: $spacer-md;
+            padding-right: $spacer-md;
+        }
+    }
+
+    a {
+        color: $zen-breadcrumbs-color;
+        font-weight: $zen-breadcrumbs-font-weight;
+
+        &:hover,
+        &.is-active {
+            color: $zen-breadcrumbs-hover-color;
+
+            @if $zen-breadcrumbs-bg == transparent {
+                border-bottom: 1px solid $zen-breadcrumbs-hover-color;
+            }
+        }
+    }
+}
+
+.cms-breadcrumb {
+    padding-right: 20px;
+    padding-left: 20px;
+}

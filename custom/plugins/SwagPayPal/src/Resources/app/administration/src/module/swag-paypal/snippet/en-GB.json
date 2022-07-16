@@ -1,0 +1,197 @@
+{
+    "sw-privileges": {
+        "permissions": {
+            "parents": {
+                "swag_paypal": "PayPal"
+            },
+            "swag_paypal": {
+                "label": "PayPal settings"
+            },
+            "swag_paypal_disputes": {
+                "label": "PayPal disputes"
+            }
+        }
+    },
+    "swag-paypal": {
+        "header": "PayPal",
+        "saleschannelCard": {
+            "button": {
+                "description": "Click this button to enable PayPal and select it as default in the selected Sales Channel",
+                "label": "Set PayPal as default"
+            }
+        },
+        "general": {
+            "mainMenuItemGeneral": "PayPal",
+            "descriptionTextModule": "PayPal settings"
+        },
+        "messageNotBlank": "This value should not be blank.",
+        "settingForm": {
+            "save": "Save",
+            "testLive": "Test API credentials",
+            "testSandbox": "Test sandbox API credentials",
+            "credentials": {
+                "cardTitle": "API credentials",
+                "clientId": {
+                    "label": "Client ID",
+                    "tooltipText": "The REST API client ID is used to authenticate this plugin with the PayPal API."
+                },
+                "clientSecret": {
+                    "label": "Client secret",
+                    "tooltipText": "The REST API client secret is used to authenticate this plugin with the PayPal API."
+                },
+                "clientIdSandbox": {
+                    "label": "Sandbox client ID",
+                    "tooltipText": "The REST API client ID is used while testing to authenticate this plugin with the PayPal API."
+                },
+                "clientSecretSandbox": {
+                    "label": "Sandbox client secret",
+                    "tooltipText": "The REST API client secret is used while testing to authenticate this plugin with the PayPal API."
+                },
+                "sandbox": {
+                    "label": "Enable sandbox",
+                    "tooltipText": "Enable if you want to test the PayPal integration."
+                },
+                "button": {
+                    "title": "Get API credentials",
+                    "titleSandbox": "Get sandbox API credentials",
+                    "messageFetchedError": "Try again or enter your credentials manually."
+                }
+            },
+            "behavior": {
+                "cardTitle": "Behaviour",
+                "merchantLocation": {
+                    "label": "Merchant location",
+                    "germany": "Germany",
+                    "other": "Other merchant location"
+                },
+                "intent": {
+                    "label": "Payment acquisition",
+                    "sale": "Complete payment immediately (Sale)",
+                    "authorize": "Delayed payment collection (Auth-Capture)",
+                    "order": "Delayed payment collection (Order-Auth-Capture)",
+                    "CAPTURE": "Complete payment immediately (CAPTURE)",
+                    "AUTHORIZE": "Delayed payment collection (AUTHORIZE)"
+                },
+                "submitCart": {
+                    "label": "Submit cart",
+                    "helpText": "If this option is active, cart data will be submitted to PayPal at checkout."
+                },
+                "brandName": {
+                    "label": "Your own brand name on PayPal page",
+                    "tooltipText": "This text will be displayed as the brand name on the PayPal payment page."
+                },
+                "landingPage": {
+                    "label": "PayPal landing page",
+                    "helpText": {
+                        "login": "Login: The PayPal site displays a login screen as landing page.",
+                        "billing": "Registration: The PayPal site displays a registration form as landing page.",
+                        "no_preference": "No preference: PayPal decides which page is shown, depending on the previous interaction of the customer with PayPal."
+                    },
+                    "options": {
+                        "login": "Login",
+                        "billing": "Registration",
+                        "no_preference": "No preference"
+                    }
+                },
+                "sendOrderNumber": {
+                    "label": "Submit order number",
+                    "helpText": "If this option is active, the order number will be submitted to PayPal at checkout."
+                },
+                "orderNumberPrefix": {
+                    "label": "Order number prefix",
+                    "tooltipText": "This text is placed before the original order number (e.g MyShop_SW20001). This helps to identify the shop where the payment was made."
+                }
+            },
+            "express": {
+                "cardTitle": "PayPal Express Checkout",
+                "ecsDetailEnabled": {
+                    "label": "'Pay now' on detail page:",
+                    "helpText": "If this option is active, the Express Checkout button will be shown on each product detail page."
+                },
+                "ecsCartEnabled": {
+                    "label": "'Pay now' on cart:",
+                    "helpText": "If this option is active, the Express Checkout button will be shown on the cart."
+                },
+                "ecsOffCanvasEnabled": {
+                    "label": "'Pay Now' on Off-Canvas cart:",
+                    "helpText": "If this option is active, the Express Checkout button will be shown on the Off-Canvas cart."
+                },
+                "ecsLoginEnabled": {
+                    "label": "'Pay Now' on login page:",
+                    "helpText": "If this option is active, the Express Checkout button will be shown on the login and register page."
+                },
+                "ecsListingEnabled": {
+                    "label": "'Pay now' on listing pages:",
+                    "helpText": "If this option is active, the Express Checkout button will be shown on listing pages."
+                },
+                "ecsButtonColor": {
+                    "label": "Button color:",
+                    "options": {
+                        "blue": "Blue",
+                        "black": "Black",
+                        "gold": "Gold",
+                        "silver": "Silver"
+                    }
+                },
+                "ecsButtonShape": {
+                    "label": "Button shape:",
+                    "options": {
+                        "pill": "Round",
+                        "rect": "Rectangular"
+                    }
+                },
+                "ecsSubmitCart": {
+                    "label": "Submit cart",
+                    "helpText": "If this option is active, the cart will be submitted to PayPal for Express orders."
+                },
+                "ecsButtonLanguageIso": {
+                    "label": "Button locale:",
+                    "helpText": "If not set, the sales channel language will be used."
+                }
+            },
+            "installment": {
+                "cardTitle": "Installments",
+                "installmentBannerEnabled": {
+                    "label": "Enable installment banner"
+                }
+            },
+            "spb": {
+                "cardTitle": "PayPal Checkout with Smart Payment Buttons",
+                "spbCheckoutEnabled": {
+                    "label": "Enable Smart Payment Buttons"
+                },
+                "spbButtonLanguageIso": {
+                    "label": "Button locale:",
+                    "helpText": "If not set, the sales channel language will be used."
+                },
+                "spbAlternativePaymentMethodsEnabled": {
+                    "label": "Enable the alternative payment methods for the Smart Payment Buttons.",
+                    "helpText": "Alternative payment methods are, Creditcards, Invoice and more."
+                }
+            },
+            "plus": {
+                "cardTitle": "PayPal PLUS",
+                "introduction": "<strong>PayPal PLUS:</strong> Your complete all-in-one payment solution including PayPal, Direct Debit, Credit Card and Pay Upon Invoice. PayPal PLUS offers your customers full flexibility in choosing their preferred payment method. Your advantages as a seller? Easier accounting with only one contracting party, one account and one transaction overview showing all incoming payments. You receive your money directly after customers complete the order process.<br>You can apply for PayPal PLUS <a href='https://www.paypal.com/de/webapps/mpp/paypal-plus' target='_blank'>here</a>. Apply for Payment upon Invoice <a href='https://www.paypal.com/de/webapps/mpp/pui-start' target='_blank'>here</a>.",
+                "plusCheckoutEnabled": {
+                    "label": "Enable PayPal PLUS"
+                },
+                "hint": "Note: PayPal PLUS only works with the payment acquisition \"Sale\". It will be set automatically."
+            },
+            "locale-field": {
+                "infobox": {
+                    "text": "To see a list of valid locale codes click ",
+                    "href": "here"
+                },
+                "error": {
+                    "detail": "The locale code you provided doesn't match the format required by PayPal. A valid format is \"en_GB\"."
+                }
+            },
+            "messageSaveSuccess": "The PayPal settings have been saved.",
+            "messageTestSuccess": "The API credentials have been validated.",
+            "messageTestError": "The API credentials could not be validated.",
+            "messageWebhookCreated": "The webhook has been registered.",
+            "messageWebhookUpdated": "The webhook has been updated.",
+            "messageWebhookError": "The webhook could not be saved. The following errors occurred:"
+        }
+    }
+}

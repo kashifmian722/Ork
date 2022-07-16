@@ -1,0 +1,39 @@
+{% block component_product_box_image_switch_inner %}
+
+    {# if there are more than one image #}
+    {% if product.media.elements is defined and product.media.elements|length > 1 %}
+        {% set productMediaPosition = product.media.elements|length %}
+        {% set coverSwitch = [] %}
+
+        {# get image with lowest position #}
+        {% for image in product.media.elements %}
+            {% if product.cover.media.id != image.media.id and image.position < productMediaPosition %}
+                {% set coverSwitch = image.media %}
+                {% set productMediaPosition = image.position %}
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+
+    {% if coverSwitch.url %}
+        {% set attributes = {
+            'class': 'cover-switch product-image is-'~displayMode,
+            'alt': (coverSwitch.translated.alt ?: name),
+            'title': (coverSwitch.translated.title ?: name)
+        } %}
+
+        {% if displayMode == 'cover' or displayMode == 'contain' %}
+            {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+        {% endif %}
+
+        {% sw_thumbnails 'product-image-thumbnails' with {
+            media: coverSwitch,
+            sizes: {
+                'xs': '701px',
+                'sm': '515px',
+                'md': '627px',
+                'lg': '533px',
+                'xl': '484px'
+            }
+        } %}
+    {% endif %}
+{% endblock %}

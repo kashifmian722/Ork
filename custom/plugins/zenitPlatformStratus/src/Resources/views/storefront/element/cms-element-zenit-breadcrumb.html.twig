@@ -1,0 +1,17 @@
+{% block element_zenit_breadcrumb %}
+
+    {# cms element data and configs #}
+    {% if element.fieldConfig is defined and element.data is defined %}
+        {% set breadcrumbConfig = element.fieldConfig.elements %}
+        {% set horizontalAlign = breadcrumbConfig.horizontalAlign.value %}
+    {% endif %}
+
+    <div class="breadcrumb{% if horizontalAlign == "center" %} justify-content-center{% elseif horizontalAlign == "flex-end" %} justify-content-end{% else %} justify-content-start{% endif %}">
+            {% sw_include '/storefront/component/listing/breadcrumb.html.twig' with {
+                navigationTree: page.header.navigation.tree,
+                category: page.header.navigation.active,
+                showLabel: shopware.config.CogiThemeTulip.config.showBreadcrumbLabel
+            } only %}
+    </div>
+
+{% endblock %}

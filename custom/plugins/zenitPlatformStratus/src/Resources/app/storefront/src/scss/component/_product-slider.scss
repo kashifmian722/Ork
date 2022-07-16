@@ -1,0 +1,23 @@
+.product-slider {
+    .tns-ovh {
+        // prevents the shadow of the product box from being cut off
+        padding: px($zen-product-listing-card-padding);
+        margin: px($zen-product-listing-card-padding * -1);
+    }
+}
+
+.product-slider-controls-prev {
+    left: 0;
+}
+
+.product-slider-controls-next {
+    right: 0;
+}
+
+.product-slider-item {
+    &:not(.tns-slide-active) {
+        .product-box {
+            box-shadow: none;
+        }
+    }
+}

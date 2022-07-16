@@ -1,0 +1,61 @@
+<div class="intro-background">
+  <portal-container class="dashboard-intro">
+    <h3 class="intro-ghost">{{'DASHBOARD.INTRODUCTION.SUB_HEADLINE' | translate}}</h3>
+    <h1>{{'DASHBOARD.INTRODUCTION.HEADLINE' | translate}}</h1>
+    <p>{{'DASHBOARD.INTRODUCTION.TEXT' | translate}}</p>
+
+    <div class="dashboard-options">
+      <h3>{{'DASHBOARD.OPTIONS.HEADLINE' | translate}}</h3>
+      <div class="options-grid">
+        <div class="option">
+          <clr-icon shape="organization" class="is-solid"></clr-icon>
+          <h4>{{'DASHBOARD.OPTIONS.ORGANISATION.HEADLINE' | translate}}</h4>
+          <p>{{'DASHBOARD.OPTIONS.ORGANISATION.TEXT' | translate}}</p>
+          <button
+            class="btn btn-primary btn-link"
+            (click)="registerOrganization()"
+          >
+            {{'COMMON.REGISTER' | translate}}
+          </button>
+        </div>
+        <div class="option">
+          <clr-icon shape="store" class="is-solid"></clr-icon>
+          <h4>{{'DASHBOARD.OPTIONS.MERCHANT.HEADLINE' | translate}}</h4>
+          <p>{{'DASHBOARD.OPTIONS.MERCHANT.TEXT' | translate}}</p>
+          <button class="btn btn-primary btn-link" (click)="registerMerchant()">
+            {{'COMMON.REGISTER' | translate}}
+          </button>
+        </div>
+      </div>
+    </div>
+    <div class="dashboard-organizations organizations-wrapper">
+      <h4>{{'DASHBOARD.EXISTING_ORGANISATIONS.HEADLINE' | translate}}</h4>
+      <div
+              *ngFor="let authority of authorities$ | async"
+              class="card card-block card-organization"
+      >
+        <p class="card-text">
+          <strong>{{ authority.name }}</strong>
+          <a [href]="authority.domain">{{ authority.domain }}</a>
+        </p>
+      </div>
+    </div>
+  </portal-container>
+</div>
+
+<portal-merchant-register [registerModalOpen]="showRegisterMerchantModal">
+</portal-merchant-register>
+
+<portal-organization-register
+  [registerModalOpen]="showRegisterOrganizationModal"
+>
+</portal-organization-register>
+
+<portal-merchant-login
+  [loginModalOpen]="registrationCompleted"
+  [registrationCompleted]="true"
+>
+</portal-merchant-login>
+
+<portal-password-reset-modal [modalOpen]="showPasswordResetConfirmModal" [token]="token" [role]="passwordResetForRole">
+</portal-password-reset-modal>

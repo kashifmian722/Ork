@@ -1,0 +1,29 @@
+.product-detail-tab-navigation {
+    // Prevents the tab navigation from being covered by the negative margin of the product slider.
+    position: relative;
+    z-index: 1;
+}
+
+.product-video {
+    margin-bottom: $spacer-lg;
+}
+
+.product-detail-manufacturer {
+    .media {
+        flex-direction: column;
+
+        @include media-breakpoint-up(md) {
+            flex-direction: row;
+        }
+    }
+}
+
+.product-detail-datasheets {
+    .datasheets-embed {
+        margin-bottom: $spacer-xl;
+
+        &::before {
+            padding-top: 75vh;
+        }
+    }
+}

@@ -1,0 +1,58 @@
+<div class="clr-row">
+  <div class="clr-col-12">
+    <form clrForm clrLayout="vertical" [formGroup]="form">
+      <div class="input-group">
+        <clr-input-container>
+          <label>{{'COMMON.FIRST_NAME' | translate}}</label>
+          <input clrInput type="text" formControlName="firstName" />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'COMMON.LAST_NAME' | translate}}</label>
+          <input clrInput type="text" formControlName="lastName" />
+        </clr-input-container>
+      </div>
+
+      <div class="button-wrapper">
+        <button
+          class="btn btn-primary"
+          (click)="saveChanges()"
+          [disabled]="form.invalid || !form.dirty"
+        >
+          {{'COMMON.SAVE' | translate}}
+        </button>
+      </div>
+
+      <h4>{{'MERCHANT.ACCOUNT.CHANGE_EMAIL_ADDRESS' | translate}}</h4>
+
+      <div class="input-group">
+        <clr-input-container>
+          <label>{{'MERCHANT.ACCOUNT.CURRENT_EMAIL_ADDRESS' | translate}}</label>
+          <input clrInput type="email" formControlName="currentEmail" />
+        </clr-input-container>
+      </div>
+
+      <button class="btn btn-primary" type="button" (click)="openChangeEmail()">
+        {{'MERCHANT.ACCOUNT.CHANGE_EMAIL_ADDRESS' | translate}}
+      </button>
+
+      <h4>{{'MERCHANT.ACCOUNT.CHANGE_PASSWORD' | translate}}</h4>
+      <button
+        class="password-button btn btn-primary"
+        type="button"
+        (click)="openChangePassword()"
+      >
+        {{'MERCHANT.ACCOUNT.CHANGE_PASSWORD' | translate}}
+      </button>
+    </form>
+  </div>
+</div>
+
+<portal-change-password-modal
+  (passwordChanged)="passwordChanged($event)"
+  [modalOpen]="changePasswordModalOpen"
+></portal-change-password-modal>
+<portal-change-mail-modal
+  (emailChanged)="emailChanged($event)"
+  [modalOpen]="changeEmailModalOpen"
+></portal-change-mail-modal>

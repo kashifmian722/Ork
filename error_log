@@ -1,0 +1,16 @@
+[28-Apr-2021 05:52:01 UTC] PHP Fatal error:  Uncaught Symfony\Component\Console\Exception\RuntimeException: Unable to write output. in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Output/StreamOutput.php:79
+Stack trace:
+#0 phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Output/Output.php(164): Symfony\Component\Console\Output\StreamOutput->doWrite('\n', true)
+#1 phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Output/Output.php(132): Symfony\Component\Console\Output\Output->write(Array, true, 16)
+#2 phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Application.php(641): Symfony\Component\Console\Output\Output->writeln('', 16)
+#3 phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Application.php(127): Symfony\Component\Console\Application->renderException(Object(ErrorException), Object(Symfony\Component\Console\Output\StreamOutput))
+#4 phar:///opt/cpanel/composer/bin/composer/src/Composer/Console/Application.php(122): Symfony\Component\Console\Application->run(Object(Symfony\Com in phar:///opt/cpanel/composer/bin/composer/vendor/symfony/console/Output/StreamOutput.php on line 79
+[28-Apr-2021 07:26:56 UTC] PHP Fatal error:  Uncaught RuntimeException: You need to add "symfony/framework-bundle" as a Composer dependency. in /home/demoinfo/public_html/downtown/bin/console:24
+Stack trace:
+#0 {main}
+  thrown in /home/demoinfo/public_html/downtown/bin/console on line 24
+[28-Apr-2021 07:27:07 UTC] PHP Fatal error:  Uncaught RuntimeException: You need to add "symfony/framework-bundle" as a Composer dependency. in /home/demoinfo/public_html/downtown/bin/console:24
+Stack trace:
+#0 {main}
+  thrown in /home/demoinfo/public_html/downtown/bin/console on line 24
+[28-Apr-2021 09:20:39 UTC] PHP Fatal error:  Could not check compatibility between SwagBasicExample\Migration\Migration1619596186ExampleDescription::update(SwagBasicExample\Migration\Connection $connection): void and Shopware\Core\Framework\Migration\MigrationStep::update(Doctrine\DBAL\Connection $connection): void, because class SwagBasicExample\Migration\Connection is not available in /home/demoinfo/public_html/downtown/custom/plugins/SwagBasicExample/src/Migration/Migration1619596186ExampleDescription.php on line 15

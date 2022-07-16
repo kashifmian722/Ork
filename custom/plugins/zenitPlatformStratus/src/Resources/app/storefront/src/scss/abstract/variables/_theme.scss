@@ -1,0 +1,343 @@
+/*
+Theme variables
+==================================================
+Contains all theme config default variables.
+*/
+
+// fonts
+$zen-font-family-base-default: 'custom' !default;
+$zen-font-family-headline-default: 'custom' !default;
+
+// general
+$zen-logo-position: left !default;
+$zen-main-navigation-style: offcanvas-md !default;
+
+// general max container width
+$zen-layout-style: full-width !default;
+$zen-layout-container-width: 1400 !default;
+$zen-header-style: single-header !default;
+
+// general background image
+$zen-layout-bg-img-repeat: no-repeat !default;
+$zen-layout-bg-img-attachment: scroll !default ;
+$zen-layout-bg-img-position: center top !default;
+$zen-layout-bg-img-size: contain !default;
+
+// general preloader
+$zen-layout-preloader-bg: $sw-color-brand-primary !default;
+$zen-layout-preloader-color: #ffffff !default;
+
+// general accent line
+$zen-layout-border-top-width: 0 !default;
+$zen-layout-border-top-color: $sw-color-brand-primary !default;
+
+// general paddings
+$zen-layout-padding-top-mobile: 0 !default;
+$zen-layout-padding-right-mobile: 40 !default;
+$zen-layout-padding-bottom-mobile: 40 !default;
+$zen-layout-padding-left-mobile: 40 !default;
+
+$zen-layout-padding-top: 0 !default;
+$zen-layout-padding-right: 80 !default;
+$zen-layout-padding-bottom: 80 !default;
+$zen-layout-padding-left: 80 !default;
+
+// general radius
+$zen-layout-button-radius: 3 !default;
+$zen-layout-input-radius: 3 !default;
+$zen-layout-element-radius: 3 !default;
+
+// Colors
+$sw-color-brand-primary: $sw-color-brand-primary !default;
+$sw-color-brand-secondary: #222222 !default;
+$sw-border-color: #e8e7e8 !default;
+$sw-background-color: #ffffff !default;
+$zen-container-bg: #ffffff !default;
+$sw-text-color: #7d7d7d !default;
+$zen-light-text-color: #ffffff !default;
+$sw-headline-color: #111111 !default;
+$zen-light-headline-color: #ffffff !default;
+$sw-color-price: #111111 !default;
+$sw-color-buy-button: $sw-color-brand-primary !default;
+$sw-color-buy-button-text: #ffffff !default;
+
+// layout header
+$zen-logo-size-mobile: 75 !default;
+$zen-logo-size: 40 !default;
+$zen-header-height-mobile: 50 !default;
+$zen-header-height: 100 !default;
+$zen-header-padding-top-mobile: 0 !default;
+$zen-header-padding-top: 0 !default;
+$zen-header-bg: #333333 !default;
+$zen-header-color: #ffffff !default;
+
+// header top bar
+$zen-top-bar-bg: #222222 !default;
+$zen-top-bar-hover-bg: #111111 !default;
+$zen-top-bar-color: #ffffff !default;
+$zen-top-bar-hover-color: $sw-color-brand-primary !default;
+
+// header shop navigation
+$zen-shop-navigation-bg: #333333 !default;
+$zen-shop-navigation-hover-bg: #333333 !default;
+$zen-shop-navigation-color: #ffffff !default;
+$zen-shop-navigation-hover-color: $sw-color-brand-primary !default;
+
+// header shop navigation cart
+$zen-shop-navigation-cart-bg: #333333 !default;
+$zen-shop-navigation-cart-hover-bg: #333333 !default;
+$zen-shop-navigation-cart-color: #ffffff !default;
+$zen-shop-navigation-cart-hover-color: $sw-color-brand-primary !default;
+$zen-shop-navigation-cart-font-size: 16 !default;
+$zen-shop-navigation-cart-font-weight: 600 !default;
+
+// header search
+$zen-search-bg: #222222 !default;
+$zen-search-focus-bg: #222222 !default;
+$zen-search-color: #ffffff !default;
+$zen-search-focus-color: #ffffff !default;
+$zen-search-border: #ffffff !default;
+$zen-search-focus-border: #ffffff !default;
+
+// header main navigation
+$zen-main-navigation-bg: #333333 !default;
+$zen-main-navigation-hover-bg: $sw-color-brand-primary !default;
+$zen-main-navigation-color: #ffffff !default;
+$zen-main-navigation-hover-color: $sw-color-brand-primary !default;
+
+$zen-main-navigation-align: center !default;
+$zen-main-navigation-divider: 3 !default;
+$zen-main-navigation-hover-animation: hover-12 !default;
+
+$zen-main-navigation-border-top: 0 !default;
+$zen-main-navigation-border-top-color: $sw-color-brand-primary !default;
+$zen-main-navigation-border-top-width: 1 !default;
+
+$zen-main-navigation-padding: 20 !default;
+$zen-main-navigation-height: 40 !default;
+$zen-main-navigation-font-size: 14 !default;
+$zen-main-navigation-font-weight: 400 !default;
+$zen-main-navigation-text-transform: none !default;
+$zen-main-navigation-font-family: base !default;
+
+// header navigation flyout
+$zen-flyout-navigation-animation: slide !default;
+$zen-flyout-navigation-grouping: 0 !default;
+$zen-flyout-navigation-teaser: 1 !default;
+
+$zen-flyout-navigation-bg: $sw-color-brand-primary !default;
+$zen-flyout-navigation-color: #ffffff !default;
+$zen-flyout-navigation-hover-color: #ffffff !default;
+$zen-flyout-navigation-font-size: 14 !default;
+$zen-flyout-navigation-font-weight: 400 !default;
+
+// footer
+$zen-footer-bg: #ffffff !default;
+$zen-footer-color: $sw-text-color !default;
+$zen-footer-hover-color: $sw-color-brand-primary !default;
+
+// footer col headline
+$zen-footer-col-headline-font-size: 20 !default;
+$zen-footer-col-headline-font-size: base !default;
+$zen-footer-col-headline-font-weight: 400 !default;
+$zen-footer-col-headline-font-align: center !default;
+
+// footer col
+$zen-footer-col-font-size: 14 !default;
+$zen-footer-col-font-weight: 400 !default;
+$zen-footer-col-font-align: center !default;
+
+// footer logo column
+$zen-footer-logo-column-bg: #222222 !default;
+$zen-footer-logo-column-valign: center !default;
+
+// footer hotline column
+$zen-footer-hotline-font-size: 20 !default;
+$zen-footer-hotline-font-weight: 700 !default;
+$zen-footer-hotline-column-bg: transparent !default;
+$zen-footer-hotline-column-color: $sw-text-color !default;
+$zen-footer-hotline-column-hover-color: $sw-color-brand-primary !default;
+
+// footer social column
+$zen-footer-social-column-bg: transparent !default;
+$zen-footer-social-column-color: $sw-text-color !default;
+$zen-footer-social-column-hover-color: $sw-color-brand-primary !default;
+
+// footer newsletter column
+$zen-footer-newsletter-column-bg: #F3F4F5 !default;
+$zen-footer-newsletter-column-color: $sw-text-color !default;
+$zen-footer-newsletter-hover-color: $sw-color-brand-primary !default;
+$zen-footer-newsletter-field-bg: #ffffff !default;
+$zen-footer-newsletter-field-focus-bg: #ffffff !default;
+$zen-footer-newsletter-field-color: #222222 !default;
+$zen-footer-newsletter-field-focus-color: #222222 !default;
+$zen-footer-newsletter-field-border: $sw-color-brand-primary !default;
+$zen-footer-newsletter-field-focus-border: #222222 !default;
+
+// footer social column
+$zen-footer-custom-column-bg: transparent !default;
+$zen-footer-custom-column-color: $sw-text-color !default;
+$zen-footer-custom-column-hover-color: $sw-color-brand-primary !default;
+
+// footer bottom
+$zen-footer-bottom-bg: #ffffff !default;
+$zen-footer-bottom-color: $sw-text-color !default;
+$zen-footer-bottom-hover-color: $sw-color-brand-primary !default;
+
+// components forms
+// $zen-input-bg used in overrides/theme.scss
+// $zen-input-focus-bg used in overrides/theme.scss
+// $zen-input-color used in overrides/theme.scss
+// $zen-input-focus-color used in overrides/theme.scss
+// $zen-input-border-color used in overrides/theme.scss
+// $zen-input-focus-border-color used in overrides/theme.scss
+// $zen-input-font-size used in overrides/theme.scss
+// $zen-input-font-weight used in overrides/theme.scss
+$zen-layout-forms-style: underlined !default;
+
+// components breadcrumbs
+$zen-breadcrumbs-bg: transparent !default;
+$zen-breadcrumbs-color: $sw-text-color !default;
+$zen-breadcrumbs-hover-color: $sw-color-brand-primary !default;
+$zen-breadcrumbs-font-weight: 400 !default;
+$zen-breadcrumbs-align: center !default;
+
+// components base slider
+$zen-base-slider-controls-inside-bg: transparent !default;
+$zen-base-slider-controls-inside-hover-bg: $sw-color-brand-primary !default;
+$zen-base-slider-controls-inside-color: $sw-border-color!default;
+$zen-base-slider-controls-inside-hover-color: #ffffff !default;
+$zen-base-slider-controls-dots-inside-color: $sw-color-brand-primary !default;
+$zen-base-slider-controls-dots-inside-hover-color: $sw-color-brand-primary !default;
+
+// components image slider
+$zen-image-slider-controls-outside-bg: $sw-color-brand-primary !default;
+$zen-image-slider-controls-outside-hover-bg: #ffffff !default;
+$zen-image-slider-controls-outside-color: #ffffff !default;
+$zen-image-slider-controls-outside-hover-color: $sw-color-brand-primary !default;
+$zen-image-slider-controls-dots-inside-color: #ffffff !default;
+$zen-image-slider-controls-dots-inside-hover-color: #ffffff !default;
+
+$zen-image-slider-controls-inside-bg: transparent !default;
+$zen-image-slider-controls-inside-hover-bg: $sw-color-brand-primary !default;
+$zen-image-slider-controls-inside-color: #ffffff !default;
+$zen-image-slider-controls-inside-hover-color: #ffffff !default;
+$zen-image-slider-controls-dots-outside-color: $sw-color-brand-primary !default;
+$zen-image-slider-controls-dots-outside-hover-color: $sw-color-brand-primary !default;
+
+$zen-image-slider-controls-style: alternate !default;
+$zen-image-slider-controls-dots-style: default !default;
+
+$zen-layout-pagination-style: pills !default;
+$zen-layout-pagination-border: 0 !default;
+
+// components cookie banner
+$zen-cookie-banner-style: widget !default;
+
+// listing pages
+// Category image
+$zen-category-image-content-max-width: 1024 !default;
+$zen-category-image-content-align: center !default;
+
+// Sidebar Navigation
+$zen-sidebar-navigation-bg: #F3F4F5 !default;
+$zen-sidebar-navigation-active-bg: $sw-color-brand-primary !default;
+$zen-sidebar-navigation-hover-bg: darken($sw-color-brand-primary, 5%) !default;
+$zen-sidebar-navigation-color: $sw-text-color !default;
+$zen-sidebar-navigation-active-color: #ffffff !default;
+$zen-sidebar-navigation-hover-color: #ffffff !default;
+$zen-sidebar-navigation-border: 0 !default;
+$zen-sidebar-navigation-border-color: $sw-border-color !default;
+$zen-sidebar-navigation-border-hover-color: transparent !default;
+$zen-sidebar-navigation-font-size: 14 !default;
+$zen-sidebar-navigation-font-weight: 400 !default;
+$zen-sidebar-navigation-font-weight-hover: 400 !default;
+$zen-sidebar-navigation-pv: 10 !default;
+$zen-sidebar-navigation-mb: 2 !default;
+$zen-sidebar-navigation-text-transform: none !default;
+$zen-sidebar-navigation-hover-animation: default !default;
+
+// Category Filter
+$zen-category-filter-bg: #F3F4F5 !default;
+$zen-category-filter-active-bg: $sw-color-brand-primary !default;
+$zen-category-filter-hover-bg: darken($sw-color-brand-primary, 5%) !default;
+$zen-category-filter-color: $sw-text-color !default;
+$zen-category-filter-active-color: #ffffff !default;
+$zen-category-filter-hover-color: #ffffff !default;
+$zen-category-filter-seperator: 1 !default;
+$zen-category-filter-pv: 10 !default;
+$zen-category-filter-mb: 2 !default;
+$zen-category-filter-icon: plus !default;
+$zen-category-filter-text-transform: none !default;
+$zen-category-filter-border: 0 !default;
+$zen-category-filter-border-color: $sw-border-color !default;
+$zen-category-filter-border-hover-color:transparent !default;
+
+// Card Colors
+$zen-product-listing-card-bg: #ffffff !default;
+// Card Basic
+$zen-product-listing-card-border: 0 !default;
+$zen-product-listing-card-border-color: $sw-border-color !default;
+$zen-product-listing-card-shadow: 0 !default;
+$zen-product-listing-card-shadow-color: $sw-border-color !default;
+$zen-product-listing-card-hover-shadow: 0 !default;
+$zen-product-listing-card-hover-shadow-color: $sw-border-color !default;
+// $zen-product-listing-card-padding is used in overrides/theme.scss
+
+// Card Image
+$zen-product-listing-card-img-switch: switch-flip !default;
+$zen-product-listing-card-img-padding: 100 !default;
+$zen-product-listing-card-img-width: 0 !default;
+$zen-product-listing-card-img-height: 0 !default;
+$zen-product-listing-card-img-border: 0 !default;
+$zen-product-listing-card-img-border-color: $sw-border-color !default;
+$zen-product-listing-card-img-bg: $sw-border-color !default;
+$zen-product-listing-card-img-color-overlay: 0 !default;
+
+// Card Name
+$zen-product-listing-card-name-color: #222222 !default;
+$zen-product-listing-card-name-hover-color: $sw-color-brand-primary !default;
+$zen-product-listing-card-name-font-size: 15 !default;
+$zen-product-listing-card-name-font-family: base !default;
+$zen-product-listing-card-name-font-weight: 600 !default;
+$zen-product-listing-card-name-font-align: left !default;
+
+// Card Description
+$zen-product-listing-card-description-color: $sw-text-color !default;
+$zen-product-listing-card-description-font-size: 14 !default;
+$zen-product-listing-card-description-font-weight: 400 !default;
+$zen-product-listing-card-description-font-align: left !default;
+
+// Card Price
+$zen-product-listing-card-price-color: $sw-color-price !default;
+$zen-product-listing-card-price-font-size: 14 !default;
+$zen-product-listing-card-price-font-weight: 700 !default;
+$zen-product-listing-card-price-font-align: left !default;
+
+// Card Actions
+$zen-product-listing-card-actions: overlay !default;
+
+// Card Rating
+$zen-product-listing-card-rating-position: overlay-bottom-center !default;
+
+// Detail Name
+$zen-product-details-name-color: #222222 !default;
+$zen-product-details-name-font-size: 36 !default;
+$zen-product-details-name-font-weight: 400 !default;
+
+// Detail Price
+$zen-product-details-price-color: $sw-color-price !default;
+$zen-product-details-price-font-size: 36 !default;
+$zen-product-details-price-font-weight: 700 !default;
+
+// Detail Tabs
+$zen-product-tabs-bg: $sw-border-color !default;
+$zen-product-tabs-hover-bg: $sw-color-brand-primary !default;
+$zen-product-tabs-color: $sw-text-color !default;
+$zen-product-tabs-hover-color: $sw-text-color !default;
+$zen-product-tabs-style: default !default;
+$zen-product-tabs-align: space-between !default;
+$zen-product-tabs-font-size: 16 !default;
+$zen-product-tabs-font-weight: 700 !default;
+$zen-product-tabs-font-align: left !default;
+

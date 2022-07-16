@@ -1,0 +1,6 @@
+{
+    "serviceBooking": {
+        "selectedDate": "Selected date",
+        "emptyDate": "No date selected"
+    }
+}

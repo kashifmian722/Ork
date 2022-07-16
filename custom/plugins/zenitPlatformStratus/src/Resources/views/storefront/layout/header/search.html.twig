@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/layout/header/search.html.twig' %}
+
+{% block layout_header_search_input_group %}
+    {% block search_utilities_overlay_close %}
+        <button class="d-none js-overlay-close"
+                type="button"
+                aria-label="Close">
+            {% block search_utilities_overlay_close_icon %}
+                {% sw_icon 'x' style { 'size': 'lg' } %}
+            {% endblock %}
+        </button>
+    {% endblock %}
+
+    {{ parent() }}
+{% endblock %}

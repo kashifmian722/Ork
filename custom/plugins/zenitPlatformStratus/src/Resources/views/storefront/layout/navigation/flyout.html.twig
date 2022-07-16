@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
+{% set zentheme = shopware.theme %}
+
+{% block layout_navigation_flyout_bar %}
+    {% if zentheme['zen-flyout-navigation-header'] %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block layout_navigation_flyout_categories %}
+    <div class="{% if category.media and zentheme['zen-flyout-navigation-teaser'] %}col-8 col-xl-9{% else %}col{% endif %}">
+        <div class="navigation-flyout-categories">
+            {% block layout_navigation_flyout_categories_recoursion %}
+                {% sw_include '@Storefront/storefront/layout/navigation/categories.html.twig' with {
+                    navigationTree: navigationTree.children,
+                    navigationMedia: category.media
+                } only %}
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}
+
+{% block layout_navigation_flyout_teaser %}
+    {% if zentheme['zen-flyout-navigation-teaser'] %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

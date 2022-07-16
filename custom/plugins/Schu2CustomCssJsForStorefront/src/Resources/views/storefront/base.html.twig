@@ -1,0 +1,22 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{#global variables#}
+{% set SITCustomCssJsPligin = context.context.extensions['Schu2CustomCssJsForStorefront'] %}
+
+{% block base_body_script %}
+    {{ parent() }}
+
+    {% block base_theme_js_files %}
+        {% if SITCustomCssJsPligin.customJsFilesActive %}
+            {{ SITCustomCssJsPligin.customJsFiles|raw }}
+        {% endif %}
+    {% endblock %}
+
+
+    {% block base_theme_js_custom %}
+        {% if SITCustomCssJsPligin.customJsActive %}
+            {{ SITCustomCssJsPligin.customJs|raw }}
+        {% endif %}
+    {% endblock %}
+
+{% endblock %}

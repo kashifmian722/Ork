@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/component/checkout/offcanvas-item.html.twig' %}
+
+{% block component_offcanvas_product_remove %}
+    {{ parent() }}
+
+    {%  if lineItem.payload.serviceBookingTemplate %}
+        {{ lineItem.payload.serviceBookingTemplate.dateId|swag_booking_date_format }}
+    {% endif %}
+{% endblock %}

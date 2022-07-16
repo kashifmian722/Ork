@@ -1,0 +1,13 @@
+.table {
+    @include text-color-contrast;
+}
+
+.table-striped {
+    tbody tr:nth-of-type(#{$table-striped-order}) {
+        @if $zen-container-bg == transparent {
+            background-color: color-yiq($body-bg, $table-accent-bg, rgba(0,0,0,.2));
+        } @else {
+            background-color: color-yiq($zen-container-bg, $table-accent-bg, rgba(0,0,0,.2));
+        }
+    }
+}

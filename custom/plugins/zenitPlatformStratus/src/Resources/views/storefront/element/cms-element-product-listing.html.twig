@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-listing.html.twig' %}
+
+{% block element_product_listing_wrapper %}
+    {# need to set zentheme var again because of loading products on next/prev page #}
+    {% set zentheme = shopware.theme %}
+
+    {% set configListingColumns = [] %}
+    {% set configListingColumns = ['col-sm-' ~ 12 / zentheme['zen-product-listing-columns-sm']|default("2")]|merge(configListingColumns) %}
+    {% set configListingColumns = ['col-md-' ~ 12 / zentheme['zen-product-listing-columns-md']|default("2")]|merge(configListingColumns) %}
+    {% set configListingColumns = ['col-lg-' ~ 12 / zentheme['zen-product-listing-columns-lg']|default("3")]|merge(configListingColumns) %}
+    {% set configListingColumns = ['col-xl-' ~ 12 / zentheme['zen-product-listing-columns-xl']|default("4")]|merge(configListingColumns) %}
+
+    {% if section and section.type == 'sidebar' %}
+        {% set configListingColumns = [] %}
+        {% set configListingColumns = ['col-sm-' ~ 12 / zentheme['zen-product-listing-columns-sidebar-sm']|default("2")]|merge(configListingColumns) %}
+        {% set configListingColumns = ['col-md-' ~ 12 / zentheme['zen-product-listing-columns-sidebar-md']|default("2")]|merge(configListingColumns) %}
+        {% set configListingColumns = ['col-lg-' ~ 12 / zentheme['zen-product-listing-columns-sidebar-lg']|default("2")]|merge(configListingColumns) %}
+        {% set configListingColumns = ['col-xl-' ~ 12 / zentheme['zen-product-listing-columns-sidebar-xl']|default("3")]|merge(configListingColumns) %}
+    {% endif %}
+
+    {% set listingColumns = configListingColumns|join(' ') %}
+
+    {{ parent() }}
+{% endblock %}

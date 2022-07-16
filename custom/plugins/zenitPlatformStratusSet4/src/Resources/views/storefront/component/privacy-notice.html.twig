@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/component/privacy-notice.html.twig' %}
+
+{% block component_privacy_notice %}
+    <p class="form-text privacy-notice">
+        {% block component_privacy_label %}
+            <label>
+                {{ "general.privacyTitle"|trans|sw_sanitize }}
+            </label>
+            {{ "general.privacyNotice"|trans({
+                '%url%': 'https://www.shopware.com/de/datenschutz/'
+            })|raw }}
+        {% endblock %}
+    </p>
+{% endblock %}

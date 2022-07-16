@@ -1,0 +1,65 @@
+/*
+Sticky Header
+==================================================
+Contains the sticky header styles added by StickyHeader Plugin
+*/
+
+// on sticky state
+.js-sticky {
+
+
+    .header-inner {
+        z-index: $zindex-sticky;
+        position: fixed !important; // can't use sticky because of overflow-x: hidden on page-wrapper
+        top: 0;
+        right: 0;
+        left: 0;
+    }
+}
+
+.header-single-line.js-sticky {
+    &:not(.js-sticky-hide) {
+        .header-inner {
+            @extend .slide-in-top;
+        }
+    }
+
+    &.js-sticky-hide {
+        // on scroll down state
+        &.js-sticky-down {
+            .header-inner {
+                transform: translateY(-100%);
+            }
+        }
+
+        // on scroll up state
+        &.js-sticky-up {
+            .header-inner {
+                @extend .slide-in-top;
+            }
+        }
+    }
+}
+
+.header-multi-line.js-sticky,
+.header-two-line.js-sticky {
+    .header-inner {
+        @extend .slide-in-top;
+    }
+
+    &.js-sticky-hide {
+        .nav-main {
+            transition: transform .4s ease;
+            transform: translateY(-300px);
+            z-index: -1;
+        }
+
+        // on scroll up state
+        &.js-sticky-up {
+            .nav-main {
+                transition: transform .4s ease;
+                transform: translateY(0);
+            }
+        }
+    }
+}

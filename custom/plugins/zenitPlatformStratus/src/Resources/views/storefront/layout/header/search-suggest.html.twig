@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/layout/header/search-suggest.html.twig' %}
+
+{% block layout_search_suggest_container %}
+    <div class="search-suggest-container">
+        <ul class="search-suggest-list">
+            {% block layout_search_suggest_results %}
+                {{ parent() }}
+            {% endblock %}
+
+            {% block layout_search_suggest_result_total %}
+                {{ parent() }}
+            {% endblock %}
+        </ul>
+    </div>
+{% endblock %}

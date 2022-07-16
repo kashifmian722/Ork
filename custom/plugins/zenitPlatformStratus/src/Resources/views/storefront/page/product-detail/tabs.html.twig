@@ -1,0 +1,230 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+
+{% block page_product_detail_tabs_navigation_review %}
+
+    {% block page_product_detail_tabs_navigation_properties %}
+        {% if zentheme['zen-product-tabs-properties'] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="properties-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#properties-tab-pane"
+                   role="tab"
+                   aria-controls="properties-tab-pane"
+                   aria-selected="false">
+                    {{ 'zentheme.detail.tabsProperties'|trans }}
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_video %}
+        {% if page.product.translated.customFields["zenit_stratus_youtube_ids"] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="video-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#video-tab-pane"
+                   role="tab"
+                   aria-controls="video-tab-pane"
+                   aria-selected="false">
+                    <span>{{ 'zentheme.detail.tabsVideo'|trans }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_datasheets %}
+        {% if page.product.translated.customFields['zenit_stratus_datasheet_one'] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="datasheets-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#datasheets-tab-pane"
+                   role="tab"
+                   aria-controls="datasheets-tab-pane"
+                   aria-selected="false">
+                    <span>{{ 'zentheme.detail.tabsDatasheets'|trans }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_manufacturer %}
+        {% if zentheme['zen-product-tabs-manufacturer'] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="manufacturer-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#manufacturer-tab-pane"
+                   role="tab"
+                   aria-controls="manufacturer-tab-pane"
+                   aria-selected="false">
+                    <span>{{ 'zentheme.detail.tabsManufacturer'|trans }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_custom_tab1 %}
+        {% if page.product.translated.customFields["zenit_stratus_custom_tab1_title"] and page.product.translated.customFields["zenit_stratus_custom_tab1_text"] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="custom-field1-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#custom-field1-tab-pane"
+                   role="tab"
+                   aria-controls="custom-field1-tab-pane"
+                   aria-selected="false">
+                    <span>{{ page.product.translated.customFields["zenit_stratus_custom_tab1_title"] }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_custom_tab2 %}
+        {% if page.product.translated.customFields["zenit_stratus_custom_tab2_title"] and page.product.translated.customFields["zenit_stratus_custom_tab2_text"] %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="custom-field2-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#custom-field2-tab-pane"
+                   role="tab"
+                   aria-controls="custom-field2-tab-pane"
+                   aria-selected="false">
+                    <span>{{ page.product.translated.customFields["zenit_stratus_custom_tab2_title"] }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_navigation_custom_tab_global %}
+        {% if zenconfig.customTabActive and zenconfig.customTabTitle and zenconfig.customTabText %}
+            <li class="nav-item">
+                <a class="nav-link product-detail-tab-navigation-link"
+                   id="custom-field-global-tab"
+                   data-toggle="tab"
+                   data-offcanvas-tabs="true"
+                   href="#custom-field-global-tab-pane"
+                   role="tab"
+                   aria-controls="custom-field-global-tab-pane"
+                   aria-selected="false">
+                    <span>{{ zenconfig.customTabTitle }}</span>
+                    <span class="product-detail-tab-navigation-icon">
+                        {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                    </span>
+                </a>
+            </li>
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+
+{% endblock %}
+
+{% block page_product_detail_tabs_content_review %}
+
+    {% block page_product_detail_tabs_content_properties %}
+        {% if zentheme['zen-product-tabs-properties'] %}
+            <div class="tab-pane fade show"
+                 id="properties-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="properties-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/properties-tab.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_video %}
+        {% if page.product.translated.customFields["zenit_stratus_youtube_ids"] %}
+            <div class="tab-pane fade show"
+                 id="video-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="video-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/video.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_datasheets %}
+        {% if page.product.translated.customFields['zenit_stratus_datasheet_one'] %}
+            <div class="tab-pane fade show"
+                 id="datasheets-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="datasheets-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/datasheets.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_manufacturer %}
+        {% if zentheme['zen-product-tabs-manufacturer'] %}
+            <div class="tab-pane fade show"
+                 id="manufacturer-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="manufacturer-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/manufacturer.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_custom_tab1 %}
+        {% if page.product.translated.customFields["zenit_stratus_custom_tab1_title"] and page.product.translated.customFields["zenit_stratus_custom_tab1_text"] %}
+            <div class="tab-pane fade show"
+                 id="custom-field1-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="custom-field1-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/custom-tab1.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_custom_tab2 %}
+        {% if page.product.translated.customFields["zenit_stratus_custom_tab1_title"] and page.product.translated.customFields["zenit_stratus_custom_tab1_text"] %}
+            <div class="tab-pane fade show"
+                 id="custom-field2-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="custom-field2-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/custom-tab2.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {% block page_product_detail_tabs_content_custom_tab_global %}
+        {% if zenconfig.customTabActive and zenconfig.customTabTitle and zenconfig.customTabText %}
+            <div class="tab-pane fade show"
+                 id="custom-field-global-tab-pane"
+                 role="tabpanel"
+                 aria-labelledby="custom-field-global-tab">
+                {% sw_include '@Storefront/storefront/page/product-detail/custom-global-tab.html.twig' %}
+            </div>
+        {% endif %}
+    {% endblock %}
+
+    {{ parent() }}
+
+{% endblock %}

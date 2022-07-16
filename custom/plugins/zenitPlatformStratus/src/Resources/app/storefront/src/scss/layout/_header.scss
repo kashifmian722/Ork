@@ -1,0 +1,705 @@
+.pos-lg-center {
+    @include media-breakpoint-up(lg) {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        margin: auto;
+    }
+}
+
+.pos-xl-center {
+    @include media-breakpoint-up(xl) {
+        position: absolute;
+        top: 0;
+        left: 20px;
+        right: 20px;
+        margin: auto;
+    }
+}
+
+.reverse-sm .row {
+    @include media-breakpoint-up(sm) {
+        flex-direction: row-reverse;
+    }
+}
+
+.reverse-md .row {
+    @include media-breakpoint-up(md) {
+        flex-direction: row-reverse;
+    }
+}
+
+// header
+.header-main {
+    position: relative;
+}
+
+.header-pos-absolute {
+    .header-inner {
+        @include media-breakpoint-up(lg) {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            width: 100%;
+            z-index: $zindex-sticky;
+        }
+    }
+}
+
+.header-main {
+    .header-inner {
+        padding-top: px($zen-header-padding-top-mobile);
+
+        @include media-breakpoint-up(lg) {
+            padding-top: px($zen-header-padding-top);
+        }
+    }
+
+    &.js-sticky {
+        @include layout-negative-horizontal-padding;
+
+        .header-inner {
+            padding-top: 0;
+
+            > .nav-header,
+            > .nav-main {
+                @include layout-horizontal-padding;
+            }
+        }
+    }
+}
+
+.nav-header > .container {
+    position: relative; // because of pos-lg-center and pos-xl-center and is-flyout-fullscreen
+}
+
+.header-row {
+    padding: 0; // $spacer-sm will be set in header-menu-button, header-search-col and header-actions insted
+    min-height: px($zen-header-height-mobile);
+
+    @include media-breakpoint-up(lg) {
+        min-height: px($zen-header-height);
+    }
+
+    // This is necessary if no element fills the minimum height of the header
+    // in the display flex area. This is e.g. the case when pos-lg-center removes
+    // the logo from the document flow.
+    &::after {
+        content: '';
+        min-height: px($zen-header-height-mobile);
+
+        @include media-breakpoint-up(lg) {
+            min-height: px($zen-header-height);
+        }
+    }
+
+    .header-menu-button,
+    .header-actions-col {
+        margin-top: $spacer-sm;
+        margin-bottom: $spacer-sm;
+    }
+}
+
+.nav-header {
+    background-color: $zen-header-bg;
+    color: $zen-header-color;
+}
+
+// transparent header classes
+.nav-header {
+    $i: 0;
+    @while $i < 100 {
+        &.bg-opacity-#{$i} {
+            background-color: fade-out($zen-header-bg, 1 - 0.01 * $i);
+        }
+        $i: $i + 5;
+    }
+}
+
+.js-sticky [class*="bg-opacity-"].nav-header  {
+    background-color: $zen-header-bg;
+}
+
+// logo
+.header-logo-col {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: px($zen-header-height-mobile);
+    padding-bottom: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+
+    @include media-breakpoint-up(sm) {
+        @if $zen-logo-position == left {
+            justify-content: flex-start;
+        } @else if $zen-logo-position == center {
+            justify-content: center;
+        } @else if $zen-logo-position == right {
+            justify-content: flex-end;
+        }
+    }
+
+    @include media-breakpoint-up(lg) {
+        height: px($zen-header-height);
+    }
+}
+
+.header-logo-main {
+    height: percent($zen-logo-size-mobile);
+
+    @include media-breakpoint-up(lg) {
+        height: percent($zen-logo-size);
+    }
+}
+
+.header-logo-main-link {
+    height: 100%;
+
+    img {
+        height: 100%;
+    }
+}
+
+// @config header-two-line - top bar navigation
+.header-top-bar-col {
+    .top-bar-nav-item {
+        @extend .col-auto;
+        margin-right: $spacer-xs;
+        padding: 0;
+    }
+
+    .top-bar-nav-btn {
+        @include transition($transition-base);
+        background: $zen-shop-navigation-bg;
+        color: $zen-shop-navigation-color;
+        padding: 0 $spacer-sm;
+        height: 40px;
+
+        .icon {
+            @include transition($transition-base);
+            color: $zen-shop-navigation-color;
+            width: 30px;
+        }
+
+        &:hover {
+            background: $zen-shop-navigation-hover-bg;
+            color: $zen-shop-navigation-hover-color;
+
+            .icon {
+                color: $zen-shop-navigation-hover-color;
+            }
+        }
+    }
+}
+
+// shop navigation
+.header-actions-col {
+    .col-auto {
+        margin-right: $spacer-xs;
+    }
+
+    .header-logo-left & {
+        .col-auto {
+            &:last-child {
+                margin-right: 0;
+            }
+
+            &:first-child {
+                margin-left: auto;
+            }
+        }
+    }
+
+    @if $zen-main-navigation-align == center {
+        .header-logo-right.header-single-line & {
+            .col-auto {
+                &:first-child {
+                    margin-right: auto;
+                }
+            }
+        }
+    }
+
+    .header-logo-right.header-multi-line & {
+        .col-auto {
+            &:nth-child(2) {
+                margin-right: auto;
+            }
+        }
+
+        .is-srch-expandable &,
+        .is-srch-overlay & {
+            .col-auto {
+                &:first-child {
+                    margin-right: auto;
+                }
+
+                &:nth-child(2) {
+                    margin-right: $spacer-xs;
+                }
+            }
+        }
+    }
+
+    .is-mn-offcanvas-md & {
+        @include media-breakpoint-down(md) {
+            padding-left: 0;
+        }
+    }
+
+    .is-mn-offcanvas-lg & {
+        @include media-breakpoint-down(lg) {
+            padding-left: 0;
+        }
+    }
+
+    .is-mn-offcanvas-xl & {
+        padding-left: 0;
+    }
+}
+
+.header-main { // ... needed because filter buttons has class header-actions-btn, too.
+    .header-actions-btn {
+        @include transition($transition-base);
+        background: $zen-shop-navigation-bg;
+        color: $zen-shop-navigation-color;
+        padding: 0;
+        height: 40px;
+
+        .icon {
+            @include transition($transition-base);
+            color: $zen-shop-navigation-color;
+            width: 40px;
+        }
+
+        &:hover {
+            background: $zen-shop-navigation-hover-bg;
+            color: $zen-shop-navigation-hover-color;
+
+            .icon {
+                color: $zen-shop-navigation-hover-color;
+            }
+        }
+    }
+
+    // cart
+    .header-cart-btn {
+        @include transition($transition-base);
+        background: $zen-shop-navigation-cart-bg;
+
+        .icon {
+            @include transition($transition-base);
+            color: $zen-shop-navigation-cart-color;
+        }
+
+        .header-cart-total {
+            vertical-align: middle;
+            line-height: 40px;
+            margin-right: $spacer-sm;
+            margin-left: 0;
+        }
+
+        &:hover {
+            background: $zen-shop-navigation-cart-hover-bg;
+
+            .icon,
+            .header-cart-total {
+                color: $zen-shop-navigation-cart-hover-color;
+            }
+        }
+    }
+
+    .header-cart-total {
+        @include transition($transition-base);
+        color: $zen-shop-navigation-cart-color;
+        font-size: px($zen-shop-navigation-cart-font-size);
+        font-weight: $zen-shop-navigation-cart-font-weight;
+    }
+
+    .header-cart-total {
+        display: none;
+
+        @include media-breakpoint-up(xl) {
+            display: inline-block;
+        }
+    }
+
+    .header-cart {
+        .header-cart-badge {
+            @include media-breakpoint-up(sm) {
+                display: block;
+                right: auto;
+                left: 20px;
+            }
+        }
+    }
+}
+
+//search
+.header-search-col {
+
+    // @config search standard && single line header
+    .is-srch-default .header-single-line & {
+        @include media-breakpoint-up(lg) {
+            max-width: 13.75rem; // 220px
+        }
+
+        .header-search {
+            margin: 0;
+        }
+    }
+
+    // @config search standard && multi line header
+    .is-srch-default .header-multi-line & {
+        .header-search {
+            max-width: none;
+        }
+    }
+
+    .header-search-input {
+        @include transition($btn-transition);
+        background: $zen-search-bg;
+        color: $zen-search-color;
+        border-color: $zen-search-border;
+
+        &::placeholder {
+            color: rgba($zen-search-color, .75);
+        }
+
+        /* Workaround for missing placeholder color in chrome */
+        /* stylelint-disable-next-line selector-no-vendor-prefix */
+        &::-webkit-input-placeholder {
+            color: rgba($zen-search-color, .75);
+        }
+
+        @if $zen-layout-forms-style == "underlined" {
+            background: transparent;
+        }
+
+        &:focus {
+            background: $zen-search-focus-bg;
+            color: $zen-search-focus-color;
+            border-color: $zen-search-focus-border;
+
+            @if $zen-layout-forms-style == "underlined" {
+                background: transparent;
+            }
+
+            ~ .input-group-append .header-search-btn {
+                background: $zen-search-focus-bg;
+                color: $zen-search-focus-color;
+                border-color: $zen-search-focus-border;
+
+                @if $zen-layout-forms-style == "underlined" {
+                    background: transparent;
+                }
+
+                .icon {
+                    color: $zen-search-focus-color;
+                }
+            }
+        }
+    }
+
+    .header-search-btn {
+        background: $zen-search-bg;
+        color: $zen-search-color;
+        border-color: $zen-search-border;
+        @include border-right-radius($zen-layout-input-radius * 1px);
+
+        @if $zen-layout-forms-style == "underlined" {
+            background: transparent;
+            border-radius: 0 !important;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            border-bottom-width: 1px;
+        }
+
+        .icon {
+            color: $zen-search-color;
+        }
+
+        &:hover {
+            background: $zen-search-focus-bg;
+            color: $zen-search-focus-color;
+            border-color: $zen-search-focus-border;
+
+            .icon {
+                color: $zen-search-focus-color;
+            }
+        }
+    }
+}
+
+.search-suggest-container {
+    padding: 0;
+
+    @if $zen-search-style == 'default' {
+        @include media-breakpoint-up(md) {
+            transform: translateX(0);
+            left: 0;
+
+            &::after {
+                left: 7.5%;
+            }
+        }
+    }
+}
+
+.search-suggest-list {
+    list-style: none;
+    touch-action: manipulation;
+    padding: $spacer;
+    overflow-y: auto;
+}
+
+.is-srch-default {
+    .search-suggest-list {
+        @if $zen-header-style == 'single-line' {
+            // viewport height - search input - padding-top - header-padding - top-bar - header - padding-bottom
+            max-height: calc(100vh - 70px - #{$spacer} - #{$zen-header-padding-top}px - #{$zen-top-bar-height}px - #{$zen-header-height}px - #{$spacer});
+        } @else {
+            // viewport height - search input - padding-top - header-padding - top-bar - header - main-nav - padding-bottom
+            max-height: calc(100vh - 70px - #{$spacer} - #{$zen-header-padding-top}px - #{$zen-top-bar-height}px - #{$zen-header-height}px - #{$zen-main-navigation-height}px - #{$spacer});
+        }
+    }
+}
+
+// expandable search
+.is-srch-expandable {
+    .header-search-col {
+        position: relative;
+        max-width: none;
+        flex: auto;
+
+        @if $zen-layout-style == boxed {
+            @include layout-container-negative-horizontal-margin();
+        } @else {
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+
+        .collapse:not(.show) {
+            display: none;
+        }
+
+        @if $zen-layout-style == full-width-boxed {
+            &::before,
+            &::after {
+                content: '';
+                position: absolute;
+                top: 0;
+                bottom: 0;
+                display: block;
+                width: 100%;
+                background: $zen-search-focus-bg;
+            }
+
+            &::before {
+                right: 100%;
+            }
+
+            &::after {
+                left: 100%;
+            }
+        }
+    }
+
+    .header-search {
+        background: $zen-search-focus-bg;
+        max-width: none;
+        margin: 0;
+    }
+
+    .input-group {
+        max-width: 768px;
+        margin: auto;
+    }
+
+    .header-search-input {
+        background: $zen-search-focus-bg;
+        color: $zen-search-focus-color;
+        border: none;
+        @include border-radius(0);
+        height: 70px;
+        text-align: center;
+        font-size: px($zen-main-navigation-font-size); // @TODO: Config
+
+        ~ .input-group-append .header-search-btn {
+            background: $zen-search-focus-bg;
+            color: $zen-search-focus-color;
+            border: none;
+            @include border-radius(0);
+            height: 70px;
+
+            .icon {
+                color: $zen-search-focus-color;
+            }
+        }
+
+        // prevent focus from standard
+        &:focus {
+            background: $zen-search-focus-bg;
+            color: $zen-search-focus-color;
+            border-color: $zen-search-focus-border;
+
+            ~ .input-group-append .header-search-btn {
+                background: $zen-search-focus-bg;
+                color: $zen-search-focus-color;
+                border-color: $zen-search-focus-border;
+
+                .icon {
+                    color: $zen-search-focus-color;
+                }
+            }
+        }
+    }
+
+    // search suggests
+    .search-suggest-container {
+        top: calc(70px + 12px); // input height + arrow
+
+        @include media-breakpoint-up(sm) {
+            top: calc(70px + 12px); // input height + arrow
+        }
+    }
+
+    .search-suggest-list {
+        @if $zen-header-style == 'single-line' {
+            // viewport height - search input - padding-top - header-padding - top-bar - header - padding-bottom
+            max-height: calc(100vh - 70px - #{$spacer} - #{$zen-header-padding-top}px - #{$zen-top-bar-height}px - #{$zen-header-height}px - #{$spacer});
+        } @else {
+            // viewport height - search input - padding-top - header-padding - top-bar - header - main-nav - padding-bottom
+            max-height: calc(100vh - 70px - #{$spacer} - #{$zen-header-padding-top}px - #{$zen-top-bar-height}px - #{$zen-header-height}px - #{$zen-main-navigation-height}px - #{$spacer});
+        }
+    }
+}
+
+// overlay search
+.is-srch-overlay {
+    .header-search-col {
+        .collapse:not(.show) {
+            display: none;
+        }
+    }
+}
+
+.overlay-backdrop {
+    background: rgba($zen-search-bg, .9);
+}
+
+.js-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: $zindex-modal;
+    text-align: center;
+
+    .js-overlay-close {
+        position: relative;
+        top: 50px;
+        background: transparent;
+        border: none;
+        @extend .slide-in-bottom;
+        animation-delay: 1s;
+
+        .icon {
+            color: $zen-search-color;
+        }
+    }
+
+    .header-search-form {
+        position: absolute;
+        left: 0;
+        right: 0;
+        width: 75%;
+        max-width: 1000px;
+        margin: auto;
+        height: 100%;
+
+        .input-group {
+            position: absolute;
+            top: 25%;
+            width: 100%;
+            border-bottom: 1px solid $zen-search-border;
+
+            @extend .slide-in-blurred-bottom;
+            animation-delay: .5s;
+        }
+    }
+
+    .header-search-input {
+        background: transparent;
+        color: $zen-search-color;
+        border: none;
+        font-size: calc(20px + 0.25vw);
+        font-weight: $font-weight-light;
+
+        @include media-breakpoint-up(sm) {
+            font-size: calc(32px + 0.25vw);
+        }
+
+        &::placeholder {
+            color: rgba($zen-search-color, .75);
+        }
+
+        /* Workaround for missing placeholder color in chrome */
+        /* stylelint-disable-next-line selector-no-vendor-prefix */
+        &::-webkit-input-placeholder {
+            color: rgba($zen-search-color, .75);
+        }
+
+        + .input-group-append > .header-search-btn {
+            font-size: calc(20px + 0.25vw);
+            height: $input-height;
+
+            // calc btn-height with reference to the font size by em in Calculation
+            @include media-breakpoint-up(sm) {
+                font-size: calc(32px + 0.25vw);
+                height: $input-height;
+            }
+
+            .icon > svg {
+                top: 0;
+            }
+        }
+    }
+
+    .header-search-btn {
+        background: transparent;
+        color: $zen-search-color;
+        border: none;
+
+        .icon {
+            color: $zen-search-color;
+        }
+    }
+
+    // search suggests
+    .search-suggest-container {
+        top: calc(25vh + 18px + (20px + 0.25vw) * 1.5 + 12px + 10px); // search top position + input padding + fontsize * line-height + arrow + extra space
+
+        @include media-breakpoint-up(sm) {
+            top: calc(25vh + 18px + (32px + 0.25vw) * 1.5 + 12px + 10px); // search top position + input padding + fontsize * line-height + arrow + extra space
+        }
+    }
+
+    .search-suggest-list {
+        // viewport height - search top position - input padding - fontsize * line-height - arrow - extra space - padding-top - header-padding - top-bar - header - padding-bottom
+        max-height: calc(100vh - 25vh - 18px - (20px + 0.25vw) * 1.5 - 12px - 10px - #{$spacer} - #{$zen-header-padding-top}px - #{$zen-top-bar-height}px - #{$zen-header-height}px - #{$spacer});
+    }
+}
+
+.search-suggest-container {
+    color: $sw-text-color;
+}
+
+.search-suggest-product-price {
+    text-align: right;
+}

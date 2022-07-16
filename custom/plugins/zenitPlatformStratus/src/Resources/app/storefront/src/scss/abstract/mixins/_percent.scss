@@ -1,0 +1,4 @@
+@function percent($size) {
+    $percentSize: $size * 1%;
+    @return #{$percentSize};
+}

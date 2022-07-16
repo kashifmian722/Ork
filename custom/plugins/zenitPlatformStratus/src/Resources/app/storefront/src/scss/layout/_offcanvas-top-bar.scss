@@ -1,0 +1,177 @@
+/*
+Top bar
+==================================================
+Contains skin styles for the offcanvas top bar located.
+The top bar contains e.g. the language switcher, the currency switcher and the service menu.
+*/
+.top-bar-offcanvas {
+    background: $zen-top-bar-bg;
+    color: $zen-top-bar-color;
+
+    .offcanvas-close {
+        background: $zen-top-bar-bg;
+        color: $zen-top-bar-color;
+        border-color: $zen-top-bar-bg;
+
+        .icon {
+            color: $zen-top-bar-color;
+        }
+
+        &:hover {
+            background: darken($zen-top-bar-bg, 10%);
+            color: lighten($zen-top-bar-color, 10%);
+            border-color: darken($zen-top-bar-bg, 10%);
+
+            .icon {
+                color: lighten($zen-top-bar-color, 10%);
+            }
+        }
+    }
+
+    .offcanvas-content-container {
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 0;
+
+        min-height: calc(100% - 52px);
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+    }
+
+    // Logo
+    .top-bar-logo {
+        text-align: center;
+        padding: 0 $grid-gutter-width;
+        margin-bottom: $spacer-xl;
+
+        .top-bar-logo-main-img {
+            width: $zen-offcanvas-logo-width;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+
+    // Marketing Text Slider
+    .top-bar-marketing {
+        text-align: center;
+        padding: 0 $grid-gutter-width;
+
+        .text-slider {
+            margin-bottom: $spacer-md;
+        }
+
+        .text-slider-button {
+            margin-bottom: $spacer-xl;
+
+            .btn-outline {
+                color: $zen-top-bar-color;
+                border-color: $zen-top-bar-color;
+                border-style: dashed;
+
+                &:hover {
+                    color: $zen-top-bar-bg;
+                    background: $zen-top-bar-color;
+                    border-color: $zen-top-bar-color;
+                }
+            }
+        }
+    }
+
+    // top bar
+    .top-bar {
+        padding: $grid-gutter-width;
+        border-top: 1px solid lighten($zen-top-bar-bg, 20%);
+    }
+
+    // Navigation Language & Currency
+    .top-bar-nav {
+        flex-direction: column;
+        align-items: center;
+        max-width: 16.25rem;
+        margin: 0 auto;
+    }
+
+    .top-bar-nav-item {
+        display: block;
+        width: 100%;
+        margin-right: 0;
+        margin-bottom: $spacer;
+    }
+
+    .top-bar-nav-btn {
+        &.btn {
+            display: block;
+            width: 100%;
+            color: $zen-top-bar-bg;
+            background: $zen-top-bar-color;
+            padding: 2px 12px;
+            @include border-radius($zen-layout-button-radius * 1px);
+
+            &:hover {
+                color: $zen-top-bar-hover-bg;
+                background: $zen-top-bar-hover-color;
+            }
+        }
+    }
+
+    // service menu
+    .service-menu {
+        .top-bar-nav-btn {
+            display: none;
+        }
+
+        .dropdown-menu {
+            display: block;
+            position: static;
+            transform: translate3d(0px, 0px, 0px);
+            background: transparent;
+            border: none;
+            border-radius: 0;
+            padding: 0;
+            margin: auto;
+            width: 100%;
+        }
+
+        .top-bar-list-item {
+            @include transition();
+            background: $zen-top-bar-bg;
+            color: $zen-top-bar-color;
+            align-items: center;
+            display: flex;
+            justify-content: space-around;
+            padding: 12px $spacer-md;
+            @include border-radius($zen-layout-button-radius * 1px);
+
+            &:hover {
+                background: $zen-top-bar-hover-bg;
+                color: $zen-top-bar-hover-color;
+            }
+        }
+    }
+
+    // login register
+    .top-bar-login-register {
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        overflow: hidden;
+        text-align: center;
+        line-height: 2.5rem;
+        color: $zen-top-bar-color;
+        background: darken($zen-top-bar-bg, 10%);
+        align-self: flex-end;
+        margin-bottom: 0;
+
+        .top-bar-login-item,
+        .top-bar-register-item {
+            color: $zen-top-bar-color;
+            padding: 0 $spacer-xs;
+
+            &:hover {
+                color: $zen-top-bar-hover-color;
+            }
+        }
+    }
+}
+

@@ -1,0 +1,190 @@
+/*
+Image slider
+==============================================
+Styling for image slider component.
+Displays images in a reusable slider component.
+based on "base-slider" component and "tiny-slider" (https://github.com/ganlanyuan/tiny-slider)
+*/
+
+// arrow navigation inside
+.image-slider-controls-prev,
+.image-slider-controls-next {
+    border: none;
+    background: $zen-image-slider-controls-inside-bg;
+
+    .icon {
+        color: $zen-image-slider-controls-inside-color;
+    }
+
+    &:hover {
+        background: $zen-image-slider-controls-inside-hover-bg;
+
+        .icon {
+            color: $zen-image-slider-controls-inside-hover-color;
+        }
+    }
+}
+
+// arrow navigation outside
+.has-nav-outside {
+    .image-slider-controls-prev,
+    .image-slider-controls-next {
+        border: none;
+        background: $zen-image-slider-controls-outside-bg;
+
+        .icon {
+            color: $zen-image-slider-controls-outside-color;
+        }
+
+        &:hover {
+            background: $zen-image-slider-controls-outside-hover-bg;
+
+            .icon {
+                color: $zen-image-slider-controls-outside-hover-color;
+            }
+        }
+    }
+}
+
+// dots nav inside
+.image-slider {
+    .tns-nav {
+        button {
+            border-color: $zen-image-slider-controls-dots-inside-color;
+            background: transparent;
+
+            &:hover,
+            &.tns-nav-active {
+                background: $zen-image-slider-controls-dots-inside-hover-color;
+                border-color: $zen-image-slider-controls-dots-inside-hover-color;
+            }
+        }
+    }
+}
+
+// dots nav outside
+.has-dots-outside {
+    &.image-slider .tns-nav {
+        button {
+            border-color: $zen-image-slider-controls-outside-hover-color;
+            background: transparent;
+
+            &:hover,
+            &.tns-nav-active {
+                background: $zen-image-slider-controls-outside-hover-color;
+                border-color: $zen-image-slider-controls-outside-hover-color;
+            }
+        }
+    }
+}
+
+// alternative slider controls
+@if $zen-image-slider-controls-style == 'alternate' {
+
+    // arrow navigation
+    .image-slider-controls-prev,
+    .image-slider-controls-next {
+        transform: translateY(0);
+        top: auto;
+
+        @if $zen-layout-button-radius != 0 {
+           bottom: 10px;
+        } @else {
+            bottom: 0;
+        }
+    }
+
+    .image-slider-controls-prev {
+        &.is-nav-prev-inside {
+            left: auto;
+
+            @if $zen-layout-button-radius != 0 {
+                right: 64px;
+            } @else {
+                right: 50px;
+            }
+        }
+    }
+
+    .image-slider-controls-next {
+        &.is-nav-next-inside {
+            @if $zen-layout-button-radius != 0 {
+                right: 10px;
+            } @else {
+                right: 0;
+            }
+        }
+    }
+
+    // dots navigation
+    .image-slider {
+        .tns-nav {
+            display: none;
+            transform: translateY(-50%);
+            top: 50%;
+            right: 20px;
+            bottom: auto;
+            left: auto;
+
+            @include media-breakpoint-up(md) {
+                display: block;
+            }
+
+            button {
+                display: block;
+                margin: 10px 5px;
+            }
+        }
+
+        &.has-dots-outside {
+            .tns-nav {
+                right: 0;
+            }
+        }
+    }
+
+    @include media-breakpoint-up(md) {
+        .image-slider-controls-prev {
+            &.is-nav-prev-outside {
+                left: 0;
+            }
+        }
+
+        .image-slider-controls-next {
+            &.is-nav-next-outside {
+                right: 0;
+            }
+        }
+    }
+
+    .image-slider {
+        &.has-nav-outside,
+        &.has-dots-outside {
+            padding-left: 25px;
+            padding-right: 25px;
+            margin-bottom: 0;
+        }
+
+        &.has-dots-outside:not(.has-nav-outside) {
+            .image-slider-controls-prev {
+                &.is-nav-prev-inside {
+                    @if $zen-layout-button-radius != 0 {
+                        right: calc(64px + 25px);
+                    } @else {
+                        right: calc(50px + 25px);
+                    }
+                }
+            }
+
+            .image-slider-controls-next {
+                &.is-nav-next-inside {
+                    @if $zen-layout-button-radius != 0 {
+                        right: calc(10px + 25px);
+                    } @else {
+                        right: calc(0px + 25px);
+                    }
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,42 @@
+.social-icon {
+    margin: $spacer-xs;
+
+    &:hover {
+        text-decoration: none;
+    }
+
+    .icon > svg {
+        top: 0;
+    }
+}
+
+.icon-style-round,
+.icon-style-square {
+    position: relative;
+    background: $sw-text-color;
+    border-radius: 100%;
+    width: 40px;
+    display: inline-block;
+
+    &:after {
+        content: "";
+        display: block;
+        padding-bottom: 100%;
+    }
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+    }
+}
+
+.icon-style-round {
+    border-radius: 100%;
+}
+
+.icon-style-square {
+    border-radius: 3px;
+}

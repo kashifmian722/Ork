@@ -1,0 +1,75 @@
+<ng-container *ngIf="order">
+  <h1>
+    {{'COMMON.Order' | translate}} {{order.orderNumber}}
+    <label class="label label-warning" *ngIf="orderStatus === 'open'">
+      {{'COMMON.OPEN' | translate}}
+    </label>
+    <label class="label label-info" *ngIf="orderStatus === 'paid'">
+      {{'COMMON.PAID' | translate}}
+    </label>
+    <label class="label label-success" *ngIf="orderStatus === 'completed'">
+      {{'MERCHANT.ORDER.COMPLETED' | translate}}
+    </label>
+  </h1>
+  <span>{{'MERCHANT.ORDER.DETAILS.SUB_HEADLINE' | translate}}</span>
+  <h3>{{'MERCHANT.ORDER.DETAILS.INFORMATION' | translate}}</h3>
+  <div class="clr-row">
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+      <div class="card">
+        <div class="card-header">
+          {{'MERCHANT.ORDER.DETAILS.ADDRESS' | translate}}
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+            {{order.deliveries[0].shippingOrderAddress.firstName}} {{order.deliveries[0].shippingOrderAddress.lastName}} <br />
+            {{order.deliveries[0].shippingOrderAddress.street}} <br>
+            {{order.deliveries[0].shippingOrderAddress.zipcode}} {{order.deliveries[0].shippingOrderAddress.city}}
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="clr-col-lg-5 clr-col-md-8 clr-col-12">
+      <div class="card">
+        <div class="card-header">
+          {{order.orderCustomer.firstName}} {{order.orderCustomer.lastName}} {{'MERCHANT.ORDER.DETAILS.CONTACT_DATA' | translate}}
+        </div>
+        <div class="card-block">
+          <div class="card-text">
+            <strong>{{'COMMON.EMAIL_ADDRESS' | translate}}:</strong> {{order.orderCustomer.email}} <br/>
+            <ng-container *ngIf="order.deliveries[0].shippingOrderAddress.phoneNumber">
+              <strong>{{'COMMON.PHONE' | translate}}:</strong> {{order.deliveries[0].shippingOrderAddress.phoneNumber}}
+            </ng-container>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="clr-row">
+    <div class="clr-col-md-10">
+      <h3>{{'COMMON.POSITIONS' | translate}}:</h3>
+      <clr-datagrid>
+        <clr-dg-placeholder>{{'MERCHANT.ORDER.DETAILS.PLACEHOLDER' | translate}}</clr-dg-placeholder>
+
+        <clr-dg-column>{{'COMMON.NAME' | translate}}</clr-dg-column>
+        <clr-dg-column>{{'MERCHANT.ORDER.DETAILS.PRICE_PER_UNIT' | translate}}</clr-dg-column>
+        <clr-dg-column>{{'MERCHANT.ORDER.DETAILS.NUMBER' | translate}}</clr-dg-column>
+        <clr-dg-column>{{'MERCHANT.ORDER.DETAILS.TOTAL_PRICE' | translate}}</clr-dg-column>
+        <clr-dg-row *ngFor="let orderItem of order.lineItems">
+          <clr-dg-cell>{{orderItem.label}}</clr-dg-cell>
+          <clr-dg-cell>{{orderItem.price.unitPrice}}€</clr-dg-cell>
+          <clr-dg-cell>{{orderItem.price.quantity}}</clr-dg-cell>
+          <clr-dg-cell>{{orderItem.price.totalPrice}}€</clr-dg-cell>
+        </clr-dg-row>
+      </clr-datagrid>
+    </div>
+  </div>
+  <div class="button-wrapper">
+    <button class="btn btn-secondary" [disabled]="orderStatus !== 'open'" (click)="markOrderAsPaid()">
+      {{'MERCHANT.ORDER.DETAILS.MARK_ORDER_PAID_BUTTON' | translate}}
+    </button>
+    <button class="btn btn-primary" [disabled]="orderStatus !== 'paid'" (click)="markOrderAsCompleted()">
+      {{'MERCHANT.ORDER.DETAILS.MARK_COMPLETED_BUTTON' | translate}}
+    </button>
+  </div>
+</ng-container>
+

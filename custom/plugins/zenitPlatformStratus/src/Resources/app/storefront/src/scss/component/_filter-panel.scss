@@ -1,0 +1,233 @@
+.filter-panel {
+    margin-bottom: 0;
+}
+
+.filter-boolean {
+    background-color: $zen-category-filter-bg;
+    color: $zen-category-filter-color;
+    box-shadow: none !important;
+    height: 38px;
+    @include transition($transition-base);
+    @include border-radius($zen-layout-button-radius * 1px);
+
+    @if $zen-category-filter-border == 1 {
+        border: 1px solid $zen-category-filter-border-color;
+    } @else {
+        border: none;
+    }
+
+    &:hover {
+        color: $zen-category-filter-hover-color;
+        background-color: $zen-category-filter-hover-bg;
+
+        @if $zen-category-filter-border == 1 {
+            border: 1px solid $zen-category-filter-border-hover-color;
+        } @else {
+            border: none;
+        }
+    }
+}
+
+.filter-panel-item {
+    .filter-panel-item-toggle {
+        background-color: $zen-category-filter-bg;
+        color: $zen-category-filter-color;
+        box-shadow: none !important;
+        text-transform: $zen-sidebar-navigation-text-transform;
+
+        @if $zen-category-filter-border == 1 {
+            border: 1px solid $zen-category-filter-border-color;
+        } @else {
+            border: none;
+        }
+
+        .icon-filter-panel-item-toggle {
+            color: $zen-category-filter-color;
+
+            svg {
+                @include transition($transition-base);
+            }
+        }
+
+        &:hover {
+            color: $zen-category-filter-hover-color;
+            background-color: $zen-category-filter-hover-bg;
+
+            @if $zen-category-filter-border == 1 {
+                border: 1px solid $zen-category-filter-border-hover-color;
+            } @else {
+                border: none;
+            }
+
+            .icon-filter-panel-item-toggle {
+                color: $zen-category-filter-hover-color;
+            }
+        }
+    }
+
+    // active
+    &.show {
+        .filter-panel-item-toggle {
+            color: $zen-category-filter-active-color;
+            background-color: $zen-category-filter-active-bg;
+
+            @if $zen-category-filter-border == 1 {
+                border: 1px solid $zen-category-filter-border-hover-color;
+            } @else {
+                border: none;
+            }
+        }
+
+        .icon-filter-panel-item-toggle svg {
+            color: $zen-category-filter-active-color;
+
+            @if $zen-category-filter-icon == plus {
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
+// sidebar filter
+.is--sidebar {
+    .filter-panel-item {
+        margin-bottom: px($zen-category-filter-mb);
+    }
+
+    .filter-panel-item-dropdown {
+        @if $zen-layout-button-radius == 100 {
+            @include border-bottom-radius(25px);
+        } @else {
+            @include border-bottom-radius($zen-layout-button-radius * 1px);
+        }
+
+        @if $zen-category-filter-border == 1 {
+            border: 1px solid $zen-category-filter-border-hover-color;
+            border-top: none;
+        } @else {
+            border: none;
+        }
+    }
+
+    .filter-panel-item-toggle {
+        padding: px($zen-category-filter-pv) 20px;
+
+        &[aria-expanded='true'] {
+            color: $zen-category-filter-active-color;
+            background-color: $zen-category-filter-active-bg;
+            border-bottom: 0 none;
+            @if $zen-layout-button-radius == 100 {
+                @include border-top-radius(25px);
+            } @else {
+                @include border-top-radius($zen-layout-button-radius * 1px);
+            }
+
+            @if $zen-category-filter-border == 1 {
+                border: 1px solid $zen-category-filter-border-hover-color;
+            } @else {
+                border: none;
+            }
+
+            .icon-filter-panel-item-toggle svg {
+                color: $zen-category-filter-active-color;
+
+                @if $zen-category-filter-icon == plus {
+                    transform: rotate(45deg);
+                }
+            }
+        }
+    }
+
+    .filter-boolean {
+        height: px($zen-category-filter-pv + $zen-category-filter-pv + 38);
+        padding-top: px($zen-category-filter-pv);
+        padding-bottom: px($zen-category-filter-pv);
+    }
+}
+
+// filter dropdown
+.filter-panel-item-dropdown {
+    background-color: $zen-category-filter-active-bg;
+    color: $zen-category-filter-active-color;
+
+    @if $zen-layout-button-radius == 100 {
+        @include border-radius(25px);
+    } @else {
+        @include border-radius($zen-layout-button-radius * 1px);
+    }
+}
+
+.filter-multi-select-list-item {
+    background-color: $zen-category-filter-active-bg;
+    color: $zen-category-filter-active-color;
+    @include transition($transition-base);
+
+    @if $zen-category-filter-seperator == 1 {
+        border-bottom: 1px solid rgba(0,0,0,0.1);
+
+        &:last-child {
+            border-bottom: 0 none;
+        }
+    }
+
+    &:hover {
+        background-color: $zen-category-filter-hover-bg;
+        color: $zen-category-filter-hover-color;
+    }
+}
+
+// filter active items
+.filter-active {
+    border: 0;
+    background-color: $zen-category-filter-active-bg;
+    color: $zen-category-filter-active-color;
+    @include transition($transition-base);
+
+    &:hover {
+        background-color: $zen-category-filter-hover-bg;
+        color: $zen-category-filter-hover-color;
+    }
+
+    .filter-active-remove {
+        color: $zen-category-filter-hover-color;
+    }
+}
+
+// filter reset button
+.btn.filter-reset-all {
+    border: 0;
+    background-color: $gray-100;
+    color: $gray-600;
+    @include border-radius($zen-layout-button-radius * 1px);
+
+    &:hover {
+        background-color: $gray-200;
+        color: $gray-700;
+    }
+}
+
+.filter-range {
+    .form-control {
+        background: transparent;
+        color: $zen-category-filter-active-color;
+        border-color: $zen-category-filter-active-color;
+
+        &:focus {
+            background-color: $zen-category-filter-active-bg;
+            color: $zen-category-filter-active-color;
+            border-color: $zen-category-filter-active-color;
+        }
+    }
+}
+
+.filter-range-currency-symbol {
+    background: transparent;
+    color: $zen-category-filter-active-color;
+    border-color: $zen-category-filter-active-color;
+
+    @if $zen-layout-forms-style == "underlined" {
+        border-radius: 0;
+    } @else {
+        @include border-radius($zen-layout-input-radius * 1px);
+    }
+}

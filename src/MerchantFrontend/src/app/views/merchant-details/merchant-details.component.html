@@ -1,0 +1,366 @@
+<h1 class="title">{{'MERCHANT.DETAILS.HEADLINE' | translate}}</h1>
+
+<span>{{'MERCHANT.DETAILS.SUB_HEADLINE' | translate}}</span>
+
+<clr-tabs>
+  <clr-tab>
+    <button clrTabLink>
+      {{'COMMON.GENERAL' | translate}}
+    </button>
+
+    <clr-tab-content>
+      <form
+        clrForm
+        clrLayout="vertical"
+        [formGroup]="profileForm"
+        *ngIf="merchantLoaded && categoriesLoaded; else loading"
+      >
+        <clr-toggle-wrapper>
+          <input
+            type="checkbox"
+            clrToggle
+            value="true"
+            formControlName="public"
+            name="public"
+          />
+          <label>{{'MERCHANT.DETAILS.PUBLISH' | translate}}</label>
+        </clr-toggle-wrapper>
+        <clr-select-container>
+          <label>{{'COMMON.INDUSTRY' | translate}}</label>
+          <select clrSelect name="categoryId" formControlName="categoryId">
+            <option *ngFor="let category of categories" [value]="category.id">
+              {{ category.name }}
+            </option>
+          </select>
+        </clr-select-container>
+
+        <h3>{{'COMMON.CONTACT_INFORMATION' | translate}}</h3>
+
+        <clr-input-container>
+          <label>{{'COMMON.COMPANY_NAME' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.COMPANY_NAME_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="publicCompanyName"
+            name="publicCompanyName"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'MERCHANT.DETAILS.OWNER' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.OWNER_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="publicOwner"
+            name="publicOwner"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'MERCHANT.DETAILS.STREET' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.STREET_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="street"
+            name="street"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'COMMON.ZIP_CODE' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.ZIP_CODE_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="zip"
+            name="zip"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'COMMON.LOCATION' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.LOCATION_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="city"
+            name="city"
+          />
+        </clr-input-container>
+
+        <clr-select-container>
+          <label>{{'COMMON.COUNTRY' | translate}}</label>
+          <select clrSelect name="countryId" formControlName="countryId">
+            <option *ngFor="let country of countries" [value]="country.id">
+              {{ country.name }}
+            </option>
+          </select>
+        </clr-select-container>
+
+        <clr-input-container>
+          <label>{{'COMMON.PHONE_NUMBER' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.PHONE_NUMBER_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="publicPhoneNumber"
+            name="publicPhoneNumber"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'COMMON.EMAIL_ADDRESS' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.EMAIL_ADDRESS_PLACEHOLDER' | translate}}"
+            type="email"
+            formControlName="publicEmail"
+            name="publicEmail"
+          />
+        </clr-input-container>
+
+        <clr-input-container>
+          <label>{{'MERCHANT.DETAILS.HOMEPAGE' | translate}}</label>
+          <input
+            clrInput
+            placeholder="{{'MERCHANT.DETAILS.HOMEPAGE_PLACEHOLDER' | translate}}"
+            type="text"
+            formControlName="publicWebsite"
+            name="publicWebsite"
+          />
+        </clr-input-container>
+
+        <h3>{{'MERCHANT.DETAILS.COVER_IMAGE' | translate}}</h3>
+
+        <portal-single-image-upload-container
+          (newImageSelected)="imageSelected($event)"
+          [existingImageUrl]="merchant.cover?.url">
+
+        </portal-single-image-upload-container>
+
+        <h3>{{'MERCHANT.DETAILS.MERCHANT_PAGE' | translate}}</h3>
+
+        <clr-textarea-container>
+          <label>{{'MERCHANT.DETAILS.OPENING_HOURS' | translate}}</label>
+          <textarea
+            clrTextarea
+            placeholder="{{'MERCHANT.DETAILS.OPENING_HOURS_PLACEHOLDER' | translate}}"
+            formControlName="publicOpeningTimes"
+            name="publicOpeningTimes"
+          ></textarea>
+        </clr-textarea-container>
+
+        <clr-textarea-container>
+          <label>{{'MERCHANT.DETAILS.DESCRIPTION' | translate}}</label>
+          <textarea
+            clrTextarea
+            placeholder="{{'MERCHANT.DETAILS.DESCRIPTION_PLACEHOLDER' | translate}}"
+            formControlName="publicDescription"
+            name="publicDescription"
+          ></textarea>
+        </clr-textarea-container>
+
+
+        <clr-select-container>
+          <label>{{'MERCHANT.DETAILS.AVAILABILITY_STATUS_LABEL' | translate}}</label>
+          <select clrSelect name="availability" formControlName="availability">
+            <option [value]="1">{{'MERCHANT.DETAILS.AVAILABILITY_STATUS.OPEN' | translate}}</option>
+            <option [value]="2">{{'MERCHANT.DETAILS.AVAILABILITY_STATUS.PICK_UP' | translate}}</option>
+            <option [value]="0">{{'MERCHANT.DETAILS.AVAILABILITY_STATUS.CURRENTLY_NOT_AVAILABLE' | translate}}</option>
+          </select>
+        </clr-select-container>
+
+        <clr-textarea-container>
+          <label>{{'MERCHANT.DETAILS.AVAILABILITY_TEXT' | translate}}</label>
+          <textarea
+            clrTextarea
+            placeholder="{{'MERCHANT.DETAILS.AVAILABILITY_PLACEHOLDER' | translate}}"
+            formControlName="availabilityText"
+            name="availabilityText"
+          ></textarea>
+        </clr-textarea-container>
+
+        <ng-container formGroupName="services" *ngIf="services?.length > 0">
+          <clr-control-container>
+            <label>{{'COMMON.SERVICES' | translate}}</label>
+            <clr-toggle-wrapper *ngFor="let service of services">
+              <input
+                type="checkbox"
+                clrToggle
+                value="true"
+                [formControlName]="service.id"
+              />
+              <label>{{service.translated.name}}</label>
+            </clr-toggle-wrapper>
+          </clr-control-container>
+        </ng-container>
+
+        <h3>{{'MERCHANT.DETAILS.LEGAL_INFORMATION' | translate}}</h3>
+
+        <span [innerHTML]="'MERCHANT.DETAILS.LEGAL_INFORMATION_TEXT' | translate"></span>
+
+        <clr-textarea-container>
+          <label>{{'COMMON.IMPRINT' | translate}}</label>
+          <textarea
+            clrTextarea
+            formControlName="imprint"
+            name="imprint"
+          ></textarea>
+        </clr-textarea-container>
+
+        <clr-textarea-container>
+          <label>{{'MERCHANT.DETAILS.REVOCATION' | translate}}</label>
+          <textarea
+            clrTextarea
+            formControlName="revocation"
+            name="privacy"
+          ></textarea>
+        </clr-textarea-container>
+
+        <clr-textarea-container>
+          <label>{{'COMMON.TOS' | translate}}</label>
+          <textarea
+            clrTextarea
+            formControlName="tos"
+            name="tos">
+          </textarea>
+        </clr-textarea-container>
+
+        <clr-textarea-container>
+          <label>{{'MERCHANT.DETAILS.PRIVACY' | translate}}</label>
+          <textarea
+            clrTextarea
+            formControlName="privacy"
+            name="privacy"
+          ></textarea>
+        </clr-textarea-container>
+
+      </form>
+      <ng-template #loading>
+        <div>
+          {{'MERCHANT.DETAILS.LOADING' | translate}}
+        </div>
+      </ng-template>
+      <button
+        type="button"
+        (click)="save()"
+        class="btn btn-primary"
+        [disabled]="!profileForm.valid"
+        [style.margin-top]="'32px'"
+      >
+        {{'COMMON.SAVE' | translate}}
+      </button>
+    </clr-tab-content>
+  </clr-tab>
+
+  <clr-tab>
+    <button clrTabLink>
+      {{'COMMON.ACCOUNT' | translate}}
+    </button>
+    <clr-tab-content>
+      <portal-merchant-account></portal-merchant-account>
+    </clr-tab-content>
+  </clr-tab>
+
+  <clr-tab>
+    <button clrTabLink>
+      {{'COMMON.PAYMENTS' | translate}}
+    </button>
+    <clr-tab-content>
+
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.ABOUT_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.ABOUT_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.SINGLE_CONTRACT_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.SINGLE_CONTRACT_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.PAYPERTRANSACTION_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.PAYPERTRANSACTION_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.PAYMENTMETHODS_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.PAYMENTMETHODS_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.USE_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.USE_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.KEYS_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.KEYS_TEXT' | translate"></span>
+      </p>
+      <h4>{{'MERCHANT.PAYMENTS.INSTRUCTIONS.QUESTIONS_HEADLINE' | translate}}</h4>
+      <p>
+        <span [innerHTML]="'MERCHANT.PAYMENTS.INSTRUCTIONS.QUESTIONS_TEXT' | translate"></span>
+      </p>
+      <br/>
+
+      <h3>{{'MERCHANT.PAYMENTS.SETTINGS' | translate}}</h3>
+
+      <br/>
+      <form clrForm clrLayout="vertical" [formGroup]="paymentsForm" *ngIf="merchantLoaded && paymentmethodsLoaded; else loading">
+        <clr-toggle-wrapper>
+          <input
+            type="checkbox"
+            clrToggle
+            value="true"
+            formControlName="mollieTestEnabled"
+            name="mollieTestEnabled"
+          />
+          <label>{{'MERCHANT.PAYMENTS.MOLLIE_TEST_MODE' | translate}}</label>
+        </clr-toggle-wrapper>
+        <clr-input-container>
+          <label>{{'MERCHANT.PAYMENTS.MOLLIE_PROD_KEY' | translate}}</label>
+          <input
+            clrInput
+            placeholder=""
+            type="text"
+            formControlName="mollieProdKey"
+            name="mollieProdKey"
+          />
+        </clr-input-container>
+        <clr-input-container>
+          <label>{{'MERCHANT.PAYMENTS.MOLLIE_TEST_KEY' | translate}}</label>
+          <input
+            clrInput
+            placeholder=""
+            type="text"
+            formControlName="mollieTestKey"
+            name="mollieTestKey"
+          />
+        </clr-input-container>
+
+        <br/>
+
+        <h3>{{'MERCHANT.PAYMENTS.PAYMENTMETHODS' | translate}}</h3>
+        <ng-container formGroupName="paymentmethods" *ngIf="paymentmethods?.length > 0">
+          <clr-control-container>
+            <label>{{'MERCHANT.PAYMENTS.PAYMENTMETHODS.INSTRUCTIONS' | translate}}</label>
+            <br/>
+            <clr-toggle-wrapper *ngFor="let method of paymentmethods">
+              <input type="checkbox" clrToggle value="true" [formControlName]="method.id"/>
+              <label>{{method.translated.name}}</label>
+            </clr-toggle-wrapper>
+          </clr-control-container>
+        </ng-container>
+      </form>
+
+      <button
+        type="button"
+        (click)="savePayment()"
+        class="btn btn-primary"
+        [style.margin-top]="'32px'"
+      >
+        {{'COMMON.SAVE' | translate}}
+      </button>
+
+    </clr-tab-content>
+  </clr-tab>
+
+</clr-tabs>

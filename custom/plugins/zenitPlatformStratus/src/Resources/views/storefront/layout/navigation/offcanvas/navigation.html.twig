@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/offcanvas/navigation.html.twig' %}
+
+{% block layout_navigation_offcanvas_navigation_actions %}
+    <nav class="nav navigation-offcanvas-actions">
+        {% block layout_navigation_offcanvas_navigation_action_language %}
+            {% sw_include '@Storefront/storefront/layout/header/actions/language-widget.html.twig' with {position: 'offcanvas'} %}
+        {% endblock %}
+
+        {% block layout_navigation_offcanvas_navigation_action_currency %}
+            {% sw_include '@Storefront/storefront/layout/header/actions/currency-widget.html.twig' with {position: 'offcanvas'} %}
+        {% endblock %}
+
+        {# ... add service menu widget #}
+        {% block layout_navigation_offcanvas_navigation_action_service %}
+            {% sw_include '@Storefront/storefront/layout/header/actions/service-menu-widget.html.twig' with {position: 'offcanvas'} %}
+        {% endblock %}
+    </nav>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% sw_extends '@Storefront/storefront/section/cms-section-block-container.html.twig' %}
+
+{% block section_content_block_container %}
+    {# ... if null or auto, use value from the css stylesheet! #}
+    {% set top = block.marginTop|length ? block.marginTop : '0px' %}
+    {% set right = block.marginRight|length ? block.marginRight : '0px' %}
+    {% set bottom = block.marginBottom|length ? block.marginBottom : '0px' %}
+    {% set left = block.marginLeft|length ? block.marginLeft : '0px' %}
+
+    {# ... split margin into separeted properties #}
+    <div class="cms-block-container"
+         style="{% if top is not same as ('auto') %}margin-top: {{ top }};{% endif %}{% if right is not same as ('auto') %} margin-right: {{ right }};{% endif %}{% if bottom is not same as ('auto') %} margin-bottom: {{ bottom }};{% endif %}{% if left is not same as ('auto') %} margin-left: {{ left }};{% endif %}">
+
+        {% block section_content_block_row %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}

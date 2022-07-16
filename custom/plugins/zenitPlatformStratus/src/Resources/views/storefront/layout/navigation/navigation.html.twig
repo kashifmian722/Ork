@@ -1,0 +1,55 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+
+{% block layout_main_navigation_menu_home %}
+    {% if zentheme['zen-main-navigation-home'] is same as (true) %}
+        {# ... remove active on home #}
+        <a class="nav-link main-navigation-link home-link"
+           href="{{ path('frontend.home.page') }}"
+           itemprop="url"
+           title="{{ "general.homeLink"|trans|striptags }}">
+            <div class="main-navigation-link-text" data-hover="{{ "general.homeLink"|trans|striptags }}">
+                <span itemprop="name" data-hover="{{ "general.homeLink"|trans|striptags }}">{{ "general.homeLink"|trans|sw_sanitize }}</span>
+            </div>
+        </a>
+    {% endif %}
+{% endblock %}
+
+{% block layout_main_navigation_menu_item %}
+    {% if zentheme['zen-main-navigation-divider'] is not same as (0) %}
+        {% if ( zentheme['zen-main-navigation-home'] is same as (true) and loop.index == 1 ) or loop.index > 1 %}
+            <div class="main-navigation-divider" aria-hidden="true"></div>
+        {% endif %}
+    {% endif %}
+
+    {% if category.type == 'folder' %}
+        <div class="nav-link main-navigation-link"
+            {% if treeItem.children|length > 0 %}
+                data-flyout-menu-trigger="{{ categorId }}"
+            {% endif %}
+             title="{{ name }}">
+            <div class="main-navigation-link-text" data-hover="{{ name }}">
+                <span data-hover="{{ name }}" itemprop="name">{{ name }}</span>
+                {% if zentheme['zen-main-navigation-arrow'] and treeItem.children|length > 0 %}
+                    {% sw_icon 'arrow-medium-down' style {
+                        'pack': 'solid', 'size': 'xs', 'class': 'main-navigation-link-toggle'
+                    } %}
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <a class="nav-link main-navigation-link{% if categorId is same as(page.header.navigation.active.id) %} active{% endif %}"
+           href="{% if category.externalLink %}{{ category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: categorId }) }}{% endif %}"
+           itemprop="url"
+            {% if treeItem.children|length > 0 %}
+                data-flyout-menu-trigger="{{ categorId }}"
+            {% endif %}
+           title="{{ name }}">
+            <div class="main-navigation-link-text" data-hover="{{ name }}">
+                <span data-hover="{{ name }}" itemprop="name">{{ name }}</span>
+                {% if zentheme['zen-main-navigation-arrow'] and treeItem.children|length > 0 %}
+                    {% sw_icon 'arrow-medium-down' style {'pack': 'solid', 'size': 'xs'} %}
+                {% endif %}
+            </div>
+        </a>
+    {% endif %}
+{% endblock %}

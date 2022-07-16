@@ -1,0 +1,20 @@
+/*
+Input group
+==============================================
+Custom skin styling for bootstrap input group.
+
+https://getbootstrap.com/docs/4.3/components/forms/
+*/
+
+.input-group > .input-group-append > .btn,
+.input-group > .input-group-append > .input-group-text,
+.input-group > .input-group-prepend:not(:first-child) > .btn,
+.input-group > .input-group-prepend:not(:first-child) > .input-group-text,
+.input-group > .input-group-prepend:first-child > .btn:not(:first-child),
+.input-group > .input-group-prepend:first-child > .input-group-text:not(:first-child) {
+    @include border-right-radius($zen-layout-input-radius * 1px);
+
+    // calc btn-height with reference to the font size by em in Calculation
+    font-size: $input-font-size;
+    height: $input-height;
+}

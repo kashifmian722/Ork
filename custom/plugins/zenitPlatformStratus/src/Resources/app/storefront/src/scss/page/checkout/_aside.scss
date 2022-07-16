@@ -1,0 +1,32 @@
+.checkout-aside-summary {
+    @include border-radius($zen-layout-element-radius * 1px);
+    @include text-color-contrast;
+
+    @if $zen-container-bg == transparent {
+        background-color: color-yiq($body-bg, rgba(255,255,255,.2), rgba(0,0,0,.2));
+    } @else {
+        background-color: color-yiq($zen-container-bg, rgba(255,255,255,.2), rgba(0,0,0,.2));
+    }
+
+    .checkout-aside-summary-header {
+        @include headline-color-contrast;
+    }
+
+    .checkout-aside-summary-list-container {
+        @include text-color-contrast;
+    }
+}
+
+.checkout-aside-add-code {
+    &.input-group {
+        > .form-control {
+            // bugfix because of wrong placed label
+            &:not(:first-child) {
+                @if $zen-layout-forms-style != "underlined" {
+                    @include border-left-radius($zen-layout-input-radius * 1px);
+                }
+            }
+        }
+    }
+}
+

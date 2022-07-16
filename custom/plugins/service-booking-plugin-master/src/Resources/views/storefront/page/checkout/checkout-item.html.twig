@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/page/checkout/checkout-item.html.twig' %}
+
+{% block page_checkout_item_info_ordernumber %}
+    {% if lineItem.payload.productNumber %}
+        <div class="cart-item-ordernumber">
+            {{ "checkout.cartItemInfoId"|trans|sw_sanitize }} {{ lineItem.payload.productNumber }}
+        </div>
+    {% endif %}
+
+    {% if lineItem.payload.serviceBookingTemplate.dateId %}
+        <div class="service-booking-cart__item">
+            <strong>{{ 'serviceBooking.selectedDate' | trans }}:</strong>
+            {{ lineItem.payload.serviceBookingTemplate.dateId | swag_booking_date_format }}
+        </div>
+    {% endif %}
+{% endblock %}
+
+
+
+

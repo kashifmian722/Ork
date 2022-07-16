@@ -1,0 +1,71 @@
+/*
+Cookie permission
+==============================================
+Shows a cookie permission alert at the bottom of the page.
+*/
+
+.cookie-permission-content {
+    color: $sw-text-color;
+}
+
+@if $zen-cookie-banner-style == "widget" or $zen-cookie-banner-style == "popup" {
+    .cookie-permission-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: $zindex-modal-backdrop;
+        width: 100vw;
+        height: 100vh;
+        background-color: $modal-backdrop-bg;
+        pointer-events: none;
+
+        .align-items-center  {
+            position: fixed;
+            right: 0;
+            left: 0;
+            background: #ffffff;
+            margin: auto;
+            box-shadow: 0 .5rem 1rem rgba($black, .25);
+            @include border-radius($zen-layout-element-radius * 1px);
+            padding: $modal-inner-padding;
+            pointer-events: all;
+        }
+    }
+}
+
+@if $zen-cookie-banner-style == "widget" {
+    .cookie-permission-container {
+        .align-items-center {
+            animation: slide-in-blurred-bottom 0.75s cubic-bezier(0.230, 1.000, 0.320, 1.000) both 0.75s;
+            bottom: 100px;
+            width: 75%;
+
+            @include media-breakpoint-up(lg) {
+                width: 50%;
+            }
+        }
+    }
+} @else if $zen-cookie-banner-style == "popup" {
+    .cookie-permission-container {
+        .align-items-center {
+            animation: slide-in-blurred-bottom 0.75s cubic-bezier(0.230, 1.000, 0.320, 1.000) both 0.75s;
+            top: 50%;
+            transform: translateY(-50%);
+            max-width: $modal-md;
+
+            @include media-breakpoint-up(lg) {
+                max-width: $modal-md;
+            }
+        }
+
+        .cookie-permission-content,
+        .cookie-permission-content + div {
+            width: 100%;
+            text-align: center;
+        }
+
+        .cookie-permission-content {
+            margin-bottom: $spacer-md;
+        }
+    }
+}

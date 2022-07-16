@@ -1,0 +1,161 @@
+/*
+Main navigation
+==============================================
+Custom styling for main navigation on larger screens.
+
+Based on bootstrap nav:
+https://getbootstrap.com/docs/4.3/components/navs/
+*/
+
+//one line header
+.header-single-line {
+    .main-navigation {
+        > .container {
+            padding: 0;
+        }
+    }
+}
+
+// main navigation
+.nav-main {
+    position: relative; // needed fpr flyout-menu positioning
+
+    @if $zen-header-style == 'single-line' {
+        .main-navigation {
+            background: $zen-main-navigation-bg;
+        }
+    } @else {
+        background: $zen-main-navigation-bg;
+    }
+}
+
+// transparent header classes
+.nav-main {
+    $i: 0;
+    @while $i < 100 {
+        &.bg-opacity-#{$i} {
+            @if $zen-header-style == 'single-line' {
+                .main-navigation {
+                    background-color: fade-out($zen-main-navigation-bg, 1 - 0.01 * $i);
+                }
+            } @else {
+                background-color: fade-out($zen-main-navigation-bg, 1 - 0.01 * $i);
+            }
+
+            .main-navigation-link {
+                background: transparent;
+            }
+        }
+
+        $i: $i + 5;
+    }
+}
+
+.js-sticky [class*="bg-opacity-"].nav-main {
+    @if $zen-header-style == 'single-line' {
+        .main-navigation {
+            background-color: $zen-main-navigation-bg;
+        }
+    } @else {
+        background-color: $zen-main-navigation-bg;
+    }
+}
+
+.main-navigation {
+    width: 100%;
+}
+
+.main-navigation-menu {
+    justify-content: $zen-main-navigation-align;
+
+    @if $zen-main-navigation-border-top == 1 {
+        border-top: px($zen-main-navigation-border-top-width) solid $zen-main-navigation-border-top-color;
+    }
+}
+
+@include media-breakpoint-up(md) {
+    .main-navigation-link {
+        position: relative;
+        font-size: px($zen-main-navigation-font-size);
+        font-weight: $zen-main-navigation-font-weight;
+        line-height: px($zen-main-navigation-height);
+        text-transform: $zen-main-navigation-text-transform;
+        color: $zen-main-navigation-color;
+        @include main-navigation-hover($zen-main-navigation-hover-animation);
+
+        @if $zen-main-navigation-hover-animation != "hover-3" and  $zen-main-navigation-hover-animation != "hover-4" {
+            padding: 0 px($zen-main-navigation-padding);
+        } @else {
+            padding: 0;
+        }
+
+        @if $zen-main-navigation-font-family == "headline" {
+            font-family: $headings-font-family;
+        }
+
+        .main-navigation-link-text {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .icon {
+            color: $zen-main-navigation-color;
+
+            > svg {
+                top: .15em;
+            }
+        }
+    }
+
+    .main-navigation-divider {
+        position: relative;
+        line-height: px($zen-main-navigation-height);
+        color: $zen-main-navigation-color;
+
+        &::after {
+            position: absolute;
+            right: 0;
+            top: 0;
+            line-height: px($zen-main-navigation-height);
+            -webkit-transform: translateX(50%);
+            transform: translateX(50%);
+            z-index: 1;
+
+            @if $zen-main-navigation-divider == 1 {
+                content: '/';
+            }
+
+            @if $zen-main-navigation-divider == 2 {
+                content: '|';
+            }
+
+            @if $zen-main-navigation-divider == 3 {
+                content: '-';
+            }
+
+            @if $zen-main-navigation-divider == 4 {
+                content: '+';
+            }
+        }
+    }
+}
+
+@include media-breakpoint-up(lg) {
+    .main-navigation {
+        display: none;
+    }
+
+    .is-mn-offcanvas-md {
+        .main-navigation {
+            display: inherit;
+        }
+    }
+}
+
+@include media-breakpoint-up(xl) {
+    .is-mn-offcanvas-lg {
+        .main-navigation {
+            display: inherit;
+        }
+    }
+}

@@ -1,0 +1,44 @@
+{
+    "name": "zenit/stratus",
+    "description": "Theme Stratus by Zenit Design",
+    "version": "v1.2.4",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Zenit Design",
+            "homepage": "https://zenit.design",
+            "role": "Manufacturer"
+        }
+    ],
+    "require": {
+        "shopware/core": "^6.3",
+        "shopware/storefront": "^6.3"
+    },
+    "extra": {
+        "shopware-plugin-class": "zenit\\PlatformStratus\\zenitPlatformStratus",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by Zenit Design",
+        "label": {
+            "de-DE": "Theme Stratus",
+            "en-GB": "Theme Stratus"
+        },
+        "description": {
+            "de-DE": "Theme Stratus - Responsive Shopware 6 Theme. Ein Theme - grenzenlose Möglichkeiten! Theme Stratus ist Dein Shopware Theme, welches Du dank seiner vielseitige Individualisierungsmöglichkeiten komplett selbst gestalten kannst. Zur Individualisierung bietet es eine Umfassende Themenkonfiguration mit über 300+ Konfigurationselementen. Das klare Design besticht durch seine saubere und elegenate Designsprache und rückt so das Wichtige in den Vordergrund - Deine Produkte.",
+            "en-GB": "Theme Stratus - Responsive Shopware 6 Theme. One theme - limitless possibilities! Theme Stratus is your Shopware theme, which you can design completely yourself thanks to its versatile theme configuration. For individualization, it offers a comprehensive topic configuration with over 300+ configuration elements. The clear design impresses with its clean and elegant design language and thus puts the important thing in the foreground - your products."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/zenit-design.html",
+            "en-GB": "https://store.shopware.com/en/zenit-design.html"
+        },
+        "supportLink": {
+            "de-DE": "https://help.zenit.design",
+            "en-GB": "https://help.zenit.design"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "zenit\\PlatformStratus\\": "src/"
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_stylesheet %}
+    {{ parent() }}
+    {% if SITCustomCssJsPligin.customCssActive %}
+        <style type="text/css">
+            {{ SITCustomCssJsPligin.customCss|raw }}
+        </style>
+    {% endif %}
+{% endblock %}
+

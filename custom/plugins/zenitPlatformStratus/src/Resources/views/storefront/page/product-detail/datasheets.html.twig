@@ -1,0 +1,39 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_datasheets_container %}
+        <div class="product-detail-datasheets tab-pane-container">
+
+            {% set datasheetsIds = [] %}
+            {% set datasheetsIds = page.product.translated.customFields.zenit_stratus_datasheet_one ? datasheetsIds|merge([page.product.translated.customFields.zenit_stratus_datasheet_one]) : datasheetsIds %}
+            {% set datasheetsIds = page.product.translated.customFields.zenit_stratus_datasheet_two ? datasheetsIds|merge([page.product.translated.customFields.zenit_stratus_datasheet_two]) : datasheetsIds %}
+            {% set datasheetsIds = page.product.translated.customFields.zenit_stratus_datasheet_three ? datasheetsIds|merge([page.product.translated.customFields.zenit_stratus_datasheet_three]) : datasheetsIds %}
+
+            {% set mediaCollection = searchMedia(datasheetsIds, context.context) %}
+
+            {% for datasheetId in datasheetsIds %}
+                {% set datasheetMedia = mediaCollection.get(datasheetId) %}
+
+                {% if datasheetMedia.mediaType.name is same as ('IMAGE') %}
+
+                    {% block page_product_detail_datasheets_image %}
+                        {% sw_thumbnails 'datasheets-image-thumbnails' with {
+                            media: datasheetMedia,
+                            attributes: {
+                                'alt': (datasheetMedia.translated.alt ?: datasheetMedia.translated.name),
+                                'title': (datasheetMedia.translated.title ?: datasheetMedia.translated.name)
+                            }
+                        } %}
+                    {% endblock %}
+                {% else %}
+                    {% block page_product_detail_datasheets_embed %}
+                        <div class="datasheets-embed embed-responsive embed-responsive-1by1">
+                            <iframe class="embed-responsive-item" src="{{ datasheetMedia.url }}" type="{{ datasheetMedia.mimeType }}" frameborder="0"></iframe>
+                        </div>
+                    {% endblock %}
+                {% endif %}
+            {% endfor %}
+
+        </div>
+    {% endblock %}
+{% endblock %}

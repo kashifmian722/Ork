@@ -1,0 +1,1 @@
+# Shopware Service Booking Plugin

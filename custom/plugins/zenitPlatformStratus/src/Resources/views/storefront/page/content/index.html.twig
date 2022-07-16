@@ -1,0 +1,63 @@
+{% sw_extends '@Storefront/storefront/page/content/index.html.twig' %}
+
+{% block base_main_inner %}
+    <div class="container-main">
+        {% block page_content %}
+
+            {# ... checks if custom zenit-breadcrumb is in use, cmsBreadcrumb is the default breadcrumb #}
+            {% set cmsBreadcrumbs = true %}
+            {% for section in page.cmsPage.sections %}
+                {% for block in section.blocks %}
+                    {% if block.type is same as ('zenit-breadcrumb') %}
+                        {% set cmsBreadcrumbs = false %}
+                    {% endif %}
+                {% endfor %}
+            {% endfor %}
+
+            {% if zentheme["zen-category-header-position"] is same as ('absolute') or (zentheme["zen-category-header-position"] is same as ('relative') and zenCustomFieldsCategory["zenit_stratus_category_header_position"] is same as ('absolute')) %}
+                {% set sectionCategoryOverlay = true %}
+            {% endif %}
+
+            {% if zentheme["zen-category-image"] is same as (true) or ( zentheme["zen-category-image"] is same as (false) and (zenCustomFieldsCategory["zenit_stratus_category_image"] is same as ('display')) ) %}
+                {% set hasCategoryImage = true %}
+            {% endif %}
+
+            {% if zenCustomFieldsCategory["zenit_stratus_category_image_color"] is not empty and zenCustomFieldsCategory["zenit_stratus_category_image_color"] is not same as ('inherit') %}
+                {% set hasCategoryBgColor = true %}
+            {% endif %}
+
+            {% if hasCategoryBgColor is same as (true) or hasCategoryImage is same as (true) %}
+                {% set isHeroSection = true %}
+            {% endif %}
+
+            {# ... if not a hero section #}
+            {% if isHeroSection is not same as (true) %}
+                {% if cmsBreadcrumbs and page.header.navigation.active.buildSeoBreadcrumb(context.salesChannel.navigationCategoryId)|length %}
+                    <div class="breadcrumb cms-breadcrumb container">
+                        <div class="breadcrumb-inner">
+                            {% block cms_breadcrumb %}
+                                {% sw_include '@Storefront/storefront/component/listing/breadcrumb.html.twig' with {
+                                    navigationTree: page.header.navigation.tree,
+                                    category: page.header.navigation.active
+                                } only %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endif %}
+
+            <div class="cms-page">
+                {% block page_content_blocks %}
+                    {% sw_include "@Storefront/storefront/page/content/detail.html.twig" with {
+                        'cmsPage': page.cmsPage,
+                        'cmsBreadcrumbs': cmsBreadcrumbs,
+                        'sectionCategoryOverlay': sectionCategoryOverlay,
+                        'hasCategoryImage': hasCategoryImage,
+                        'hasCategoryBgColor': hasCategoryBgColor,
+                        'isHeroSection': isHeroSection
+                    } %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

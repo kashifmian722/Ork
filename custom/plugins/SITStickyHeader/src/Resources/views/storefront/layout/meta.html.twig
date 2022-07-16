@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_stylesheet %}
+    {{ parent() }}
+    <style>
+        .js-header-main-sticky{
+            background-color: white;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            width: 100%;
+            transition: transform 0.4s ease-in-out;
+            transform: translateY(-100%);
+
+        }
+        .js-header-main-sticky.is--active {
+            transform: translateY(0);
+            box-shadow: 5px 0 5px rgba( 0, 0, 0, 0.5);
+        }
+    </style>
+{% endblock %}

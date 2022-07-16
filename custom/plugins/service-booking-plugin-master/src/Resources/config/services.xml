@@ -1,0 +1,51 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Swag\ServiceBooking\Core\Content\Merchant\Storefront\Service\ServiceBookingTemplateCriteriaLoader"
+                 decorates="Shopware\Production\Merchants\Content\Merchant\Storefront\Service\MerchantCriteriaLoaderInterface">
+            <argument type="service" id="Swag\ServiceBooking\Core\Content\Merchant\Storefront\Service\ServiceBookingTemplateCriteriaLoader.inner"/>
+        </service>
+
+        <service id="Swag\ServiceBooking\Core\Content\Product\ProductServiceBookingExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Swag\ServiceBooking\Core\Content\ServiceBookingTemplate\ServiceBookingTemplateDefinition">
+            <tag name="shopware.entity.definition" entity="swag_service_booking_template" />
+        </service>
+
+        <service id="Swag\ServiceBooking\Core\Content\ServiceBookingTemplate\Aggregate\ServiceBookingDate\ServiceBookingDateDefinition">
+            <tag name="shopware.entity.definition" entity="swag_service_booking_date" />
+        </service>
+
+        <service id="Swag\ServiceBooking\Core\Content\Product\SalesChannel\SalesChannelProductDefinitionDecorator"
+                 decorates="Shopware\Core\Content\Product\SalesChannel\SalesChannelProductDefinition">
+            <tag name="shopware.sales_channel.entity.definition" entity="product"/>
+        </service>
+
+        <service id="Swag\ServiceBooking\Storefront\Controller\ServiceBookingCartController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\SalesChannel\CartService"/>
+
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+        </service>
+
+        <!-- Translations -->
+        <service id="Swag\ServiceBooking\Resources\app\storefront\snippet\de_DE\SnippetFile_de_DE">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+        <service id="Swag\ServiceBooking\Resources\app\storefront\snippet\en_GB\SnippetFile_en_GB">
+            <tag name="shopware.snippet.file"/>
+        </service>
+
+        <service id="Swag\ServiceBooking\Storefront\Framework\Twig\Extension\ServiceBookingDateFormatFilter">
+            <argument type="service" id="swag_service_booking_date.repository"/>
+            <tag name="twig.extension"/>
+        </service>
+    </services>
+</container>

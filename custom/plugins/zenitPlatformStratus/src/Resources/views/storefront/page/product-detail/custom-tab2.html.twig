@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_custom_field2_container %}
+        <div class="product-detail-custom-field1 tab-pane-container">
+
+            {% block page_product_detail_custom_field2_content %}
+                {{ page.product.translated["customFields"]["zenit_stratus_custom_tab2_text"]|raw  }}
+            {% endblock %}
+
+        </div>
+
+    {% endblock %}
+{% endblock %}

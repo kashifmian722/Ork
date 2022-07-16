@@ -1,0 +1,160 @@
+{% sw_extends '@Storefront/storefront/page/content/detail.html.twig' %}
+
+{% block page_content_sections_inner %}
+    <div class="cms-sections">
+        {% for section in cmsPage.sections %}
+
+            {% if loop.index is same as (1) and isHeroSection is same as (true) %}
+
+                {# ... section classes #}
+                {% set sectionClasses = ['cms-section-hero', section.cssClass, 'pos-' ~ section.position, 'cms-section-' ~ section.type] %}
+
+                {# ... set section bg color #}
+                {% if zenCustomFieldsCategory["zenit_stratus_category_image_color"] is empty or zenCustomFieldsCategory["zenit_stratus_category_image_color"] is same as ('inherit') %}
+                    {% set sectionBgColor = section.backgroundColor ? section.backgroundColor : '#ffffff' %}
+                {% else %}
+                    {% set sectionBgColor = zenCustomFieldsCategory["zenit_stratus_category_image_color"] %}
+                {% endif %}
+
+                {# ... set section bg image #}
+                {% set sectionBgImg = section.backgroundMedia|sw_encode_media_url %}
+
+                {# ... category image #}
+                {% set categoryMedia = page.header.navigation.active.media %}
+                {% if hasCategoryImage %}
+                    {% if categoryMedia %}
+
+                        {# ... category image style #}
+                        {% set sectionBgImg = categoryMedia|sw_encode_media_url %}
+
+                        {# ... category image class #}
+                        {% set sectionClasses = ['category-image']|merge(sectionClasses) %}
+
+                    {% elseif sectionBgImg %}
+
+                        {# ... category image class #}
+                        {% set sectionClasses = ['category-image']|merge(sectionClasses) %}
+
+                    {% endif %}
+                {% endif %}
+
+                {# ... category overlay class #}
+                {% if sectionCategoryOverlay %}
+                    {% set sectionClasses = ['cms-section-overlay']|merge(sectionClasses) %}
+                {% endif %}
+
+                {# ... set section bg image mode #}
+                {% if section.backgroundMediaMode %}
+                    {% set sectionBgImgMode = section.backgroundMediaMode %}
+                {% else %}
+                    {% set sectionBgImgMode = 'cover' %}
+                {% endif %}
+
+                {# ... set opacity style #}
+                {% set categoryImageOpacity = zenCustomFieldsCategory["zenit_stratus_category_image_opacity"]|replace({'%': ''}) %}
+                {% if categoryImageOpacity is empty or categoryImageOpacity is same as ('inherit') %}
+                    {% set sectionBgOpacity = zentheme["zen-category-image-opacity"]|number_format %}
+                {% else %}
+                    {% set sectionBgOpacity = categoryImageOpacity|number_format %}
+                {% endif %}
+
+                {# ... set attachment style #}
+                {% if zenCustomFieldsCategory["zenit_stratus_category_image_attachment"] is empty or zenCustomFieldsCategory["zenit_stratus_category_image_attachment"] is same as ('inherit') %}
+                    {% set sectionBgAttachment = zentheme["zen-category-image-attachment"] %}
+                {% else %}
+                    {% set sectionBgAttachment = zenCustomFieldsCategory["zenit_stratus_category_image_attachment"] %}
+                {% endif %}
+
+                {# ... set position style #}
+                {% if zenCustomFieldsCategory["zenit_stratus_category_image_position"] is empty or zenCustomFieldsCategory["zenit_stratus_category_image_position"] is same as ('inherit') %}
+                    {% set sectionBgPosition = zentheme["zen-category-image-position"] %}
+                {% else %}
+                    {% set sectionBgPosition = zenCustomFieldsCategory["zenit_stratus_category_image_position"] %}
+                {% endif %}
+
+                {# ... bg image class #}
+                {% if sectionBgImg %}
+                    {% set sectionClasses = ['bg-image']|merge(sectionClasses) %}
+                {% endif %}
+
+                {# ... bg color class #}
+                {% if sectionBgColor %}
+                    {% set sectionClasses = ['bg-color']|merge(sectionClasses) %}
+                {% endif %}
+
+                {# ... contrast class #}
+                {% if zenCustomFieldsCategory["zenit_stratus_category_image_contrast"] is empty or zenCustomFieldsCategory["zenit_stratus_category_image_contrast"] is same as ('inherit') %}
+                    {% set sectionClasses = [zentheme["zen-category-image-contrast"]]|merge(sectionClasses) %}
+                {% else %}
+                    {% set sectionClasses = [zenCustomFieldsCategory["zenit_stratus_category_image_contrast"]]|merge(sectionClasses) %}
+                {% endif %}
+
+                {# ... opacity class #}
+                {% if sectionBgOpacity < 100 and sectionBgColor %}
+                    {% set sectionClasses = ['has-opacity']|merge(sectionClasses) %}
+                {% endif %}
+
+                {% set layout = section.sizingMode ? section.sizingMode|replace({"_": "-"}) : "container" %}
+
+                {% block page_content_section_category_image %}
+                    <div class="cms-section {{ layout }} {{ sectionClasses|join(' ') }}"
+                         style="{% if sectionBgAttachment %}background-attachment: {{ sectionBgAttachment }};{% endif %}{% if sectionBgPosition %}background-position: {{ sectionBgPosition }};{% endif %}{% if sectionBgColor %}background-color: {{ sectionBgColor }};{% endif %}{% if sectionBgImg %}background-image: url({{ sectionBgImg }});background-size: {{ sectionBgImgMode }};{% endif %}">
+
+                        {% if sectionBgOpacity < 100 and sectionBgColor %}
+                            <div class="cms-section-bg-color-overlay"
+                                 style="background-color: {{ sectionBgColor }}; opacity: {{(100 - sectionBgOpacity|number_format) / 100 }};">
+                            </div>
+                        {% endif %}
+
+                        {% sw_include "@Storefront/storefront/section/cms-section-" ~ section.type ~ ".html.twig" %}
+                    </div>
+                {% endblock %}
+
+                {% if cmsBreadcrumbs is same as (true) %}
+                    <div class="breadcrumb cms-breadcrumb container">
+                        <div class="breadcrumb-inner">
+                            {% block cms_breadcrumb %}
+                                {% sw_include '@Storefront/storefront/component/listing/breadcrumb.html.twig' with {
+                                    navigationTree: page.header.navigation.tree,
+                                    category: page.header.navigation.active
+                                } only %}
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endif %}
+
+            {% else %}
+                {% set sectionBgColor = section.backgroundColor %}
+                {% set sectionBgImg = section.backgroundMedia|sw_encode_media_url %}
+                {% set sectionBgImgMode = section.backgroundMediaMode %}
+
+                {% set sectionClasses = [section.cssClass, 'pos-' ~ section.position, 'cms-section-' ~ section.type] %}
+
+                {% if sectionBgImg %}
+                    {% set sectionClasses = ['bg-image']|merge(sectionClasses) %}
+                {% endif %}
+
+                {% if sectionBgColor %}
+                    {% set sectionClasses = ['bg-color']|merge(sectionClasses) %}
+                {% endif %}
+
+                {# ... category overlay class #}
+                {% if loop.index is same as (1) and sectionCategoryOverlay is same as (true) %}
+                    {% if sectionCategoryOverlay %}
+                        {% set sectionClasses = ['cms-section-overlay']|merge(sectionClasses) %}
+                    {% endif %}
+                {% endif %}
+
+                {% set layout = section.sizingMode ? section.sizingMode|replace({"_": "-"}) : "container" %}
+
+                {% block page_content_section %}
+                    <div class="cms-section {{ layout }} {{ sectionClasses|join(' ') }}"
+                         style="{% if sectionBgColor %}background-color: {{ sectionBgColor }};{% endif %}{% if sectionBgImg %}background-image: url({{ sectionBgImg }});background-size: {{ section.backgroundMediaMode }};{% endif %}">
+
+                        {% sw_include "@Storefront/storefront/section/cms-section-" ~ section.type ~ ".html.twig" %}
+                    </div>
+                {% endblock %}
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock %}

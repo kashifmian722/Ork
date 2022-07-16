@@ -1,0 +1,82 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block component_product_box_action_inner %}
+    {% set id = product.id %}
+
+    {% if shopware.config.core.listing.allowBuyInListing %}
+        <div class="product-action">
+            {% set isAvailable = not product.isCloseout or (product.availableStock >= product.minPurchase) %}
+
+            {% block component_product_box_action_quickview_toggle_with_buy %}
+                {% if zentheme['zen-product-listing-card-actions-quickview'] %}
+                    {% sw_include '@Storefront/storefront/component/product/card/action-quickview-toggle.html.twig' with {
+                        allowBuyInListing: true
+                    } %}
+                {% endif %}
+            {% endblock %}
+
+            {% if isAvailable and not product.isGrouped and product.childCount <= 0 %}
+                {% block component_product_box_action_buy %}
+                    {# @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
+                    <form action="{{ path('frontend.checkout.line-item.add') }}"
+                          method="post"
+                          class="buy-widget"
+                          data-add-to-cart="true">
+
+                        {% block component_product_box_action_buy_csrf %}
+                            {{ sw_csrf('frontend.checkout.line-item.add') }}
+                        {% endblock %}
+
+                        {% block component_product_box_action_form %}
+
+                            {% block component_product_box_action_buy_redirect_input %}
+                                {{ parent() }}
+                            {% endblock %}
+
+                            {% block page_product_detail_buy_product_buy_info %}
+                                {{ parent() }}
+                            {% endblock %}
+
+                            {% block page_product_detail_product_buy_meta %}
+                                {{ parent() }}
+                            {% endblock %}
+
+                            {% if zentheme['zen-product-listing-card-actions-quantity-select'] %}
+                                {% sw_include '@Storefront/storefront/component/product/card/action-buy-widget-container.html.twig' %}
+                            {% else %}
+                                <button class="btn btn-block btn-buy"
+                                        title="{{ "listing.boxAddProduct"|trans|striptags }}">
+                                    {% if zentheme['zen-product-listing-card-actions-quickview']  %}
+                                        {{ 'zentheme.listing.boxAddProductWithIcon'|trans }} {% sw_icon 'bag' %}
+                                    {% else %}
+                                        {{ "listing.boxAddProduct"|trans|sw_sanitize }}
+                                    {% endif %}
+                                </button>
+                            {% endif %}
+                        {% endblock %}
+                    </form>
+                {% endblock %}
+            {% else %}
+                {% block component_product_box_action_detail %}
+                    <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+                       class="btn btn-block btn-light btn-details"
+                       title="{{ "listing.boxProductDetails"|trans|striptags }}">
+                        {{ "listing.boxProductDetails"|trans|sw_sanitize }}
+                    </a>
+                {% endblock %}
+            {% endif %}
+        </div>
+    {% elseif zentheme['zen-product-listing-card-actions-quickview'] %}
+        <div class="product-action">
+            {% block component_product_box_action_quickview_toggle %}
+                {% sw_include '@Storefront/storefront/component/product/card/action-quickview-toggle.html.twig' with {
+                    allowBuyInListing: false
+                } %}
+            {% endblock %}
+        </div>
+    {% endif %}
+
+    {% block component_product_box_action_meta %}
+        {{ parent() }}
+    {% endblock %}
+{% endblock %}

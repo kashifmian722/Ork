@@ -1,0 +1,83 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Shopware\Production\Merchants\Content\Merchant\Api\AuthoritiesController" public="true">
+            <argument type="service" id="sales_channel.repository"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Api\ProfileController" public="true">
+            <argument type="service" id="merchant.repository"/>
+            <argument type="service" id="merchant_media.repository"/>
+            <argument type="service" id="merchant_service.repository"/>
+            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator"/>
+            <argument type="service" id="Shopware\Production\Portal\Hacks\StorefrontMediaUploader"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Api\IndustriesController" public="true">
+            <argument type="service" id="category.repository"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Api\RegistrationController" public="true">
+            <argument type="service" id="Shopware\Production\Merchants\Content\Merchant\Services\RegistrationService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="translator"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\MerchantDefinition">
+            <tag name="shopware.entity.definition" entity="merchant"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantProduct\MerchantProductDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_product"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantOrder\MerchantOrderDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_order"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantMedia\MerchantMediaDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_media"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantShippingMethod\MerchantShippingMethodDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_shipping_method"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantResetPasswordToken\MerchantResetPasswordTokenDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_reset_password_token"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantAccessToken\MerchantAccessTokenDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_access_token"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Aggregate\MerchantService\MerchantServiceDefinition">
+            <tag name="shopware.entity.definition" entity="merchant_service"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Extensions\CategoryEntityExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Extensions\ProductEntityExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Extensions\OrderEntityExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Extensions\MediaEntityExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Content\Merchant\Subscriber\MerchantSubscriber" public="true">
+            <argument type="service" id="Shopware\Core\Framework\Adapter\Cache\CacheClearer"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+    </services>
+</container>

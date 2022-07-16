@@ -1,0 +1,14 @@
+.cart-item-label {
+    @include text-color-contrast;
+}
+
+.cart-item-img {
+    @include border-radius($zen-layout-element-radius * 1px);
+}
+
+.cart-item-quantity-label,
+.cart-item-unit-price-label,
+.cart-item-total-price-label,
+.cart-item-tax-price-label {
+    @include text-color-contrast;
+}

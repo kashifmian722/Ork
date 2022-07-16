@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Custom Code</title>
+        <title lang="de-DE">Eigener Code</title>
+
+        <component name="sw-switch-field">
+            <name>customCssActive</name>
+            <label>Enable Custom CSS Code</label>
+            <label lang="de-DE">Eigener CSS Code aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customCss</name>
+            <label>CSS Code</label>
+            <label lang="de-DE">CSS Code</label>
+            <helpText><![CDATA[Enter CSS Code without style-Tags. Your custom CSS Code e.g.:<br><br>]]> body { background: #fff; }</helpText>
+            <helpText lang="de-DE"><![CDATA[Gib hier CSS Code ohne style-Tags ein. Dein individueller CSS Code, z.B.:<br><br>]]>  body { background: #fff; }</helpText>
+        </component>
+
+        <component name="sw-switch-field">
+            <name>customJsFilesActive</name>
+            <label>Enable Custom Javascript Files</label>
+            <label lang="de-DE">Eigene Javascript Dateien aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customJsFiles</name>
+            <label>Javascript Files</label>
+            <label lang="de-DE">Javascript Dateien</label>
+            <helpText><![CDATA[Will be loaded in footer to not block any DOM content to be loaded.Your custom Javascript Files:<br><br> &lt;script src=&quot;myscript.js&quot;&gt;&lt;/script&gt;]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Wird im Footer geladen, um zu ladenden DOM-Inhalt nicht zu blockieren. Deine individuellen Javascript Dateien:<br><br> &lt;script src=&quot;myscript.js&quot;&gt;&lt;/script&gt;]]></helpText>
+        </component>
+
+        <component name="sw-switch-field">
+            <name>customJsActive</name>
+            <label>Enable Custom Javascript Code</label>
+            <label lang="de-DE">Eigener Javascript Code aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customJs</name>
+            <label>Javascript Code</label>
+            <label lang="de-DE">Javascript Code</label>
+            <helpText><![CDATA[Enter Javascript Code with script-Tags. Will be loaded in footer to not block any DOM content to be loaded. our custom Javascript Code:<br><br>  &lt;script&gt;alert(&quot;Hello World&quot;);&lt;/script&gt;]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Gib hier Javascript Code mit script-Tags ein. Wird im Footer geladen, um zu ladenden DOM-Inhalt nicht zu blockieren.Dein individueller Javascript Code:<br><br>  &lt;script&gt;alert(&quot;Hello World&quot;);&lt;/script&gt;]]></helpText>
+        </component>
+    </card>
+</config>

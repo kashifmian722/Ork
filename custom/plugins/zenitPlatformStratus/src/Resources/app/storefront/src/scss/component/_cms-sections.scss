@@ -1,0 +1,210 @@
+.cms-section {
+    &.has-opacity {
+        position: relative;
+
+        .cms-section-bg-color-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+        }
+    }
+
+    &.cms-section-hero {
+        .cms-block {
+            &[class*="cms-block-text"]:not(.cms-block-text-on-image) {
+                max-width: px($zen-category-image-content-max-width);
+
+                @if $zen-category-image-content-align == flex-end {
+                    margin-left: auto;
+                } @else if $zen-category-image-content-align == center {
+                    margin: auto;
+                }
+            }
+        }
+
+        &.light-text {
+            color: $zen-light-text-color;
+
+            h1, h2, h3, h4, h5, h6,
+            .h1, .h2, .h3, .h4, .h5, .h6 {
+                color: $zen-light-headline-color;
+            }
+
+            a:not(.btn) {
+                color: $zen-light-headline-color;
+                text-decoration: none;
+                border-bottom: 1px solid $zen-light-headline-color;
+
+                &:hover {
+                    color: $zen-light-headline-color;
+                    text-decoration: none;
+                }
+            }
+
+            .breadcrumb a,
+            .breadcrumb .icon,
+            .breadcrumb a.is-active {
+                color: $zen-light-text-color;
+                border-bottom-color: $zen-light-text-color;
+            }
+
+            .breadcrumb a:hover,
+            .breadcrumb a.is-active {
+                color: $zen-light-text-color;
+                border-bottom-color: $zen-light-text-color;
+            }
+        }
+
+        &.dark-text {
+            color: $sw-text-color;
+
+            h1, h2, h3, h4, h5, h6,
+            .h1, .h2, .h3, .h4, .h5, .h6 {
+                color: $sw-headline-color;
+            }
+
+            a:not(.btn) {
+                color: $sw-text-color;
+                text-decoration: none;
+                border-bottom: 1px solid $sw-text-color;
+
+                &:hover {
+                    color: $sw-text-color;
+                    text-decoration: none;
+                }
+            }
+
+            .breadcrumb a,
+            .breadcrumb .icon,
+            .breadcrumb a.is-active {
+                color: $sw-text-color;
+                border-bottom-color: $sw-text-color;
+            }
+
+            .breadcrumb a:hover,
+            .breadcrumb a.is-active {
+                color: $sw-text-color;
+                border-bottom-color: $sw-text-color;
+            }
+        }
+    }
+}
+
+/*
+absolute positioned header
+==================================================
+... controls overlaying cms-elements with absolute positioned header
+... checks the header for any opacity so that a possible category image can be displayed under the header.
+*/
+.header-pos-absolute {
+    @include media-breakpoint-up(lg) {
+        ~ .content-main {
+            .container-main {
+                padding-top: 0;
+                padding-bottom: 0;
+            }
+
+            .cms-page {
+                margin-top: 0;
+                margin-bottom: 0;
+            }
+
+            // ... overlayable cms-block elements
+            .cms-section-overlay .pos-0 {
+                &.cms-block-image-cover,
+                &.cms-block-text-on-image,
+                &.cms-block-vimeo-video,
+                &.cms-block-youtube-video,
+                &.cms-block-image-slider,
+                &.cms-block-image-three-cover,
+                &.cms-block-image {
+                    padding-top: 0 !important;
+                }
+            }
+
+            .container-main > .breadcrumb:first-child {
+                position: absolute;
+                left: 0;
+                right: 0;
+                z-index: 1;
+                transition: top .35s ease;
+
+                @if $zen-header-style == 'single-line' {
+                    top: px($zen-header-height + $zen-header-padding-top);
+                } @else {
+                    top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top);
+                }
+
+                .js-top-bar-open &,
+                .is-tb-default.has-marketing-slider & {
+                    @if $zen-header-style == 'single-line' {
+                        top: px($zen-header-height + $zen-header-padding-top + $zen-top-bar-height);
+                    } @else {
+                        top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top + $zen-top-bar-height);
+                    }
+                }
+            }
+        }
+    }
+
+    // ... full-width layouts
+    @if $zen-layout-style != boxed {
+        ~ .content-main {
+
+            // ... with cms-block-breadcrumbs
+            .cms-section-overlay .pos-0 {
+                transition: padding .35s ease;
+
+                @include media-breakpoint-up(lg) {
+                    @if $zen-header-style == 'single-line' {
+                        padding-top: px($zen-header-height + $zen-header-padding-top);
+                    } @else {
+                        padding-top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top);
+                    }
+
+                    .js-top-bar-open &,
+                    .is-tb-default.has-marketing-slider & {
+                        @if $zen-header-style == 'single-line' {
+                            padding-top: px($zen-header-height + $zen-header-padding-top + $zen-top-bar-height);
+                        } @else {
+                            padding-top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top + $zen-top-bar-height);
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // ... boxed layouts
+    @if $zen-layout-style == boxed {
+        ~ .content-main {
+
+            // ... with cms-block-breadcrumbs
+            .cms-section-overlay .pos-0 {
+                transition: padding .35s ease;
+
+                @include media-breakpoint-up(lg) {
+                    @if $zen-header-style == 'single-line' {
+                        padding-top: px($zen-header-height + $zen-header-padding-top);
+                    } @else {
+                        padding-top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top);
+                    }
+                }
+
+                .js-top-bar-open &,
+                .is-tb-default.has-marketing-slider & {
+                    @include media-breakpoint-up(lg) {
+                        @if $zen-header-style == 'single-line' {
+                            padding-top: px($zen-header-height + $zen-header-padding-top + $zen-top-bar-height);
+                        } @else {
+                            padding-top: px($zen-header-height + $zen-main-navigation-height + $zen-header-padding-top +  $zen-top-bar-height);
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

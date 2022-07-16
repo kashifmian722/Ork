@@ -1,0 +1,11 @@
+/*
+Container
+==============================================
+Additional styling for bootstrap container layout.
+
+https://getbootstrap.com/docs/4.3/layout/overview/
+*/
+
+.container {
+    max-width: px($zen-layout-container-width);
+}

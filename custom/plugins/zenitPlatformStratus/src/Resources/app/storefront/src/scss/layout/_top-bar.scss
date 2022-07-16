@@ -1,0 +1,112 @@
+/*
+Top bar
+==================================================
+Contains styles for the top bar located at the top of the page.
+The top bar contains the language switcher, the currency switcher and the service menu.
+*/
+
+// top bar
+.top-bar {
+    background: $zen-top-bar-bg;
+    color: $zen-top-bar-color;
+
+    .top-bar-nav {
+        min-height: px($zen-top-bar-height);
+    }
+
+    .top-bar-nav-btn {
+        &.btn {
+            padding-left: $spacer-sm;
+            padding-right: $spacer-sm;
+            background: $zen-top-bar-bg;
+            color: $zen-top-bar-color;
+            border-radius: 0;
+            line-height: 34px;
+
+            .icon {
+                color: $zen-top-bar-color;
+            }
+
+            &:hover {
+                background: $zen-top-bar-hover-bg;
+                color: $zen-top-bar-hover-color;
+
+                .icon {
+                    color: $zen-top-bar-hover-color;
+                }
+            }
+        }
+    }
+
+    // Marketing Text Slider
+    .top-bar-marketing {
+        padding: $spacer-sm 0;
+        text-align: center;
+        flex-grow: 1;
+        justify-content: space-around;
+
+        .text-slider {
+            flex-grow: 1;
+        }
+
+        .text-slider-item {
+            position: absolute;
+        }
+
+        .text-slider-button {
+            flex-grow: 1;
+
+            .btn-outline {
+                color: $zen-top-bar-color;
+                border-color: $zen-top-bar-color;
+                border-style: dashed;
+
+                &:hover {
+                    color: $zen-top-bar-bg;
+                    background: $zen-top-bar-color;
+                    border-color: $zen-top-bar-color;
+                }
+            }
+
+            .btn-sm {
+                line-height: 20px;
+            }
+        }
+    }
+
+    // login register
+    .top-bar-login-register {
+        color: $zen-top-bar-color;
+
+        .top-bar-login-item,
+        .top-bar-register-item {
+            color: $zen-top-bar-color;
+            padding: 0 $spacer-xs;
+
+            &:hover {
+                color: $zen-top-bar-hover-color;
+                text-decoration: none;
+            }
+        }
+    }
+}
+
+.top-bar-nav-item {
+    margin-right: $spacer-xs;
+
+    &:last-child {
+        margin-right: 0;
+    }
+}
+
+.service-menu {
+    .top-bar-nav-btn {
+        .icon {
+            display: inline-block;
+
+            svg {
+                top: 0;
+            }
+        }
+    }
+}

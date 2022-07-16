@@ -1,0 +1,17 @@
+/*
+Offcanvas cart
+==============================================
+Custom skin styling for the cart offcanvas.
+*/
+.offcanvas-cart-actions {
+    .input-group {
+        > .form-control {
+            // bugfix because of wrong placed label
+            &:not(:first-child) {
+                @if $zen-layout-forms-style != "underlined" {
+                    @include border-left-radius($zen-layout-input-radius * 1px);
+                }
+            }
+        }
+    }
+}

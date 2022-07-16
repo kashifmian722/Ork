@@ -1,0 +1,82 @@
+/*
+Theme variables
+==================================================
+Contains overrides of bootstrap and shopware default variables with theme config variables.
+
+https://getbootstrap.com/docs/4.3/getting-started/theming/#variable-defaults
+*/
+
+// fonts
+// override variable, if there are theme default fonts in use
+// has to check if variable exists because of child theme with
+// missing configuration
+//
+// Example Input: 'Rubik', sans-serif[300,400,500]
+@if global-variable-exists(zen-font-family-base-default) and $zen-font-family-base-default != "custom" {
+    $zen-font-families-base: get-fontfamilies($zen-font-family-base-default, '[') !default; // 'Rubik', sans-serif
+    $sw-font-family-base: $zen-font-families-base;
+}
+
+// override variable, if there are theme default fonts in use
+// has to check if variable exists because of child theme with
+// missing configuration
+//
+// Example Input: 'Rubik', sans-serif[300,400,500]
+@if global-variable-exists(zen-font-family-headline-default) and $zen-font-family-headline-default != "custom" {
+    $zen-font-families-headline: get-fontfamilies($zen-font-family-headline-default, '[') !default; // 'Rubik', sans-serif
+    $sw-font-family-headline: $zen-font-families-headline;
+}
+
+// config components forms
+$zen-input-bg: #ffffff !default;
+$input-bg: $zen-input-bg !default;
+
+$zen-input-focus-bg: #ffffff !default;
+$input-focus-bg:$zen-input-focus-bg !default;
+
+$zen-input-color: $sw-text-color !default;
+$input-color: $zen-input-color !default;
+
+$input-placeholder-color: rgba($zen-input-color, 1) !default;
+
+$zen-input-focus-color: $sw-color-brand-primary !default;
+$input-focus-color: $zen-input-focus-color !default;
+
+$zen-input-font-size: 14 !default;
+$input-font-size: $zen-input-font-size * 1px !default;
+
+$zen-input-font-weight: 400 !default;
+$input-font-weight: $zen-input-font-weight;
+
+$zen-input-border-color: $sw-border-color !default;
+$input-border-color: $zen-input-border-color !default;
+
+$zen-input-focus-border-color: $sw-color-brand-primary !default;
+$input-focus-border-color: $zen-input-focus-border-color !default;
+
+@if $zen-layout-button-radius == 100 {
+    $input-btn-padding-x: 1rem !default;
+    $input-btn-padding-x-sm: .75rem !default;
+    $input-btn-padding-x-lg: 2rem !default;
+
+    $btn-padding-x: $input-btn-padding-x !default;
+    $btn-padding-x-sm: $input-btn-padding-x-sm !default;
+    $btn-padding-x-lg: $input-btn-padding-x-lg !default;
+}
+
+// config product listing
+$zen-product-listing-card-padding: 30 !default;
+$cms-element-product-listing-gutter-width: $zen-product-listing-card-padding * 1px;
+
+// ... gray based on custom border-colors hue and saturation
+$gray-hue: hue($sw-border-color);
+$gray-saturation: saturation($sw-border-color);
+$gray-100: hsl($gray-hue, $gray-saturation, 98%) !default;
+$gray-200: hsl($gray-hue, $gray-saturation, 93%) !default;
+$gray-300: hsl($gray-hue, $gray-saturation, 89%) !default;
+$gray-400: hsl($gray-hue, $gray-saturation, 83%) !default;
+$gray-500: hsl($gray-hue, $gray-saturation, 71%) !default;
+$gray-600: hsl($gray-hue, $gray-saturation, 46%) !default;
+$gray-700: hsl($gray-hue, $gray-saturation, 31%) !default;
+$gray-800: hsl($gray-hue, $gray-saturation, 23%) !default;
+$gray-900: hsl($gray-hue, $gray-saturation, 15%) !default;

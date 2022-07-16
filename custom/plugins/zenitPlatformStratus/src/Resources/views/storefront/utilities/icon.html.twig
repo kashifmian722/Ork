@@ -1,0 +1,26 @@
+{% sw_extends '@Storefront/storefront/utilities/icon.html.twig' %}
+
+{# Fallback if extenstion is not set - it's an cloud app then #}
+{% set zenconfig = context.context.extensions['zenitPlatformStratus'] ?: shopware.config['zenitPlatformStratus'].config %}
+{% set zentheme = shopware.theme %}
+
+{% block utilities_icon %}
+    {% if namespace is same as('theme') %}
+        {% set namespace = 'zenitPlatformStratus' %}
+    {% endif %}
+
+    {# ... change icons without extending every block,
+    in which the icons are defined #}
+    {% set icons = [ 'avatar', 'bag', 'help', 'stack', 'search', 'x' ] %}
+
+    {% if pack is not defined %}
+        {% if name in icons %}
+            {% set pack = zentheme['zen-icon-set'] %}
+            {% set namespace = 'zenitPlatformStratus' %}
+        {% else %}
+            {% set pack = 'default' %}
+        {% endif %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

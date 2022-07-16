@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/index.html.twig' %}
+
+{% block page_product_detail_media %}
+    {% if page.product.extensions.serviceBookingTemplate %}
+        <div class="col-lg-7">
+            {% set dataServiceOptions = page.product.extensions.serviceBookingTemplate | json_encode %}
+
+            <div data-service-booking="true" data-service-booking-options="{{ dataServiceOptions }}"></div>
+        </div>
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

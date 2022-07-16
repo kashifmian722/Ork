@@ -1,0 +1,36 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-product-slider.html.twig' %}
+
+{% block element_product_slider %}
+    {# TODO: Check again as soon as Shopware solves the bug in the original code itself. #}
+    {% if not config %}
+        {% set config = element.fieldConfig.elements %}
+    {% endif %}
+
+    {% if not sliderConfig %}
+        {% set sliderConfig = element.fieldConfig.elements %}
+    {% endif %}
+
+    {# ... in context of crossselling, they include this template with sliderConfig: config #}
+    {# however, config and sliderConfig are used in the mix. So I set both variables to the same value #}
+    {% if not config and sliderConfig %}
+        {% set config = sliderConfig%}
+    {% endif %}
+
+    <div class="cms-element-{{ element.type }}{% if sliderConfig.verticalAlign.value %} has-vertical-alignment{% endif %}">
+        {% block element_product_slider_alignment %}
+            {{ parent() }}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block element_product_slider_slider %}
+    {% set zentheme = shopware.theme %}
+
+    {% set productSliderOptions = productSliderOptions|replace_recursive({
+        slider: {
+            gutter: zentheme['zen-product-listing-card-padding']
+        }
+    }) %}
+
+    {{ parent() }}
+{% endblock %}

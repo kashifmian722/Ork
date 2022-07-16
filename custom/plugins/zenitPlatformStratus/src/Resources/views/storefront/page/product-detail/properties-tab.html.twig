@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_properties_tab_container %}
+        <div class="product-detail-properties-tab tab-pane-container">
+            {% sw_include '@Storefront/storefront/page/product-detail/properties.html.twig' %}
+        </div>
+    {% endblock %}
+{% endblock %}

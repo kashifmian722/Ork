@@ -1,0 +1,17 @@
+{
+    "swag-paypal-frw-credentials": {
+        "buttonGetCredentials": "Hole API Zugangsdaten",
+        "textIntroPayPal": "Um PayPal zu nutzen müssen nur die API Zugangsdaten eingegeben werden.",
+        "labelClientId": "Client-ID",
+        "labelClientSecret": "Client-Secret",
+        "labelClientIdSandbox": "Sandbox-Client-ID",
+        "labelClientSecretSandbox": "Sandbox-Client-Secret",
+        "labelSandbox": "Sandbox",
+        "tooltipSandbox": "Je nach Aktivierung der Sandbox werden unterschiedliche Zugangsdaten hinterlegt.",
+        "textSettingsHeader": "Erweiterte Einstellungen",
+        "messageFetchedError": " Bitte versuche es erneut oder nutze die erweiterten Einstellungen um die Zugangsdaten direkt einzugeben.",
+        "textFetchedSuccessful": "Die Zugangsdaten wurden erfolgreich abgerufen.",
+        "messageNoCredentials": "Es wurden keine Zugangsdaten hinterlegt.",
+        "messageTestSuccess": "Die Zugangsdaten sind gültig."
+    }
+}

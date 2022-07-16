@@ -1,0 +1,82 @@
+<clr-modal (clrModalOpenChange)="registerModalClosed()" [clrModalOpen]="registerModalOpen">
+  <div class="modal-body">
+      <form [formGroup]="registerForm" clrForm clrLayout="vertical">
+        <section class="title">
+          <h3 class="welcome">{{'MERCHANT.REGISTER.HEADLINE' | translate}}</h3>
+          <h5 class="hint">{{'MERCHANT.REGISTER.SUB_HEADLINE' | translate}}</h5>
+        </section>
+        <div>
+          <div class="alert alert-app-level alert-danger" role="alert" *ngIf="showDuplicateMailError">
+            <div class="alert-items">
+              <span class="alert-text">Es existiert bereits ein Händler-Konto mit dieser E-Mail Adresse</span>
+            </div>
+          </div>
+          <clr-input-container>
+            <label>{{'COMMON.COMPANY_NAME' | translate}}</label>
+            <input type="text" name="username" clrInput  formControlName="name"/>
+            <clr-control-error>{{'MERCHANT.REGISTER.COMPANY_NAME_INVALID' | translate}}</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>{{'COMMON.EMAIL_ADDRESS' | translate}}</label>
+            <input type="text" name="mail" clrInput  formControlName="mail"/>
+            <clr-control-error>{{'MERCHANT.REGISTER.EMAIL_ADDRESS_INVALID' | translate}}</clr-control-error>
+          </clr-input-container>
+          <clr-input-container>
+            <label>{{'COMMON.PASSWORD' | translate}}</label>
+            <input type="password" name="password" formControlName="password"   clrInput/>
+            <clr-control-error>{{'MERCHANT.REGISTER.PASSWORD_INVALID' | translate}}</clr-control-error>
+          </clr-input-container>
+          <clr-input-container [class.clr-error]="registerForm.errors?.passwordMismatch && registerForm.get('repeatPassword').touched" >
+            <label>{{'COMMON.REPEAT_PASSWORD' | translate}}</label>
+            <input type="password" name="repeatPassword" formControlName="repeatPassword"  clrInput/>
+            <clr-control-error>{{'MERCHANT.REGISTER.REPEAT_PASSWORD_INVALID' | translate}}</clr-control-error>
+          </clr-input-container>
+          <clr-select-container *ngIf="authorities$ | async as authorities">
+            <label>{{'COMMON.AUTHORITY' | translate}}</label>
+            <select clrSelect name="authority" formControlName="authority">
+              <option *ngFor="let authority of authorities" [ngValue]="authority">{{authority.name}}</option>
+            </select>
+          </clr-select-container>
+          <clr-checkbox-wrapper>
+            <label>
+              <ng-container *ngIf="registerForm.get('authority').value; else noLinkToPrivacy">
+                <a [href]="registerForm.get('authority').value.domain + '/privacy'" target="_blank">
+                  {{'MERCHANT.REGISTER.PRIVACY_POLICY' | translate}}
+                </a>
+              </ng-container>
+              <ng-template #noLinkToPrivacy>
+                {{'MERCHANT.REGISTER.PRIVACY_POLICY' | translate}}
+              </ng-template>
+            </label>
+            <input type="checkbox" name="policy" formControlName="policy" clrCheckbox/>
+          </clr-checkbox-wrapper>
+          <clr-checkbox-wrapper>
+            <label>
+              <ng-container *ngIf="registerForm.get('authority').value; else noLinkToTos">
+                <a [href]="registerForm.get('authority').value.domain + '/tos'" target="_blank">
+                  {{'MERCHANT.REGISTER.TOS' | translate}}
+                </a>
+              </ng-container>
+              <ng-template #noLinkToTos>
+                {{'MERCHANT.REGISTER.TOS' | translate}}
+              </ng-template>
+            </label>
+            <input type="checkbox" name="tos" formControlName="tos" clrCheckbox/>
+          </clr-checkbox-wrapper>
+        </div>
+      </form>
+    </div>
+  <div class="modal-footer">
+    <button [disabled]="registerForm.invalid" type="submit" class="btn btn-primary" (click)="register()">{{'COMMON.REGISTER' | translate}}</button>
+  </div>
+</clr-modal>
+
+<clr-modal [clrModalOpen]="registrationFinished" [clrModalClosable]="true">
+  <div class="modal-body">
+    <div class="success-wrapper">
+      <clr-icon shape="success-standard" class="is-solid" size="36"></clr-icon>
+      <h3>{{'MERCHANT.REGISTER.REGISTRATION_COMPLETED.HEADLINE' | translate}}</h3>
+      <span>{{'MERCHANT.REGISTER.REGISTRATION_COMPLETED.TEXT' | translate}}</span>
+    </div>
+  </div>
+</clr-modal>

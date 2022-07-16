@@ -1,0 +1,37 @@
+{% block component_product_box_action_buy_widget_container %}
+
+    {% if product.maxPurchase %}
+        {% if product.availableStock < product.maxPurchase %}
+            {% set maxQuantity = product.availableStock %}
+        {% else %}
+            {% set maxQuantity = product.maxPurchase %}
+        {% endif %}
+    {% else %}
+        {% set maxQuantity = shopware.config.core.cart.maxQuantity %}
+    {% endif %}
+
+    {% block component_product_box_action_buy_widget_container_form_row %}
+        <div class="buy-widget-container">
+            <div class="input-group">
+                <select name="lineItems[{{ product.id }}][quantity]"
+                        class="custom-select product-detail-quantity-select">
+                    {% for quantity in range(product.minPurchase, maxQuantity, product.purchaseSteps) %}
+                        <option value="{{ quantity }}">
+                            {{ quantity }}{% if product.packUnit %} {{ product.packUnit }}{% endif %}
+                        </option>
+                    {% endfor %}
+                </select>
+                <div class="input-group-append">
+                    <button class="btn btn-block btn-buy"
+                            title="{{ "listing.boxAddProduct"|trans|striptags }}">
+                        {% if zentheme['zen-product-listing-card-actions-quickview'] %}
+                            {% sw_icon 'bag' %}
+                        {% else %}
+                            {{ 'zentheme.listing.boxAddProductWithIcon'|trans }} {% sw_icon 'bag' %}
+                        {% endif %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    {% endblock %}
+{% endblock %}

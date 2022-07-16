@@ -1,0 +1,52 @@
+/*
+Custom variables
+==================================================
+Contains custom non bootstrap and non shopware and non theme config variables.
+*/
+
+// Generals
+$zen-plugin-name: zenitplatformstratus !default;
+
+// font base
+// Example Input: 'Rubik', sans-serif[300,400,500]
+@if global-variable-exists(zen-font-family-base-default) and $zen-font-family-base-default != "custom" and index($zen-font-family-base-default, "Inter") == null {
+    $zen-font-style-base: get-fontstyle($zen-font-family-base-default, '[') !default; // 300,400,500
+    $zen-font-families-base: get-fontfamilies($zen-font-family-base-default, '[') !default; // 'Rubik', sans-serif
+    $zen-font-name-base: get-fontname($zen-font-family-base-default, ',',) !default; // Rubik
+    $zen-font-family-base: to-lower-case(str-replace($zen-font-name-base, " ", "-")) !default; // rubik
+
+    // build path
+    $zen-font-path-base: "../../../bundles/#{$zen-plugin-name}/storefront/assets/font/#{$zen-font-family-base}" !default;
+}
+
+// font headline
+// Example Input: 'Rubik', sans-serif[300,400,500]
+@if global-variable-exists(zen-font-family-headline-default) and $zen-font-family-headline-default != "custom" and index($zen-font-family-headline-default, "Inter") == null {
+    $zen-font-style-headline: get-fontstyle($zen-font-family-headline-default, '[') !default; // 300,400,500
+    $zen-font-families-base: get-fontfamilies($zen-font-family-headline-default, '[') !default; // 'Rubik', sans-serif
+    $zen-font-name-headline: get-fontname($zen-font-family-headline-default, ',',) !default; // Rubik
+    $zen-font-family-headline: to-lower-case(str-replace($zen-font-name-headline, " ", "-")) !default; // rubik
+
+    // build path
+    $zen-font-path-headline: "../../../bundles/#{$zen-plugin-name}/storefront/assets/font/#{$zen-font-family-headline}" !default;
+}
+
+$zen-top-bar-height: 42;
+$zen-breadcrumb-height: 56;
+
+// Offcanvas
+$zen-offcanvas-logo-width: 8.75rem !default; // 140px
+
+// Product Detail
+$zen-product-price-font-size: 25 !default;
+
+// Badges
+$zen-product-badge-font-size: 12 !default;
+$zen-product-badge-padding-horizontal: 10 !default;
+$zen-product-badge-margin-left: 10 !default;
+
+// Footer
+$zen-logo-footer-width: 8.75rem !default; // 140px
+
+// buttons
+$disabled-btn-color: $gray-400 !default;

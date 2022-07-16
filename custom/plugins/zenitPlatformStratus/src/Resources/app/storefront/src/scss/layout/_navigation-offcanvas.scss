@@ -1,0 +1,151 @@
+/*
+Navigation offcanvas
+==============================================
+Custom styling for navigation offcanvas which replaces main navigation on smaller screens.
+Based on custom offcanvas component.
+*/
+
+.navigation-offcanvas,
+.navigation-offcanvas-placeholder,
+.navigation-offcanvas-overlay {
+    @if $zen-container-bg == transparent {
+        background: $body-bg;
+        color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color)
+    } @else {
+        background: $zen-container-bg;
+        color: color-yiq($zen-container-bg, $sw-text-color, $zen-light-text-color)
+    }
+}
+
+// actions
+.navigation-offcanvas-actions {
+    margin-bottom: $spacer-md;
+
+    .top-bar-nav-item {
+        flex-grow: 1;
+    }
+
+    .top-bar-nav-text {
+        @include media-breakpoint-up(xs) {
+            display: inline;
+        }
+    }
+
+    .top-bar-nav-btn.btn {
+        &,
+        .icon {
+            @include text-color-contrast;
+        }
+    }
+}
+
+.navigation-offcanvas-headline {
+    @include text-color-contrast;
+}
+
+// list items
+.navigation-offcanvas-list-item {
+    border: 0 none;
+    background: none;
+
+    @if $zen-sidebar-navigation-mb != 0 {
+        margin-left: $spacer-md;
+        margin-right: $spacer-md;
+        margin-bottom: px($zen-sidebar-navigation-mb);
+    }
+
+    &:last-child {
+        border: 0 none;
+    }
+}
+
+.navigation-offcanvas-link {
+    @include transition($transition-base);
+    background: $zen-sidebar-navigation-bg;
+    color: $zen-sidebar-navigation-color;
+
+    @if $zen-sidebar-navigation-mb != 0 {
+        @include border-radius($zen-layout-element-radius * 1px);
+    }
+
+    @if $zen-sidebar-navigation-border == 1 {
+        border: 1px solid $zen-sidebar-navigation-border-color;
+    }
+
+    .navigation-offcanvas-link-icon .icon {
+        color: $zen-sidebar-navigation-color;
+    }
+
+    &:hover {
+        background: $zen-sidebar-navigation-hover-bg;
+        color: $zen-sidebar-navigation-hover-color;
+
+        @if $zen-sidebar-navigation-border == 1 {
+            border: 1px solid $zen-sidebar-navigation-border-hover-color;
+        }
+
+        .navigation-offcanvas-link-icon .icon {
+            color: $zen-sidebar-navigation-hover-color;
+        }
+    }
+
+    &.is-home-link {
+        background: $zen-sidebar-navigation-active-bg;
+        color: $zen-sidebar-navigation-active-color;
+
+        .navigation-offcanvas-link-icon .icon {
+            color: $zen-sidebar-navigation-active-color;
+        }
+    }
+
+    &.is-current-category {
+        background: $zen-sidebar-navigation-active-bg;
+        color: $zen-sidebar-navigation-active-color;
+
+        .navigation-offcanvas-link-icon .icon {
+            color: $zen-sidebar-navigation-active-color;
+        }
+    }
+
+    &.is-back-link {
+        border-top: none;
+        color: $zen-sidebar-navigation-color;
+
+        .navigation-offcanvas-link-icon .icon {
+            color: $zen-sidebar-navigation-color;
+        }
+    }
+
+    &.is-home-link,
+    &.is-current-category,
+    &.is-back-link {
+        margin-bottom: $spacer-lg;
+
+        @if $zen-sidebar-navigation-mb != 0 {
+            margin-left: $spacer-md;
+            margin-right: $spacer-md;
+        }
+
+        &:hover {
+            background: $zen-sidebar-navigation-hover-bg;
+            color: $zen-sidebar-navigation-hover-color;
+
+            @if $zen-sidebar-navigation-border == 1 {
+                border: 1px solid $zen-sidebar-navigation-border-hover-color;
+            }
+
+            .navigation-offcanvas-link-icon .icon {
+                color: $zen-sidebar-navigation-hover-color;
+            }
+        }
+    }
+}
+
+.navigation-offcanvas-controls {
+    display: flex;
+
+    .is-current-category {
+        flex-grow: 1;
+    }
+}
+

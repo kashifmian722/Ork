@@ -1,0 +1,22 @@
+<clr-main-container>
+  <clr-header class="header portal-header">
+    <div class="branding">
+      <a routerLink="/" >
+        <img class="logo" src="assets/images/downtown.svg">
+        <span class="title">Portal</span>
+      </a>
+    </div>
+    <div class="header-actions">
+      <button (click)="openLogin()" class="btn btn-primary login-button">{{'COMMON.LOGIN' | translate}}</button>
+    </div>
+  </clr-header>
+  <div class="content-container">
+    <div class="content-area" [style.padding]="0">
+      <router-outlet #content></router-outlet>
+    </div>
+  </div>
+</clr-main-container>
+
+<portal-merchant-login
+  [loginModalOpen]="showLogin">
+</portal-merchant-login>

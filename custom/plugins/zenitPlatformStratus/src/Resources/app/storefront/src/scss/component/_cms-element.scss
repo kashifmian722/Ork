@@ -1,0 +1,12 @@
+/*
+CMS elements
+==============================================
+General styling for cms elements
+*/
+.cms-element-product-slider {
+    .cms-element-title {
+        @include headline-color-contrast;
+        font-family: $sw-font-family-headline;
+        font-size: 1.5rem;
+    }
+}

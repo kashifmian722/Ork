@@ -1,0 +1,44 @@
+{
+    "name": "zenit/stratus-set-4",
+    "description": "Theme Stratus by Zenit Design",
+    "version": "v1.2.0",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "authors": [
+        {
+            "name": "Zenit Design",
+            "homepage": "https://zenit.design",
+            "role": "Manufacturer"
+        }
+    ],
+    "require": {
+        "shopware/core": "^6.3",
+        "shopware/storefront": "^6.3"
+    },
+    "extra": {
+        "shopware-plugin-class": "zenit\\PlatformStratusSet4\\zenitPlatformStratusSet4",
+        "plugin-icon": "src/Resources/config/plugin.png",
+        "copyright": "(c) by Zenit Design",
+        "label": {
+            "de-DE": "Theme Stratus - Set 4",
+            "en-GB": "Theme Stratus - Set 4"
+        },
+        "description": {
+            "de-DE": "Theme Stratus - Set 4",
+            "en-GB": "Theme Stratus - Set 4"
+        },
+        "manufacturerLink": {
+            "de-DE": "https://store.shopware.com/zenit-design.html",
+            "en-GB": "https://store.shopware.com/en/zenit-design.html"
+        },
+        "supportLink": {
+            "de-DE": "https://help.zenit.design",
+            "en-GB": "https://help.zenit.design"
+        }
+    },
+    "autoload": {
+        "psr-4": {
+            "zenit\\PlatformStratusSet4\\": "src/"
+        }
+    }
+}

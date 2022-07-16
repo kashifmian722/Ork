@@ -1,0 +1,29 @@
+<clr-modal (clrModalOpenChange)="modalClosed()" [clrModalOpen]="modalOpen">
+  <div class="modal-body">
+    <form [formGroup]="emailForm" clrForm clrLayout="vertical">
+      <section class="title">
+        <h3 class="welcome">{{'MERCHANT.ACCOUNT.CHANGE_EMAIL_ADDRESS' | translate}}</h3>
+      </section>
+      <div>
+        <clr-input-container>
+          <label>{{'MERCHANT.ACCOUNT.NEW_EMAIL_ADDRESS' | translate}}</label>
+          <input type="email" name="email" formControlName="email" clrInput/>
+          <clr-control-error>{{'MERCHANT.ACCOUNT.NEW_EMAIL_INVALID' | translate}}</clr-control-error>
+        </clr-input-container>
+        <clr-input-container [class.clr-error]="emailForm.errors?.emailMismatch && emailForm.get('repeatEmail').touched" >
+          <label>{{'MERCHANT.ACCOUNT.CONFIRM_EMAIL' | translate}}</label>
+          <input type="email" name="repeatEmail" formControlName="repeatEmail" clrInput/>
+          <clr-control-error>{{'MERCHANT.ACCOUNT.CONFIRM_EMAIL_INVALID' | translate}}</clr-control-error>
+        </clr-input-container>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <div class="button-wrapper">
+      <button type="button" class="btn btn-regular" (click)="modalClosed()">{{'COMMON.CANCEL' | translate}}</button>
+      <button [disabled]="emailForm.invalid" type="button" class="btn btn-primary" (click)="changeMail()">
+        {{'COMMON.SAVE' | translate}}
+      </button>
+    </div>
+  </div>
+</clr-modal>

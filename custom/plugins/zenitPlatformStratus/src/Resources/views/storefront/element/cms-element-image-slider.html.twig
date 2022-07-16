@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/element/cms-element-image-slider.html.twig' %}
+
+{% block element_image_slider %}
+    {# TODO: Check again as soon as Shopware solves the bug in the original code itself. #}
+    {% if not config %}
+        {% set config = element.fieldConfig.elements %}
+    {% endif %}
+
+    {{ parent() }}
+{% endblock %}

@@ -1,0 +1,19 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    <services>
+        <service id="Shopware\Production\Merchants\Command\CreateDefaultCategoriesCommand">
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="category.repository"/>
+            <tag name="console.command"/>
+        </service>
+
+        <service id="Shopware\Production\Merchants\Command\CreateDefaultMediaFolderCommand">
+            <argument type="service" id="media_default_folder.repository"/>
+            <argument type="service" id="media_folder.repository"/>
+            <tag name="console.command"/>
+        </service>
+    </services>
+</container>

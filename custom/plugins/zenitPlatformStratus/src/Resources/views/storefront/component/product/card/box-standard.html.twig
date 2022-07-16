@@ -1,0 +1,92 @@
+{% sw_extends '@Storefront/storefront/component/product/card/box-standard.html.twig' %}
+
+{# ... global variables, because of ajax call #}
+{% set zentheme = shopware.theme %}
+
+{% block component_product_box_image %}
+
+    {# fallback if display mode is not set #}
+    {% set displayMode = displayMode ?: 'standard' %}
+
+    {# set display mode 'cover' for box-image with default display mode #}
+    {% if layout == 'image' and displayMode == 'standard' %}
+        {% set displayMode = 'cover' %}
+    {% endif %}
+
+    <div class="product-image-wrapper is-{{ displayMode }}">
+
+        <a href="{{ seoUrl('frontend.detail.page', {'productId': id}) }}"
+           title="{{ name }}"
+           class="product-image-link is-{{ displayMode }}">
+            {% if cover.url %}
+                {% set attributes = {
+                    'class': 'product-image is-'~displayMode,
+                    'alt': (cover.translated.alt ?: name),
+                    'title': (cover.translated.title ?: name)
+                } %}
+
+                {% if displayMode == 'cover' or displayMode == 'contain' %}
+                    {% set attributes = attributes|merge({ 'data-object-fit': displayMode }) %}
+                {% endif %}
+
+                {% sw_thumbnails 'product-image-thumbnails' with {
+                    media: cover,
+                    sizes: {
+                        'xs': '701px',
+                        'sm': '515px',
+                        'md': '627px',
+                        'lg': '533px',
+                        'xl': '484px'
+                    }
+                } %}
+            {% else %}
+                <div class="product-image-placeholder">
+                    {% sw_icon 'placeholder' style {
+                        'size': 'fluid'
+                    } %}
+                </div>
+            {% endif %}
+
+            {% block component_product_box_image_switch %}
+                {% sw_include '@Storefront/storefront/component/product/card/cover-switch.html.twig' %}
+            {% endblock %}
+        </a>
+
+        {% block component_product_box_action_overlay_rating %}
+            {% if shopware.config.detail.showReviews and zentheme['zen-product-listing-card-rating-position'] is not same as ('default') %}
+                <div class="product-rating">
+                    {% if product.ratingAverage %}
+                        {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                            points: product.ratingAverage,
+                            style: 'text-primary'
+                        } %}
+                    {% endif %}
+                </div>
+            {% endif %}
+        {% endblock %}
+
+        {% block component_product_box_action_overlay %}
+            {% if zentheme['zen-product-listing-card-actions'] is same as ('overlay') %}
+                {% sw_include '@Storefront/storefront/component/product/card/action.html.twig' %}
+            {% endif %}
+        {% endblock %}
+    </div>
+{% endblock %}
+
+{% block component_product_box_rating %}
+    {% if zentheme['zen-product-listing-card-rating-position'] is same as ('default') %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block component_product_box_variant_characteristics %}
+    {% if zentheme['zen-product-listing-card-variant-characteristics'] %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+ {% block component_product_box_action %}
+     {% if zentheme['zen-product-listing-card-actions'] is not same as ('overlay') %}
+         {{ parent() }}
+     {% endif %}
+ {% endblock %}

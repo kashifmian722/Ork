@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Social Media Icons</title>
+        <title lang="de-DE">Social Media Icons</title>
+
+        <input-field type="single-select">
+            <name>socialIconStyle</name>
+            <label>Icon Style</label>
+            <label lang="de-DE">Icon Style</label>
+            <defaultValue>default</defaultValue>
+            <defaultValue lang="de-DE">default</defaultValue>
+            <options>
+                <option>
+                    <id>default</id>
+                    <name>Default</name>
+                    <name lang="de-DE">Standard</name>
+                </option>
+                <option>
+                    <id>round</id>
+                    <name>Rounded</name>
+                    <name lang="de-DE">Rund</name>
+                </option>
+                <option>
+                    <id>square</id>
+                    <name>Squared</name>
+                    <name lang="de-DE">Eckig</name>
+                </option>
+            </options>
+        </input-field>
+
+        <input-field>
+            <name>socialFacebookUrl</name>
+            <label>Facebook - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialTwitterUrl</name>
+            <label>Twitter - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialYoutubeUrl</name>
+            <label>Youtube - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialVimeoUrl</name>
+            <label>Vimeo - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialPinterestUrl</name>
+            <label>Pinterest - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialInstagramUrl</name>
+            <label>Instagram - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialFlickrUrl</name>
+            <label>Flickr - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialLinkedInUrl</name>
+            <label>LinkedIn - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialXingUrl</name>
+            <label>Xing - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialWhatsappUrl</name>
+            <label>Whatsapp - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialAmazonUrl</name>
+            <label>Amazon - Url</label>
+        </input-field>
+
+        <input-field>
+            <name>socialRSSUrl</name>
+            <label>RSS - Url</label>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Marketing text slider</title>
+        <title lang="de-DE">Marketing Text Slider</title>
+
+        <input-field type="bool">
+            <name>marketingActive</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <helpText>Activates the marketing text slider in top bar or offcanvas top bar</helpText>
+            <helpText lang="de-DE">Aktiviert den Marketing Text Slider in der Top-Bar bzw. der Offcanvas Top-Bar</helpText>
+        </input-field>
+
+        <input-field type="textarea">
+            <name>marketingText</name>
+            <label>Marketing text </label>
+            <label lang="de-DE">Marketing Text</label>
+            <helpText>Text for Notification. This text will be animated with every row in a vertical carousel.</helpText>
+            <helpText lang="de-DE">Text für die Nachricht. Dieser Text wird mit jeder Zeile in einem vertikalen Karussell animiert.</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>marketingButtonText</name>
+            <label>Button text</label>
+            <label lang="de-DE">Button Text</label>
+            <placeholder>Visit now</placeholder>
+            <placeholder lang="de-DE">Jetzt ansehen</placeholder>
+            <helpText>Gives the Marketing-Button a text, if empty the button will not displayed</helpText>
+            <helpText lang="de-DE">Gibt dem Marketing-Button einen Text, wenn leer wird der Button nicht angezeigt</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>marketingButtonLink</name>
+            <label>Button Link</label>
+            <label lang="de-DE">Button Link</label>
+            <placeholder>https://example.com</placeholder>
+            <placeholder lang="de-DE">https://example.de</placeholder>
+            <helpText>Gives the Marketing-Button a url, if empty the button will not displayed</helpText>
+            <helpText lang="de-DE">Gibt dem Marketing-Button einen Link, wenn leer wird der Button nicht angezeigt</helpText>
+        </input-field>
+
+        <input-field type="single-select">
+            <name>marketingButtonTarget</name>
+            <label>Button target</label>
+            <label lang="de-DE">Button Ziel</label>
+            <defaultValue>_self</defaultValue>
+            <defaultValue lang="de-DE">_self</defaultValue>
+            <helpText>Gives the Marketing-Button a target.</helpText>
+            <helpText lang="de-DE">Gibt dem Marketing-Button die Möglichkeit, den Link im selben oder einem neuen Fenster zu öffnen.</helpText>
+            <options>
+                <option>
+                    <id>_self</id>
+                    <name>self window</name>
+                    <name lang="de-DE">selbes Fenster</name>
+                </option>
+                <option>
+                    <id>_blank</id>
+                    <name>new window</name>
+                    <name lang="de-DE">neues Fenster</name>
+                </option>
+            </options>
+        </input-field>
+    </card>
+
+    <card>
+        <title>Custom Tab</title>
+        <title lang="de-DE">Custom Tab</title>
+
+        <input-field type="bool">
+            <name>customTabActive</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <helpText>Activates the custom tab on Product details page.</helpText>
+            <helpText lang="de-DE">Aktiviert den individuellen Tab auf der Produktdetailseite</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>customTabTitle</name>
+            <label>Titel</label>
+            <label lang="de-DE">Titel</label>
+            <placeholder>Custom tab</placeholder>
+            <placeholder lang="de-DE">Custom Tab</placeholder>
+            <helpText>Gives the custom tab a tab-title.</helpText>
+            <helpText lang="de-DE">Gibt dem individuellen Tab einen Tab-Titel.</helpText>
+        </input-field>
+
+        <component name="sw-text-editor">
+            <name>customTabText</name>
+            <label>Tab Text</label>
+            <label lang="de-DE">Tab Text</label>
+        </component>
+
+    </card>
+
+    <card>
+        <title>Custom Footer Column</title>
+        <title lang="de-DE">Custom Footer Spalte</title>
+
+        <input-field type="bool">
+            <name>customColumnActive</name>
+            <label>Active</label>
+            <label lang="de-DE">Aktiv</label>
+            <helpText>Activates the custom column on footer.</helpText>
+            <helpText lang="de-DE">Aktiviert die optionale Spalte im Footer.</helpText>
+        </input-field>
+
+        <input-field type="text">
+            <name>customColumnTitle</name>
+            <label>Titel</label>
+            <label lang="de-DE">Titel</label>
+            <placeholder>Custom Column</placeholder>
+            <placeholder lang="de-DE">Custom Spalte</placeholder>
+            <helpText>Gives the custom column a headline.</helpText>
+            <helpText lang="de-DE">Gibt der optionalen Spalte eine Überschrift.</helpText>
+        </input-field>
+
+        <component name="sw-text-editor">
+            <name>customColumnText</name>
+            <label>Column Text</label>
+            <label lang="de-DE">Column Text</label>
+        </component>
+
+    </card>
+
+    <card>
+        <title>Custom Code</title>
+        <title lang="de-DE">Eigener Code</title>
+
+        <component name="sw-switch-field">
+            <name>customCssActive</name>
+            <label>Enable Custom CSS Code</label>
+            <label lang="de-DE">Eigener CSS Code aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customCss</name>
+            <label>CSS Code</label>
+            <label lang="de-DE">CSS Code</label>
+            <helpText><![CDATA[Enter CSS Code without &lt;style&gt;-Tags. Your custom CSS Code e.g.:<br><br>body { background: #fff; }]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Gib hier CSS Code ohne &lt;style&gt;-Tags ein. Dein individueller CSS Code, z.B.:<br><br>body { background: #fff; }]]></helpText>
+        </component>
+
+        <component name="sw-switch-field">
+            <name>customJsFilesActive</name>
+            <label>Enable Custom Javascript Files</label>
+            <label lang="de-DE">Eigene Javascript Dateien aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customJsFiles</name>
+            <label>Javascript Files</label>
+            <label lang="de-DE">Javascript Dateien</label>
+            <helpText><![CDATA[Will be loaded in footer to not block any DOM content to be loaded.Your custom Javascript Files:<br><br> &lt;script src=&quot;myscript.js&quot;&gt;&lt;/script&gt;]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Wird im Footer geladen, um zu ladenden DOM-Inhalt nicht zu blockieren. Deine individuellen Javascript Dateien:<br><br> &lt;script src=&quot;myscript.js&quot;&gt;&lt;/script&gt;]]></helpText>
+        </component>
+
+        <component name="sw-switch-field">
+            <name>customJsActive</name>
+            <label>Enable Custom Javascript Code</label>
+            <label lang="de-DE">Eigener Javascript Code aktiv</label>
+        </component>
+
+        <component name="sw-code-editor">
+            <name>customJs</name>
+            <label>Javascript Code</label>
+            <label lang="de-DE">Javascript Code</label>
+            <helpText><![CDATA[Enter Javascript Code with script-Tags. Will be loaded in footer to not block any DOM content to be loaded. our custom Javascript Code:<br><br>  &lt;script&gt;alert(&quot;Hello World&quot;);&lt;/script&gt;]]></helpText>
+            <helpText lang="de-DE"><![CDATA[Gib hier Javascript Code mit script-Tags ein. Wird im Footer geladen, um zu ladenden DOM-Inhalt nicht zu blockieren.Dein individueller Javascript Code:<br><br>  &lt;script&gt;alert(&quot;Hello World&quot;);&lt;/script&gt;]]></helpText>
+        </component>
+    </card>
+</config>

@@ -1,0 +1,37 @@
+.page-item {
+    @if $zen-layout-pagination-style == "pills" {
+        margin: 0 $spacer-xs;
+    }
+
+    .page-link {
+        @if $zen-layout-pagination-border == 0 {
+            border: none;
+        }
+
+        @if $zen-layout-pagination-style == "pills" {
+            min-width: 37px;
+            text-align: center;
+        }
+    }
+
+
+    @if $zen-layout-pagination-style == "default" {
+        &:first-child {
+            .page-link {
+                @include border-left-radius($zen-layout-button-radius * 1px);
+            }
+        }
+
+        &:last-child {
+            .page-link {
+                @include border-right-radius($zen-layout-button-radius * 1px);
+            }
+        }
+    } @else {
+        .page-link,
+        &:first-child .page-link,
+        &:last-child .page-link {
+            @include border-radius($zen-layout-button-radius * 1px);
+        }
+    }
+}

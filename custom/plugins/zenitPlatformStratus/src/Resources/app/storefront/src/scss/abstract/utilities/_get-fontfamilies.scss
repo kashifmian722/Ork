@@ -1,0 +1,17 @@
+// Extracts the font names from the font declaration of
+// the theme configuration. Strips the font styles
+
+// Example Input: 'Rubik', sans-serif[300,400,500]
+// Example Output: 'Rubik', sans-serif
+
+@function get-fontfamilies($value, $search) {
+	$slice-index: str-index($value, $search);
+
+	@if $slice-index {
+		$substring: str-slice($value, 1, $slice-index - 1);
+
+		@return $substring;
+	}
+
+	@return $value;
+}

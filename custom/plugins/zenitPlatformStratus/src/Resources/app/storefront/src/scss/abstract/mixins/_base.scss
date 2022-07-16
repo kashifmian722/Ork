@@ -1,0 +1,175 @@
+@mixin text-color-contrast {
+    @if $zen-container-bg == transparent {
+        color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color)
+    } @else {
+        color: color-yiq($zen-container-bg, $sw-text-color, $zen-light-text-color)
+    }
+}
+
+@mixin headline-color-contrast {
+    @if $zen-container-bg == transparent {
+        color: color-yiq($body-bg, $sw-headline-color, $zen-light-headline-color)
+    } @else {
+        color: color-yiq($zen-container-bg, $sw-headline-color, $zen-light-headline-color)
+    }
+}
+
+@mixin layout-vertical-padding {
+    padding-top: ($zen-layout-padding-top-mobile * .25px);
+    padding-bottom: ($zen-layout-padding-bottom-mobile * .25px);
+
+    @include media-breakpoint-up(sm) {
+        padding-top: ($zen-layout-padding-top-mobile * .5px);
+        padding-bottom: ($zen-layout-padding-bottom-mobile * .5px);
+    }
+
+    @include media-breakpoint-up(md) {
+        padding-top: ($zen-layout-padding-top-mobile * 1px);
+        padding-bottom: ($zen-layout-padding-bottom-mobile * 1px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding-top: ($zen-layout-padding-top * .5px);
+        padding-bottom: ($zen-layout-padding-bottom * .5px);
+    }
+
+    @include media-breakpoint-up(xl) {
+        padding-top: ($zen-layout-padding-top * 1px);
+        padding-bottom: ($zen-layout-padding-bottom * 1px);
+    }
+}
+
+@mixin layout-horizontal-padding {
+    padding-left: ($zen-layout-padding-left-mobile * .25px);
+    padding-right: ($zen-layout-padding-right-mobile * .25px);
+
+    @include media-breakpoint-up(sm) {
+        padding-left: ($zen-layout-padding-left-mobile * .5px);
+        padding-right: ($zen-layout-padding-right-mobile * .5px);
+    }
+
+    @include media-breakpoint-up(md) {
+        padding-left: ($zen-layout-padding-left-mobile * 1px);
+        padding-right: ($zen-layout-padding-right-mobile * 1px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        padding-left: ($zen-layout-padding-left * .5px);
+        padding-right: ($zen-layout-padding-right * .5px);
+    }
+
+    @include media-breakpoint-up(xl) {
+        padding-left: ($zen-layout-padding-left * 1px);
+        padding-right: ($zen-layout-padding-right * 1px);
+    }
+}
+
+@mixin layout-negative-vertical-padding {
+    margin-top: ($zen-layout-padding-top-mobile * -.25px);
+    margin-bottom: ($zen-layout-padding-bottom-mobile * -.25px);
+
+    @include media-breakpoint-up(sm) {
+        margin-top: ($zen-layout-padding-top-mobile * -.5px);
+        margin-bottom: ($zen-layout-padding-bottom-mobile * -.5px);
+    }
+
+    @include media-breakpoint-up(md) {
+        margin-top: ($zen-layout-padding-top-mobile * -1px);
+        margin-bottom: ($zen-layout-padding-bottom-mobile * -1px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        margin-top: ($zen-layout-padding-top * -.5px);
+        margin-bottom: ($zen-layout-padding-bottom * -.5px);
+    }
+
+    @include media-breakpoint-up(xl) {
+        margin-top: ($zen-layout-padding-top * -1px);
+        margin-bottom: ($zen-layout-padding-bottom * -1px);
+    }
+}
+
+@mixin layout-negative-horizontal-padding {
+    margin-left: ($zen-layout-padding-left-mobile * -.25px);
+    margin-right: ($zen-layout-padding-right-mobile * -.25px);
+
+    @include media-breakpoint-up(sm) {
+        margin-left: ($zen-layout-padding-left-mobile * -.5px);
+        margin-right: ($zen-layout-padding-right-mobile * -.5px);
+    }
+
+    @include media-breakpoint-up(md) {
+        margin-left: ($zen-layout-padding-left-mobile * -1px);
+        margin-right: ($zen-layout-padding-right-mobile * -1px);
+    }
+
+    @include media-breakpoint-up(lg) {
+        margin-left: ($zen-layout-padding-left * -.5px);
+        margin-right: ($zen-layout-padding-right * -.5px);
+    }
+
+    @include media-breakpoint-up(xl) {
+        margin-left: ($zen-layout-padding-left * -1px);
+        margin-right: ($zen-layout-padding-right * -1px);
+    }
+}
+
+@mixin layout-container-horizontal-padding($gutter: $grid-gutter-width) {
+    padding-right: $gutter / 2;
+    padding-left: $gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        padding-right: $gutter;
+        padding-left: $gutter;
+    }
+}
+
+@mixin layout-container-vertical-padding($gutter: $grid-gutter-width) {
+    padding-top: $gutter / 2;
+    padding-bottom: $gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        padding-top: $gutter;
+        padding-bottom: $gutter;
+    }
+}
+
+@mixin layout-container-negative-horizontal-margin($gutter: $grid-gutter-width) {
+    margin-left: -$gutter / 2;
+    margin-right: -$gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        margin-left: -$gutter;
+        margin-right: -$gutter;
+    }
+}
+
+@mixin layout-container-negative-vertical-margin($gutter: $grid-gutter-width) {
+    margin-top: -$gutter / 2;
+    margin-bottom: -$gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        margin-top: -$gutter;
+        margin-bottom: -$gutter;
+    }
+}
+
+@mixin layout-container-horizontal-margin($gutter: $grid-gutter-width) {
+    margin-right: $gutter / 2;
+    margin-left: $gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        margin-right: $gutter;
+        margin-left: $gutter;
+    }
+}
+
+@mixin layout-container-vertical-margin($gutter: $grid-gutter-width) {
+    margin-top: $gutter / 2;
+    margin-bottom: $gutter / 2;
+
+    @include media-breakpoint-up(md) {
+        margin-top: $gutter;
+        margin-bottom: $gutter;
+    }
+}

@@ -1,0 +1,7 @@
+.button-wrapper {
+  display: grid;
+  grid-auto-flow: column;
+  justify-content: flex-start;
+  margin-top: 32px;
+  gap: 12px;
+}

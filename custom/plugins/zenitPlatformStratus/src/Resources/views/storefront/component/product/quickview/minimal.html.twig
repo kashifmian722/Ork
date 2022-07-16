@@ -1,0 +1,216 @@
+{% sw_extends '@Storefront/storefront/component/product/quickview/minimal.html.twig' %}
+
+{% block component_product_quickview_minimal %}
+    {% set name = page.product.translated.name %}
+    {% set manufacturer = page.product.manufacturer %}
+
+    <div class="quickview-minimal-container container">
+        {% block component_product_quickview_minimal_top %}
+            <div class="row quickview-minimal-top">
+                {% block component_product_quickview_minimal_img %}
+                    <div class="col-12 col-lg-7 quickview-minimal-image">
+                        {% if page.product.media %}
+                            {% set mediaItems = page.product.media.media %}
+                            {% sw_include '@Storefront/storefront/element/cms-element-image-gallery.html.twig' with {
+                                'mediaItems': mediaItems,
+                                'zoom': true,
+                                'zoomModal': false,
+                                'displayMode': 'contain',
+                                'gutter': 5,
+                                'minHeight': '430px',
+                                'navigationArrows': 'inside',
+                                'navigationDots': 'inside',
+                                'galleryPosition': 'left',
+                                'isProduct': true,
+                                'fallbackImageTitle': page.product.translated.name,
+                                'startIndexThumbnails': page.product.cover.position + 1,
+                                'startIndexSlider': page.product.cover.position + 1
+                            } %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+
+                {% block component_product_quickview_minimal_product %}
+                    <div class="col-12 col-lg-5 quickview-minimal-product js-magnifier-zoom-image-container">
+                        <div class="row align-items-center product-detail-headline">
+                            <div class="col-12 product-detail-review-container">
+                                <span class="product-detail-reviews">
+                                    {% if page.product.ratingAverage %}
+                                        {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                            points: page.product.ratingAverage,
+                                            style: 'text-primary'
+                                        } %}
+                                    {% else %}
+                                        {% sw_include '@Storefront/storefront/component/review/rating.html.twig' with {
+                                            points: 0,
+                                            style: 'text-primary'
+                                        } %}
+                                    {% endif %}
+                                </span>
+                            </div>
+
+                            {% block component_product_quickview_minimal_product_name %}
+                                <div class="col product-detail-name-container">
+                                    {{ parent() }}
+                                </div>
+                            {% endblock %}
+
+                            {% block component_product_quickview_minimal_product_manufacturer %}
+                                {% if manufacturer %}
+                                    <div class="col-md-auto product-detail-manufacturer">
+                                        {{ parent() }}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+
+
+
+                        {% block component_product_quickview_minimal_product_number %}{% endblock %}
+
+                        {% block component_product_quickview_minimal_product_description %}
+                            {% if page.product.translated.description %}
+                                <p class="quickview-minimal-product-short-description">
+                                    {{ (page.product.translated.description[:180]~ '...'|sw_sanitize)|raw }}
+                                </p>
+                            {% endif %}
+                        {% endblock %}
+
+                        <div class="quickview-minimal-product-price">
+                            {% block component_product_quickview_minimal_product_price_unit %}
+                                {% sw_include '@Storefront/storefront/component/product/card/price-unit.html.twig' with{
+                                    product: page.product
+                                } %}
+                            {% endblock %}
+
+                            {% block component_product_quickview_minimal_product_tax %}
+                                <div class="product-detail-tax-container">
+                                    {% if context.taxState == "gross" %}
+                                        {% set taxText = "general.grossTaxInformation"|trans|sw_sanitize %}
+                                    {% else %}
+                                        {% set taxText = "general.netTaxInformation"|trans|sw_sanitize %}
+                                    {% endif %}
+
+                                    <p class="product-detail-tax">
+                                        {% block page_product_detail_tax_link %}
+                                            <a class="product-detail-tax-link"
+                                               href="{{ path('frontend.cms.page',{ id: shopware.config.core.basicInformation.shippingPaymentInfoPage }) }}"
+                                               title="{{ taxText }}"
+                                               data-toggle="modal"
+                                               data-url="{{ path('frontend.cms.page',{ id: shopware.config.core.basicInformation.shippingPaymentInfoPage }) }}">
+                                                {{ taxText }}
+                                            </a>
+                                        {% endblock %}
+                                    </p>
+                                </div>
+                            {% endblock %}
+
+                            {% block component_product_quickview_minimal_product_delivery_informations %}
+                                <div class="product-detail-delivery-information">
+                                    {% sw_include '@Storefront/storefront/component/delivery-information.html.twig' %}
+                                </div>
+                            {% endblock %}
+                        </div>
+
+                        {% set id = page.product.id %}
+                        <div class="product-action">
+                            {% set isVariant = page.product.parentId is not null %}
+                            {% set isParent = page.product.childCount > 0 %}
+                            {% set isAvailable = not page.product.isCloseout or (page.product.availableStock >= page.product.minPurchase) %}
+
+                            {% if isAvailable and not isParent and not isVariant %}
+
+                                {# @var product \Shopware\Core\Content\Product\SalesChannel\SalesChannelProductEntity #}
+                                <form action="{{ path('frontend.checkout.line-item.add') }}"
+                                      method="post"
+                                      class="buy-widget"
+                                      data-add-to-cart="true">
+
+                                    {% block component_product_quickview_minimal_buy_csrf %}
+                                        {{ sw_csrf('frontend.checkout.line-item.add') }}
+                                    {% endblock %}
+
+                                    {% block component_product_quickview_minimal_form %}
+                                        <input type="hidden"
+                                                name="redirectTo"
+                                                value="frontend.checkout.cart.page"/>
+
+                                        <input type="hidden"
+                                               name="redirectParameters"
+                                               data-redirect-parameters="true"
+                                               value='{"productId": "{{ page.product.id }}"}'>
+                                    {% endblock %}
+
+                                    {% block component_product_quickview_minimal_buy_info %}
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][id]"
+                                               value="{{ id }}">
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][referencedId]"
+                                               value="{{ id }}">
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][type]"
+                                               value="product">
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][stackable]"
+                                               value="1">
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][removable]"
+                                               value="1">
+                                        <input type="hidden"
+                                               name="lineItems[{{ id }}][quantity]"
+                                               value="{{ page.product.minPurchase }}">
+                                    {% endblock %}
+
+                                    {% block component_product_quickview_minimal_buy_widget_container %}
+
+                                        {% if page.product.maxPurchase %}
+                                            {% if page.product.availableStock < page.product.maxPurchase %}
+                                                {% set maxQuantity = page.product.availableStock %}
+                                            {% else %}
+                                                {% set maxQuantity = page.product.maxPurchase %}
+                                            {% endif %}
+                                        {% else %}
+                                            {% set maxQuantity = shopware.config.core.cart.maxQuantity %}
+                                        {% endif %}
+
+                                        <div class="form-row buy-widget-container mb-4">
+                                            <div class="col-4">
+                                                <select name="lineItems[{{ page.product.id }}][quantity]"
+                                                        class="custom-select product-detail-quantity-select">
+                                                    {% for quantity in range(page.product.minPurchase, maxQuantity, page.product.purchaseSteps) %}
+                                                        <option value="{{ quantity }}">
+                                                            {{ quantity }}{% if page.product.packUnit %} {{ page.product.packUnit }}{% endif %}
+                                                        </option>
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                                            <div class="col-8">
+                                                <button class="btn btn-block btn-buy"
+                                                        title="{{ "listing.boxAddProduct"|trans|striptags }}">
+                                                        {{ 'zentheme.listing.boxAddProductWithIcon'|trans }} {% sw_icon 'bag' %}
+                                                </button>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </form>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block component_product_quickview_minimal_footer %}
+            <div class="quickview-minimal-footer">
+                {% block component_product_quickview_minimal_action_detail %}
+                    <a href="{{ seoUrl('frontend.detail.page', {'productId': page.product.id}) }}"
+                       class="btn btn-block btn-light btn-details"
+                       title="{{ "listing.boxProductDetails"|trans|striptags }}">
+                        {{ "listing.boxProductDetails"|trans|sw_sanitize }}
+                    </a>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,49 @@
+/*
+Offcanvas
+==============================================
+Move page content like the navigation menu in a sliding offcanvas menu.
+The sliding direction can be left or right.
+*/
+
+.offcanvas {
+    @if $zen-container-bg == transparent {
+        background: $body-bg;
+        color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color)
+    } @else {
+        background: $zen-container-bg;
+        color: color-yiq($zen-container-bg, $sw-text-color, $zen-light-text-color)
+    }
+
+    &.is-bottom {
+        left: 0; // ... fixes incorrect positioning
+    }
+
+    .offcanvas-close {
+        @if $zen-container-bg == transparent {
+            background: darken($body-bg, 5%);
+            border-color: darken($body-bg, 5%);
+        } @else {
+            background: darken($zen-container-bg, 5%);
+            border-color: darken($zen-container-bg, 5%);
+        }
+
+        &,
+        .icon {
+            @if $zen-container-bg == transparent {
+                color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color)
+            } @else {
+                color: color-yiq($zen-container-bg, $sw-text-color, $zen-light-text-color)
+            }
+        }
+
+        &:hover {
+            @if $zen-container-bg == transparent {
+                background: darken($body-bg, 10%);
+                border-color: darken($body-bg, 10%);
+            } @else {
+                background: darken($zen-container-bg, 10%);
+                border-color: darken($zen-container-bg, 10%);
+            }
+        }
+    }
+}

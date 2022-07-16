@@ -1,0 +1,153 @@
+/*
+Base
+==================================================
+Contains global base styles for all pages and
+and the specific styles of the different layout modes
+*/
+
+body {
+    border-top: $zen-layout-border-top-width * 1px solid $zen-layout-border-top-color;
+    @include layout-horizontal-padding;
+    @include layout-vertical-padding;
+}
+
+.is-lo-full-width-boxed {
+    .page-wrapper {
+        overflow-x: hidden; // ... because of expandable search ::before & ::after
+    }
+}
+
+.is-lo-boxed {
+    overflow-x: hidden; // ... because of full-width
+
+    .page-wrapper {
+        position: relative;
+        max-width: px($zen-layout-container-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .breadcrumb {
+        max-width: px($zen-layout-container-width);
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    // ... additional paddings for boxed layouts header
+    .top-bar,
+    .nav-header,
+    .main-navigation,
+    .content-main {
+        > .container {
+            @include layout-container-horizontal-padding();
+        }
+    }
+
+    // ... additional paddings for boxed layouts footer
+    .footer-columns {
+        @include layout-container-horizontal-padding();
+        @include layout-container-vertical-padding();
+    }
+
+    // ... transparent background container
+    @if $zen-container-bg == transparent {
+        .content-main {
+            > .container {
+                padding-left: 0;
+                padding-right: 0;
+            }
+        }
+    }
+
+    // ... full width cms section on boxed layout
+    .cms-section,
+    .cms-section-default {
+        overflow: visible;
+
+        &.full-width {
+            width: 100vw;
+            position: relative;
+            left: calc(-1 * (100vw - 100%) / 2);
+        }
+    }
+}
+
+.is-lo-full-width {
+    .container {
+        max-width: none;
+    }
+
+    .cms-page .cms-section .boxed {
+        max-width: px($zen-layout-container-width);
+    }
+}
+
+.is-lo-full-width-header {
+    .header-main,
+    .nav-main {
+        .container {
+            max-width: none;
+        }
+    }
+}
+
+.page-wrapper {
+    // ... otherwise the accent line would be covered by the absolutely positioned header
+    position: relative;
+}
+
+.content-main {
+    background: $zen-container-bg;
+}
+
+.container-main {
+    @include layout-container-vertical-padding();
+
+    .cms-page:not(.search-page) {
+        // ... vertical paddings will be configured in the shopping experience Block Layout
+        @include layout-container-negative-vertical-margin();
+    }
+
+    // ... prevent negative margin on relative positioned pages with breadcrumbs out of cms-pages
+    // ... necessary, because breadcrumbs could be added via cms-pages
+    .breadcrumb ~ .cms-page {
+        .header-pos-relative ~ .content-main & {
+            margin-top: 0 !important;
+        }
+    }
+}
+
+// ... horizontal margins will be set here, if configuration in the shopping experience Block Layout is empty
+.cms-block-container {
+    @include layout-container-horizontal-margin();
+}
+
+// ... reset horizontal paddings, they will be configured in the shopping experience Block Layout margins
+.cms-section .boxed,
+.cms-section-sidebar-sidebar-content,
+.cms-section-sidebar-main-content {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+// flashbags
+.flashbags {
+    overflow: hidden;  // prevent collapsing margins
+    margin: auto;
+
+    .alert {
+        margin-top: $grid-gutter-width / 2;
+        margin-bottom: $grid-gutter-width / 2;
+    }
+}
+
+.header-pos-absolute ~ .content-main {
+    .flashbags {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1020;
+    }
+}
+

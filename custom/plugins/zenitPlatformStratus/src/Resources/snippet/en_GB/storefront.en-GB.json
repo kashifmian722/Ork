@@ -1,0 +1,33 @@
+{
+    "zentheme": {
+        "general": {
+            "copyright": "© 2020 %shopname% - with %love% by <a href=\"%href%\" title=\"%title%\" rel=\"dofollow noopener\" target=\"_blank\">%name%</a>",
+            "moreLink": "More"
+        },
+        "footer": {
+            "socialMediaHeadline": "Follow us",
+            "newsletterHeadline": "Newsletter",
+            "newsletterContent": "Subscribe to the free newsletter and do not miss any news or promotions."
+        },
+        "detail": {
+            "stockLabel": "Stock:",
+            "isCloseoutLabel": "Clearance sale:",
+            "eanLabel": "EAN:",
+            "manufacturerNameLabel": "Manufacturer:",
+            "manufacturerNumberLabel": "Manufacturer number:",
+            "lengthLabel": "Length:",
+            "widthLabel": "Width:",
+            "heightLabel": "Height:",
+            "weightLabel": "Weight:",
+            "tabsDatasheets": "Datasheets",
+            "tabsManufacturer": "Manufacturer",
+            "tabsProperties": "Properties",
+            "tabsVideo": "Video",
+            "manufacturerWebsite": "Manufacturer website"
+        },
+        "listing": {
+            "quickview": "Quickview",
+            "boxAddProductWithIcon": "Add to"
+        }
+    }
+}

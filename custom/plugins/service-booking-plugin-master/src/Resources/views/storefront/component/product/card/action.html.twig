@@ -1,0 +1,14 @@
+{% sw_extends '@Storefront/storefront/component/product/card/action.html.twig' %}
+
+{% block component_product_box_action_buy %}
+    {% set bookingTemplate = product.extensions.serviceBookingTemplate %}
+
+    {% if bookingTemplate %}
+
+        {% block component_product_box_action_detail %}
+            {{ parent() }}
+        {% endblock %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,25 @@
+.scroll-navigation-sidebar {
+    a, a:hover {
+        color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color);
+    }
+
+    &-mobile {
+        &-button {
+            &-icon {
+                & > span {
+                    color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color);
+                }
+            }
+        }
+    }
+
+    &-entry {
+        &-line {
+            border-color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color);
+        }
+
+        &-bullet {
+            background-color: color-yiq($body-bg, $sw-text-color, $zen-light-text-color);
+        }
+    }
+}

@@ -1,0 +1,26 @@
+{% block component_product_box_action_quickview_toggle_inner %}
+    {% if allowBuyInListing %}
+        <span class="quickview-toggle"
+              data-toggle="modal"
+              data-modal-class="quickview-modal"
+              data-url="{{ path('widgets.quickview.minimal', { 'productId': product.id }) }}">
+            <a href="#"
+               class="btn btn-dark btn-block btn-quickview"
+               data-toggle="tooltip"
+               data-placement="top"
+               title="{{ 'zentheme.listing.quickview'|trans }}"
+               aria-label="{{ 'zentheme.listing.quickview'|trans }} {{ product.translated.name }}">
+                {% sw_icon 'quickview' style {'pack': 'theme', 'namespace': 'theme'} %}
+            </a>
+        </span>
+    {% else %}
+        <a href="#"
+           class="btn btn-dark btn-block btn-quickview"
+           data-toggle="modal"
+           data-modal-class="quickview-modal"
+           data-url="{{ path('widgets.quickview.minimal', { 'productId': product.id }) }}"
+           title="{{ 'zentheme.listing.quickview'|trans }}">
+            {{ 'zentheme.listing.quickview'|trans }}
+        </a>
+    {% endif %}
+{% endblock %}

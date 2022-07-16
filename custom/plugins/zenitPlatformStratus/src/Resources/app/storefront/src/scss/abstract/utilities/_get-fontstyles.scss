@@ -1,0 +1,25 @@
+// Extracts the font styles from the font declaration of
+// the theme configuration. Strips the fonts.
+
+// Example Input: 'Rubik', sans-serif[300,400,500]
+// Example Output: 300,400,500
+@function get-fontstyle($value, $search) {
+	$slice-index: str-index($value, $search);
+	$slice-end: str-length($value);
+
+	@if $slice-index {
+		$substring: str-slice($value, $slice-index, $slice-end);
+		$substring: str-replace($substring, "[", "");
+		$substring: str-replace($substring, "]", "");
+
+        $list: ();
+        $split-values: str-split($substring, ", ");
+        @each $value in $split-values {
+            $list: append($list, str-split($value, " "));
+        }
+
+		@return $list;
+	}
+
+	@return $value;
+}

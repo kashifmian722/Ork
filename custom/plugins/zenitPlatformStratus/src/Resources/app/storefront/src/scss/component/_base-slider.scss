@@ -1,0 +1,106 @@
+/*
+Base slider
+==============================================
+Styling for base slider component.
+Contains minimal styling for a slider with arrow and/or dot navigation.
+based on: https://github.com/ganlanyuan/tiny-slider
+*/
+
+
+.base-slider {
+    .has-nav-outside {
+        padding-left: 25px;
+        padding-right: 25px;
+    }
+}
+
+// arrow navigation inside
+.base-slider-controls-prev,
+.base-slider-controls-next {
+    border: none;
+    background: $zen-base-slider-controls-inside-bg;
+    opacity: 1;
+
+    .icon {
+        color: $zen-base-slider-controls-inside-color;
+    }
+
+    &:hover {
+        background: $zen-base-slider-controls-inside-hover-bg;
+
+        .icon {
+            color: $zen-base-slider-controls-inside-hover-color;
+        }
+    }
+}
+
+// dots nav inside
+.base-slider {
+    .base-slider-dots {
+        .base-slider-dot {
+            border-color: $zen-base-slider-controls-dots-inside-color;
+            background: transparent;
+
+            &:hover,
+            &.tns-nav-active {
+                background: $zen-base-slider-controls-dots-inside-hover-color;
+                border-color: $zen-base-slider-controls-dots-inside-hover-color;
+            }
+        }
+    }
+}
+
+.base-slider-controls-prev,
+.base-slider-controls-next {
+    opacity: 1;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    @include border-radius($zen-layout-button-radius * 1px);
+    border: none;
+
+    .icon {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+
+        > svg {
+            top: 0;
+        }
+    }
+}
+
+.base-slider {
+    position: relative;
+
+    // styling works both for auto generated markup by the tiny-slider and normal template markup
+    .tns-nav,
+    .base-slider-dots {
+
+        .base-slider-dot,
+        button {
+            padding: 5.5px;
+            border-width: 2px;
+            border-style: solid;
+        }
+    }
+}
+
+@if $zen-image-slider-controls-dots-style == 'bars' {
+    .base-slider {
+        position: relative;
+
+        // styling works both for auto generated markup by the tiny-slider and normal template markup
+        .tns-nav,
+        .base-slider-dots {
+            .base-slider-dot,
+            button {
+                @include transition($transition-base);
+                @include border-radius($zen-layout-element-radius * 1px);
+                padding: 0;
+                width: 32px;
+            }
+        }
+    }
+}

@@ -1,0 +1,92 @@
+/*
+Basic styles
+==================================================
+Contains the imports to all basic styles.
+
+The file organization follows the 7-1 pattern architecture
+https://sass-guidelin.es/#the-7-1-pattern
+*/
+
+/*
+ * Variables, Mixins, Functions
+ * ----------------------------
+ * loaded in variables.scss because some mixins modify custom variables
+ * and need to be loaded first
+ *
+ */
+
+/*
+ * Vendors
+ * ------- */
+@import 'vendor/font';
+
+/*
+ * Base stuff
+ * ---------- */
+@import 'base/base';
+@import 'base/grid';
+@import 'base/typography';
+@import 'base/sticky';
+
+/*
+ * Components
+ * ---------- */
+@import 'component/button';
+@import 'component/breadcrumb';
+@import 'component/backdrop';
+@import 'component/input_group';
+@import 'component/forms';
+@import 'component/modal';
+@import 'component/custom_select';
+@import 'component/card';
+@import 'component/gallery-slider';
+@import 'component/offcanvas';
+@import 'component/pagination';
+@import 'component/preloader';
+@import 'component/text-slider';
+@import 'component/product-box';
+@import 'component/product-slider';
+@import 'component/social';
+@import 'component/category-navigation';
+@import 'component/filter-panel';
+@import 'component/cms-sections';
+@import 'component/cms-element';
+@import 'component/tab-menu';
+@import 'component/tables';
+@import 'component/base-slider';
+@import 'component/image-slider';
+@import 'component/quickview-modal';
+@import 'component/scroll-navigation';
+
+/*
+ * Layout-related sections
+ * ----------------------- */
+@import 'layout/header';
+@import 'layout/header-minimal';
+@import 'layout/footer';
+@import 'layout/top-bar';
+@import 'layout/main-navigation';
+@import 'layout/navigation-offcanvas';
+@import 'layout/navigation-flyout';
+@import 'layout/container';
+@import 'layout/offcanvas-cart';
+@import 'layout/offcanvas-top-bar';
+@import 'layout/background';
+@import 'layout/cookie-permission';
+
+/*
+ * Page-specific styles
+ * -------------------- */
+@import 'page/checkout/aside';
+@import 'page/checkout/cart';
+@import 'page/checkout/cart-item';
+@import 'page/product-detail/product-detail';
+@import 'page/product-detail/tabs';
+@import 'page/product-detail/configurator';
+
+/*
+ * Bugfixes
+ * ---------- */
+.cms-element-alignment {
+    width: 100%; // Otherwise, text cannot be centered horizontally
+}

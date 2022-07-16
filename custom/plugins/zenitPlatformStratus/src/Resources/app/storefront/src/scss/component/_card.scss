@@ -1,0 +1,15 @@
+/*
+Card
+==============================================
+Custom skin styling for bootstrap card component.
+
+https://getbootstrap.com/docs/4.3/components/card/
+*/
+
+.card {
+    @include border-radius($zen-layout-element-radius * 1px);
+}
+
+.card-title {
+    @include headline-color-contrast;
+}

@@ -1,0 +1,121 @@
+<div class="social-icons">
+    {% if zenconfig.socialFacebookUrl|length %}
+        <a href="{{ zenconfig.socialFacebookUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Facebook"
+           target="_blank" rel="noopener"
+           aria-label="Facebook">
+            {% sw_icon 'facebook' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialTwitterUrl|length %}
+        <a href="{{ zenconfig.socialTwitterUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Twitter"
+           target="_blank" rel="noopener"
+           aria-label="Twitter">
+            {% sw_icon 'twitter' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialYoutubeUrl|length %}
+        <a href="{{ zenconfig.socialYoutubeUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Youtube"
+           target="_blank" rel="noopener"
+           aria-label="Youtube">
+            {% sw_icon 'youtube' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialVimeoUrl|length %}
+        <a href="{{ zenconfig.socialVimeoUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Vimeo"
+           target="_blank" rel="noopener"
+           aria-label="Vimeo">
+            {% sw_icon 'vimeo' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialPinterestUrl|length %}
+        <a href="{{ zenconfig.socialPinterestUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Pinterest"
+           target="_blank" rel="noopener"
+           aria-label="Pinterest">
+            {% sw_icon 'pinterest' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialInstagramUrl|length %}
+        <a href="{{ zenconfig.socialInstagramUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Instagram"
+           target="_blank" rel="noopener"
+           aria-label="Instagram">
+            {% sw_icon 'instagram' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialFlickrUrl|length %}
+        <a href="{{ zenconfig.socialFlickrUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Flickr"
+           target="_blank" rel="noopener"
+           aria-label="Flickr">
+            {% sw_icon 'flickr' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialLinkedInUrl|length %}
+        <a href="{{ zenconfig.socialLinkedInUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on LinkedIn"
+           target="_blank" rel="noopener"
+           aria-label="LinkedIn">
+            {% sw_icon 'linkedin' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialXingUrl|length %}
+        <a href="{{ zenconfig.socialXingUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Xing"
+           target="_blank" rel="noopener"
+           aria-label="Xing">
+            {% sw_icon 'xing' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialWhatsappUrl|length %}
+        <a href="{{ zenconfig.socialWhatsappUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Whatsapp"
+           target="_blank" rel="noopener"
+           aria-label="Whatsapp">
+            {% sw_icon 'whatsapp' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialAmazonUrl|length %}
+        <a href="{{ zenconfig.socialAmazonUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} on Amazon"
+           target="_blank" rel="noopener"
+           aria-label="Amazon">
+            {% sw_icon 'amazon' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+
+    {% if zenconfig.socialRSSUrl|length %}
+        <a href="{{ zenconfig.socialRSSUrl }}"
+           class="social-icon icon-style-{{ zenconfig.socialIconStyle }}"
+           title="{{ shopware.config.core.basicInformation.shopName }} RSS Feed"
+           target="_blank" rel="noopener"
+           aria-label="RSS">
+            {% sw_icon 'rss' style {'pack': 'social', 'namespace': 'theme'} %}
+        </a>
+    {% endif %}
+</div>

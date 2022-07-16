@@ -1,0 +1,44 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/buy-widget-form.html.twig' %}
+
+{% set bookingTemplate = page.product.extensions.serviceBookingTemplate %}
+
+{% block page_product_detail_buy_product_buy_info %}
+    {{ parent() }}
+
+    {% if bookingTemplate is not null %}
+        <input type="hidden"
+               name="{{ constant('Swag\\ServiceBooking\\Storefront\\Controller\\ServiceBookingCartController::SERVICE_BOOKING_TEMPLATE_REQUEST_PARAMETER') }}[id]"
+               value="{{ bookingTemplate.id }}">
+
+        <input type="hidden"
+               class="service-booking__value"
+               name="{{ constant('Swag\\ServiceBooking\\Storefront\\Controller\\ServiceBookingCartController::SERVICE_BOOKING_TEMPLATE_REQUEST_PARAMETER') }}[dateId]"
+               value="">
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_buy_form_action %}{% apply spaceless %}
+    {% if bookingTemplate is not null %}
+        {{ path('frontend.checkout.service-booking.add') }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endapply %}
+{% endblock %}
+
+{% block page_product_detail_buy_form_inner_csrf %}
+    {% if bookingTemplate is not null %}
+        {{ sw_csrf('frontend.checkout.service-booking.add') }}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}
+
+{% block page_product_detail_buy_container %}
+    <div class="service-booking__container">
+        <strong class="service-booking__title">{{ 'serviceBooking.selectedDate' | trans }}:</strong>
+        <span class="service-booking__placeholder non--selected">{{ 'serviceBooking.emptyDate' | trans }}</span>
+    </div>
+
+    {{ parent() }}
+{% endblock %}

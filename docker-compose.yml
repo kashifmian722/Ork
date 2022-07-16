@@ -1,0 +1,30 @@
+version: "3.7"
+
+services:
+  app_server:
+    image: shyim/shopware-platform-nginx-production:php74
+    depends_on:
+      - mysql
+    ports:
+      - 80:80
+    volumes:
+      - ".:/var/www/html"
+
+  cli:
+    image: shyim/shopware-cli:php74
+    tty: true
+    volumes:
+      - ".:/var/www/html"
+
+  adminer:
+      image: adminer
+      ports:
+          - 8080:8080
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=downtown
+      - MYSQL_USER=downtown
+      - MYSQL_PASSWORD=uptown

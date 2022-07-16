@@ -1,0 +1,24 @@
+{
+  "name": "schuja/sticky-header",
+  "description": "Sticky Header",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "v1.0.0",
+  "authors": [
+      {
+          "name": "schuja IT"
+      }
+  ],
+  "autoload": {
+    "psr-4": {
+      "SITStickyHeader\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "SITStickyHeader\\SITStickyHeader",
+    "label": {
+      "de-DE": "Sticky Header",
+      "en-GB": "Sticky Header"
+    }
+  }
+}

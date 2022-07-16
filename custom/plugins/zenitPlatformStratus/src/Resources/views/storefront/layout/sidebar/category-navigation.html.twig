@@ -1,0 +1,35 @@
+{% sw_extends '@Storefront/storefront/layout/sidebar/category-navigation.html.twig' %}
+
+{# ... global variables #}
+{% set zentheme = shopware.theme %}
+
+{% block layout_navigation_categories_link_children %}
+    <a class="
+       category-navigation-link{% if item.category.id is same as(activeResult.id) %} is-active{% endif %}{% if item.category.id in activeResult.path %} in-path{% endif %}{% if item.children %} has-children{% endif %}"
+       href="{% if item.category.externalLink %}{{ item.category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: item.category.id }) }}{% endif %}">
+        {% block layout_navigation_categories_link_children_name %}
+            <span class="category-navigation-link-inner">{{ item.category.translated.name }}</span>
+        {% endblock %}
+
+        {% if zentheme['zen-sidebar-navigation-arrow'] and level == 0 and item.children %}
+            {% sw_icon 'arrow-medium-down' style {
+                'pack': 'solid', 'size': 'xs', 'class': 'category-navigation-link-toggle'
+            } %}
+        {% endif %}
+    </a>
+{% endblock %}
+
+{% block layout_navigation_categories_link %}
+    <a class="category-navigation-link{% if item.category.id is same as(activeResult.id) %} is-active{% endif %}"
+       href="{% if item.category.externalLink %}{{ item.category.externalLink }}{% else %}{{ seoUrl('frontend.navigation.page', { navigationId: item.category.id }) }}{% endif %}">
+        {% block layout_navigation_categories_link_name %}
+            <span class="category-navigation-link-inner">{{ item.category.translated.name }}</span>
+        {% endblock %}
+
+        {% if zentheme['zen-sidebar-navigation-arrow'] and level == 0 and item.children %}
+            {% sw_icon 'arrow-medium-down' style {
+                'pack': 'solid', 'size': 'xs', 'class': 'category-navigation-link-toggle'
+            } %}
+        {% endif %}
+    </a>
+{% endblock %}

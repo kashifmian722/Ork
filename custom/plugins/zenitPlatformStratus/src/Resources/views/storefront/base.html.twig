@@ -1,0 +1,695 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{# ... global variables #}
+{# Fallback if extenstion is not set - it's an cloud app then #}
+{% set zenconfig = context.context.extensions['zenitPlatformStratus'] ?: shopware.config['zenitPlatformStratus'].config %}
+{% set zentheme = shopware.theme %}
+{% set zenCustomFieldsCategory = page.header.navigation.active.customFields %}
+
+{# ... single lined header #}
+{% if zentheme['zen-header-style'] is same as ('single-line') %}
+
+    {# logo left, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg order-lg-2' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-xl order-lg-2' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 order-2 order-md-3 col-sm-auto' %}
+    {% endif %}
+
+    {# logo left, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg order-lg-2 ' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 ml-sm-auto' %}
+
+        {% if zentheme['zen-main-navigation-align'] is same as ('center') %}
+            {% set logoClasses =                    'col-12 col-sm-auto col-xl-3 order-1' %}
+            {% set actionClasses =                  'col-auto col-xl-3 order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% endif %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-xl order-lg-2' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 ml-sm-auto' %}
+
+        {% if zentheme['zen-main-navigation-align'] is same as ('center') %}
+            {% set logoClasses =                    'col-12 col-sm-auto col-xl-3 order-1' %}
+            {% set actionClasses =                  'col-auto col-xl-3 order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% endif %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 ml-sm-auto' %}
+
+        {% if zentheme['zen-main-navigation-align'] is same as ('center') %}
+            {% set logoClasses =                    'col-12 col-sm-auto col-xl-3 order-1' %}
+        {% endif %}
+    {% endif %}
+
+    {# logo center, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 pos-xl-center col-xl-2 order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-md-3 order-lg-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg col-xl-5 order-lg-2' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 pos-lg-center col-lg-2 order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-md-3 order-lg-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-xl-5 order-lg-2' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-lg-auto pos-lg-center order-1 order-lg-3' %} {# TODO: pos-lg-center better solution? #}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-md-3 order-lg-2 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 order-lg-1' %}
+    {% endif %}
+
+    {# logo center, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-4 col-lg-12 col-xl-2 order-1 order-md-2 order-lg-1 order-xl-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg col-xl-5 order-lg-2 order-xl-1' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-lg-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-4 col-xl-2 order-1 order-md-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-xl-5 order-xl-1' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-xl-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-4 col-xl-2 order-1 order-md-2 order-xl-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 col-xl-5 order-1' %}
+    {% endif %}
+
+    {# logo right, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg order-lg-3 justify-content-end' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-lg order-lg-3 justify-content-end' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2' %}
+    {% endif %}
+
+    {# logo right, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationClasses =              'd-none d-lg-flex col-lg order-lg-2 justify-content-end' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 mr-sm-auto' %}
+
+        {% if zentheme['zen-main-navigation-align'] is same as ('center') %}
+            {% set actionClasses =                  'col-auto col-xl-3 order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% endif %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationClasses =              'd-none d-xl-flex col-lg order-lg-2 justify-content-end' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 mr-sm-auto' %}
+
+        {% if zentheme['zen-main-navigation-align'] is same as ('center') %}
+            {% set actionClasses =                      'col-auto col-xl-3 order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% endif %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationClasses =              'd-none' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 mr-sm-auto' %}
+    {% endif %}
+
+{% endif %}
+
+{# ... multi lined header #}
+{% if zentheme['zen-header-style'] is same as ('multi-line') %}
+
+    {# logo left, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto col-lg-3 order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-6 order-4 order-sm-2 ml-auto mr-1 ml-lg-0 mr-lg-0' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto ml-sm-0 ml-lg-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto col-xl-3 order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-xl-6 order-4 order-sm-2 ml-auto mr-1 ml-xl-0 mr-xl-0' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto ml-sm-0 ml-xl-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm order-4 order-sm-2 ml-auto ml-sm-3' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0 ml-xl-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 order-2 order-md-3 col-sm-auto' %}
+    {% endif %}
+
+    {# logo left, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto col-xl-3 order-3 order-md-4 ml-auto ml-sm-0 ml-lg-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto col-xl-3 order-3 order-md-4 ml-auto ml-sm-0 ml-xl-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {# logo center, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-lg-4 pos-lg-center order-1 order-lg-2' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-2 order-4 order-sm-2 order-md-3 order-lg-1 ml-auto ml-lg-0' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0 ml-lg-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-xl-4 pos-xl-center order-1 order-lg-2' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-2 order-4 order-sm-2 order-md-3 order-xl-1 ml-auto ml-xl-0' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0 ml-xl-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-lg-auto pos-lg-center order-1 order-lg-3' %} {# TODO: pos-lg-center better solution? #}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-3 order-lg-2 ml-auto ml-lg-0 mr-lg-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 order-lg-3' %}
+    {% endif %}
+
+    {# logo center, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-4 col-lg-4 pos-lg-center order-1 order-md-2 order-lg-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-lg-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-4 pos-xl-center order-1 order-md-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-xl-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-4 order-1 order-md-2 order-xl-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 col-xl-4 order-1' %}
+    {% endif %}
+
+    {# logo right, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-6 order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set actionClasses =                      'col-auto col-lg-3 order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-xl-6 order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set actionClasses =                      'col-auto col-xl-3 order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-3' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2' %}
+    {% endif %}
+
+    {# logo right, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 mr-lg-auto reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 mr-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 mr-xl-auto reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 mr-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 mr-sm-auto' %}
+    {% endif %}
+
+{% endif %}
+
+{# ... Two lined header #}
+{% if zentheme['zen-header-style'] is same as ('two-line') %}
+
+    {# logo left, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 ml-auto' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-3' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 ml-auto' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-3' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 order-md-3' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-3 order-1' %}
+        {% set searchClasses =                      'col-12 col-sm order-4 order-sm-2 col-md-6 ml-auto ml-sm-0' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 order-2 order-md-3 col-sm-auto ml-md-auto' %}
+    {% endif %}
+
+    {# logo left, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-3 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-xl-flex col-auto order-lg-3 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('left') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 ml-sm-auto' %}
+    {% endif %}
+
+    {# logo center, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-lg-4 pos-lg-center order-1 order-lg-2' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-3 order-4 order-sm-2 order-md-3 order-lg-1 ml-auto ml-lg-0' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-3 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-xl-4 pos-xl-center order-1 order-lg-2' %}
+        {% set searchClasses =                      'col-12 col-sm-auto col-lg-3 order-4 order-sm-2 order-md-3 order-xl-1 ml-auto ml-xl-0' %}
+        {% set topBarClasses =                      'd-none d-xl-flex col-auto order-xl-3 ml-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-lg-auto pos-lg-center order-1 order-lg-2' %} {# TODO: pos-lg-center better solution? #}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-3 order-lg-2 ml-auto ml-lg-0 mr-lg-auto' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-4 ml-auto ml-sm-0' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 order-lg-3' %}
+    {% endif %}
+
+    {# logo center, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-4 col-lg-4 pos-lg-center order-1 order-md-2 order-lg-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-1' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-lg-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-4 pos-xl-center order-1 order-md-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-xl-flex col-auto order-xl-1' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 d-xl-none order-1' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('center') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-4 order-1 order-md-2 order-xl-2' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 ml-auto' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-md-4 col-xl-4 order-1' %}
+    {% endif %}
+
+    {# logo right, search default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-2' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm-auto order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set topBarClasses =                      'd-none d-xl-flex col-auto order-xl-2' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-md-auto order-1 order-md-4' %}
+        {% set searchClasses =                      'col-12 col-sm order-4 order-sm-2 order-lg-2 ml-auto ml-md-0 mr-md-auto' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 order-md-1 ml-auto ml-sm-0 reverse-md' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2' %}
+    {% endif %}
+
+    {# logo right, search not default #}
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-md') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-lg-flex col-auto order-lg-2 mr-lg-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-lg-none order-2 mr-sm-auto mr-lg-0' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-lg') %}
+        {% set logoClasses =                        'col-12 col-sm-auto col-xl-3 order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none d-xl-flex col-auto order-xl-2 mr-xl-auto' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto d-xl-none order-2 mr-sm-auto mr-xl-0' %}
+    {% endif %}
+
+    {% if zentheme['zen-logo-position'] is same as ('right') and zentheme['zen-search-style'] is not same as ('default') and zentheme['zen-main-navigation-style'] is same as ('offcanvas-xl') %}
+        {% set logoClasses =                        'col-12 col-sm-auto order-1 order-sm-4' %}
+        {% set searchClasses =                      'col-12 order-5' %}
+        {% set topBarClasses =                      'd-none' %}
+        {% set actionClasses =                      'col-auto order-3 order-sm-1 ml-auto ml-sm-0 reverse-sm' %}
+        {% set mainNavigationToggleClasses =        'col-4 col-sm-auto order-2 mr-sm-auto' %}
+    {% endif %}
+
+{% endif %}
+
+{% set zenthemeScriptOptions = {
+    hasTooltips: zentheme['zen-shop-navigation-tooltips'],
+    tooltipPlacement: zentheme['zen-shop-navigation-tooltips-placement']
+} %}
+
+{#{% block base_html %}#}
+{#    {% dump %}#}
+{#    {{ parent() }}#}
+{#{% endblock %}#}
+
+{# ... body classes #}
+{% set bodyClasses = [] %}
+
+{# ... layout style #}
+{% set bodyClasses = ['is-lo-' ~ zentheme['zen-layout-style']]|merge(bodyClasses) %}
+
+{# ... topbar style #}
+{% set bodyClasses = ['is-tb-' ~ zentheme['zen-top-bar-style']]|merge(bodyClasses) %}
+
+{# ... search style #}
+{% set bodyClasses = ['is-srch-' ~ zentheme['zen-search-style']]|merge(bodyClasses) %}
+
+{# ... main-navigation style #}
+{% set bodyClasses = ['is-mn-' ~ zentheme['zen-main-navigation-style']]|merge(bodyClasses) %}
+
+{# ... flyout style #}
+{% if zentheme['zen-flyout-navigation-full-width'] %}
+    {% set bodyClasses = ['is-flyout-fullscreen']|merge(bodyClasses) %}
+{% endif %}
+
+{# ... marketing text slider #}
+{% if zenconfig.marketingActive %}
+    {% set bodyClasses = ['has-marketing-slider']|merge(bodyClasses) %}
+{% endif %}
+
+{% block base_body_classes %}{{ parent() }} {{ bodyClasses|join(' ') }}{% endblock %}
+
+{% block base_body_inner %}
+    <div class="page-wrapper"
+         data-zen-theme-scripts-options="{{ zenthemeScriptOptions|json_encode }}">
+        {% block base_noscript %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block base_header %}
+            {# sticky header js options #}
+            {% set horizonStickyHeaderOptions = {
+                viewports: zentheme['zen-sticky-header'],
+                scrollOffset: zentheme['zen-sticky-header-offset'],
+                autoHide: zentheme['zen-sticky-header-hide']
+            } %}
+            {% set stickyHeader = zentheme['zen-sticky-header'] ? 'true' : 'false' %}
+            {% set headerOpacity = zenCustomFieldsCategory["zenit_stratus_category_header_bg_opacity"]|replace({'%': ''}) %}
+            {% set navigationOpacity = zenCustomFieldsCategory["zenit_stratus_category_nav_main_opacity"]|replace({'%': ''}) %}
+
+            {# header classes array #}
+            {% set headerClasses = ['header-' ~ zentheme['zen-header-style'], 'header-logo-' ~ zentheme['zen-logo-position']]%}
+
+            {% if controllerName|lower is same as ('navigation') and zenCustomFieldsCategory["zenit_stratus_category_header_position"] is empty or zenCustomFieldsCategory["zenit_stratus_category_header_position"] is same as ('inherit') %}
+                {% set headerClasses = ['header-pos-' ~ zentheme['zen-category-header-position']]|merge(headerClasses) %}
+            {% elseif controllerName|lower is same as ('navigation') %}
+                {% set headerClasses = ['header-pos-' ~ zenCustomFieldsCategory["zenit_stratus_category_header_position"]]|merge(headerClasses) %}
+            {% endif %}
+
+            {# ... checks if header got any opacity settings #}
+            {% if controllerName|lower is same as ('navigation') %}
+                {% if ( headerOpacity is not null and headerOpacity is not same as ('inherit') and headerOpacity is not same as ('100') )
+                    or ( navigationOpacity is not null and navigationOpacity is not same as ('inherit') and navigationOpacity is not same as ('100') ) %}
+                    {% set headerClasses = ['has-bg-opacity']|merge(headerClasses) %}
+                {% elseif zentheme['zen-category-header-bg-opacity'] is not same as ('100')
+                    or zentheme['zen-category-nav-main-opacity'] is not same as ('100') %}
+                    {% set headerClasses = ['has-bg-opacity']|merge(headerClasses) %}
+                {% endif %}
+            {% endif %}
+
+            {# nav header classes array #}
+            {% set navHeaderClasses = [] %}
+
+            {% if controllerName|lower is same as ('navigation') and headerOpacity is empty %}
+                {% set navHeaderClasses = ['bg-opacity-' ~ zentheme['zen-category-header-bg-opacity']]|merge(navHeaderClasses)  %}
+            {% elseif controllerName|lower is same as ('navigation') %}
+                {% set navHeaderClasses = ['bg-opacity-' ~ headerOpacity]|merge(navHeaderClasses) %}
+            {% endif %}
+
+            {# nav main classes array #}
+            {% set navMainClasses = []%}
+
+            {% if controllerName|lower is same as ('navigation') and navigationOpacity is empty %}
+                {% set navMainClasses = ['bg-opacity-' ~ zentheme['zen-category-nav-main-opacity']]|merge(navMainClasses) %}
+            {% elseif controllerName|lower is same as ('navigation') %}
+                {% set navMainClasses = ['bg-opacity-' ~ navigationOpacity]|merge(navMainClasses) %}
+            {% endif %}
+
+            <header class="header-main {{ headerClasses|join(' ') }}"
+                    data-sticky="{{ stickyHeader }}"
+                    data-zen-sticky-header-options="{{ horizonStickyHeaderOptions|json_encode }}">
+                <div class="header-inner">
+
+                    {% block base_header_inner %}
+                        {% sw_include '@Storefront/storefront/layout/header/header.html.twig' %}
+                    {% endblock %}
+
+                    {# multi-line header navigation #}
+                    {% if zentheme['zen-header-style'] is not same as ('single-line') %}
+                        {% block base_navigation %}
+                            <div class="nav-main {{ navMainClasses|join(' ') }}">
+                                {% block base_navigation_inner %}
+                                    {% sw_include '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+                                {% endblock %}
+                            </div>
+                        {% endblock %}
+                    {% endif %}
+                </div>
+            </header>
+        {% endblock %}
+
+        {% block base_offcanvas_navigation %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block base_main %}
+            {{ parent() }}
+        {% endblock %}
+
+        {% block base_footer %}
+            <footer class="footer-main">
+                {% block base_footer_inner %}
+                    {% sw_include '@Storefront/storefront/layout/footer/footer.html.twig' %}
+                {% endblock %}
+            </footer>
+        {% endblock %}
+    </div>
+
+    {% sw_include '@Storefront/storefront/layout/preloader.html.twig' %}
+{% endblock %}
+
+{% block base_script_hmr_mode %}
+    {{ parent() }}
+
+    {% block base_theme_js_files %}
+        {% if zenconfig.customJsFilesActive %}
+            {{ zenconfig.customJsFiles|raw }}
+        {% endif %}
+    {% endblock %}
+
+    {% block base_theme_js_custom %}
+        {% if zenconfig.customJsActive %}
+            {{ zenconfig.customJs|raw }}
+        {% endif %}
+    {% endblock %}
+
+    {% block base_webfont %}
+        {# Fonts implementation checks if has custom fonts to load #}
+        {% set hasCustomBaseFont = zentheme['zen-font-family-base-default'] is null or zentheme['zen-font-family-base-default'] is same as ('custom') %}
+        {% set hasCustomHeadlineFont = zentheme['zen-font-family-headline-default'] is null or zentheme['zen-font-family-headline-default'] is same as ('custom') %}
+
+        {% if zentheme['sw-font-family-base'] and hasCustomBaseFont %}
+            {% set fontFamilyBase = zentheme['sw-font-family-base']|replace({' ':'+'})|split('\'')[1] ~ ':' ~ zentheme['zen-font-family-base-weight']|join(',') %}
+        {% endif %}
+
+        {% if zentheme['sw-font-family-headline'] and hasCustomHeadlineFont %}
+            {% set fontFamilyHeadline = zentheme['sw-font-family-headline']|replace({' ':'+'})|split('\'')[1] ~ ':' ~ zentheme['zen-font-family-headline-weight']|join(',') %}
+        {% endif %}
+
+        {# Avoid double implementation when base and headline fonts are the same #}
+        {% if zentheme['sw-font-family-base'] is same as (zentheme['sw-font-family-headline']) %}
+            {% if hasCustomBaseFont %}
+                {% set fontFamilyHeadline = '' %}
+            {% elseif hasCustomHeadlineFont %}
+                {% set fontFamilyBase = '' %}
+            {% endif %}
+
+            {% for weight in zentheme['zen-font-family-headline-weight'] %}
+                {% if weight not in zentheme['zen-font-family-base-weight'] %}
+                    {% set fontFamilyBase = fontFamilyBase ~ ',' ~ weight %}
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+
+        {# Google Webfont Loader #}
+        {% block base_webfont_loader %}
+            {% if zentheme['zen-font-family-import'] and (hasCustomBaseFont or hasCustomHeadlineFont) %}
+                <script>
+                    var zenthemeFonts = [],
+                        zenthemeFontFamilyBase = '{{ fontFamilyBase }}',
+                        zenthemeFontFamilyHeadline = '{{ fontFamilyHeadline }}';
+                    fontDisplay = '&display=swap';
+
+                    zenthemeFontFamilyBase ? zenthemeFonts.push( zenthemeFontFamilyBase.replace('&amp;','&') ) : '';
+                    zenthemeFontFamilyHeadline ? zenthemeFonts.push( zenthemeFontFamilyHeadline.replace('&amp;','&') ) : '';
+                    zenthemeFonts.push( fontDisplay.replace('&amp;','&') );
+
+                    WebFontConfig = {
+                        google: {
+                            families: zenthemeFonts,
+                            timeout: 2000,
+                        }
+                    };
+
+                    (function(d) {
+                        const wf = d.createElement('script'), s = d.scripts[0];
+                        wf.src = ('https:' === document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+                        wf.async = true;
+                        s.parentNode.insertBefore(wf, s);
+                    })(document);
+                </script>
+            {% endif %}
+        {% endblock %}
+    {% endblock %}
+
+    {# Cookie Banner #}
+    {% block base_cookie_banner_config %}
+        <script>
+            window.zenCookieBannerStyle = '{{ zentheme['zen-cookie-banner-style'] }}'
+        </script>
+    {% endblock %}
+
+{% endblock %}

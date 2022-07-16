@@ -1,0 +1,28 @@
+// Extracts the font name from the font declaration of
+// the theme configuration. Strips the fallback fonts.
+
+// Example Input: 'Rubik', sans-serif
+// Example Output: Rubik
+
+@function get-fontname($value, $search) {
+    @if type-of($value) == list {
+        $substring: nth($value, 1);
+
+        @return #{$substring};
+
+    } @else {
+        $slice-index: str-index($value, $search);
+        @if $slice-index {
+            $substring: str-slice($value, 1, $slice-index - 1);
+
+            $replace-index: str-index($substring, "'");
+            @if $replace-index {
+                @return get-fontname( str-slice($substring, $replace-index + str-length("'")) , "'");
+            }
+
+            @return $substring;
+        }
+    }
+
+    @return $value;
+}

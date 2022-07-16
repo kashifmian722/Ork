@@ -1,0 +1,119 @@
+/*
+Navigation flyout
+==============================================
+Custom styling for navigation flyout which opens on hover over the main navigation.
+*/
+
+.is-flyout-fullscreen {
+    .nav-main {
+        position: static;
+    }
+
+    .navigation-flyout {
+        max-width: none;
+        padding: 0;
+    }
+}
+
+.navigation-flyouts {
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+.navigation-flyout {
+    background: transparent;
+    box-shadow: none;
+    margin: auto;
+    left: 0;
+    right: 0;
+
+    @if $zen-layout-style != full-width-header and $zen-layout-style != full-width {
+        max-width: px($zen-layout-container-width);
+    }
+}
+
+.navigation-flyout {
+    .header-single-line & {
+        top: px($zen-main-navigation-height);
+    }
+
+    .container {
+        background: $zen-flyout-navigation-bg;
+        box-shadow: 0 43px 43px -6px rgba($black, 0.2);
+    }
+
+    &.is-open {
+        .header-single-line & {
+            padding-top: px(($zen-header-height-mobile - $zen-main-navigation-height) / 2);
+
+            @include media-breakpoint-up(lg) {
+                padding-top: px(($zen-header-height - $zen-main-navigation-height) / 2);
+            }
+        }
+
+        @if $zen-flyout-navigation-animation == "swing" {
+            @extend .swing-in-bottom-fwd;
+        } @else if $zen-flyout-navigation-animation == "slide" {
+            @extend .slide-in-bottom;
+        } @else if $zen-flyout-navigation-animation == "slide-blurred" {
+            @extend .slide-in-blurred-bottom;
+        } @else if $zen-flyout-navigation-animation == "fade" {
+            @extend .fade-in-fwd;
+        } @else if $zen-flyout-navigation-animation == "bounce" {
+            @extend .bounce-in-bottom;
+        }
+    }
+
+    .container > .navigation-flyout-content:first-child {
+        padding-top: $spacer;
+
+        @if $zen-flyout-navigation-teaser == 1 {
+            padding-bottom: $spacer;
+        }
+    }
+}
+
+.navigation-flyout-close {
+    .icon {
+        color: $zen-flyout-navigation-color;
+    }
+}
+
+.navigation-flyout-category-link .nav-link {
+    color: $zen-flyout-navigation-color;
+    font-weight: $zen-flyout-navigation-font-weight;
+
+    &:hover {
+        color: $zen-flyout-navigation-hover-color;
+    }
+}
+
+@if $zen-flyout-navigation-grouping == 0 {
+    .navigation-flyout-categories {
+        &.is-level-0 {
+            > .navigation-flyout-col {
+                &::before {
+                    display: none;
+                }
+            }
+        }
+    }
+}
+
+.navigation-flyout-link {
+    color: $zen-flyout-navigation-color;
+    font-size: px($zen-flyout-navigation-font-size);
+
+    &.is-level-0 {
+        font-weight: $zen-flyout-navigation-font-weight;
+    }
+
+    &.is-level-2 {
+        font-size: px($zen-flyout-navigation-font-size - 2);
+    }
+
+    &:hover {
+        color: $zen-flyout-navigation-hover-color;
+    }
+}

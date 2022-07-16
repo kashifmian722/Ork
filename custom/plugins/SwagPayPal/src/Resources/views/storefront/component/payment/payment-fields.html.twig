@@ -1,0 +1,28 @@
+{% sw_extends '@Storefront/storefront/component/payment/payment-fields.html.twig' %}
+
+{% block component_payment_method_description %}
+    {# @var \Swag\PayPal\Checkout\SPBCheckout\SPBMarksData spbCheckoutMarksData #}
+    {% set spbCheckoutMarksData = page.extensions[constant('Swag\\PayPal\\Checkout\\SPBCheckout\\SPBMarksSubscriber::PAYPAL_SMART_PAYMENT_MARKS_DATA_EXTENSION_ID')] %}
+
+    {% if spbCheckoutMarksData and spbCheckoutMarksData.paymentMethodId is same as(payment.id) %}
+        <div class="pb-1 ml-n1 mt-n2"
+             data-swag-paypal-marks="true"
+             data-swag-pay-pal-marks-options="{{ spbCheckoutMarksData|json_encode }}">
+        </div>
+        {% if payment.translated.description %}
+            <p>{{ payment.translated.description|raw }}</p>
+        {% endif %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+
+    {# @var \Swag\PayPal\Installment\Banner\BannerData installmentBanner #}
+    {% set installmentBanner = page.extensions[constant('Swag\\PayPal\\Installment\\Banner\\InstallmentBannerSubscriber::PAYPAL_INSTALLMENT_BANNER_DATA_EXTENSION_ID')] %}
+
+    {% if installmentBanner is not null and installmentBanner.paymentMethodId is same as(payment.id) %}
+        <div data-swag-paypal-installment-banner="true"
+             data-swag-pay-pal-installment-banner-options="{{ installmentBanner|json_encode }}"
+             data-swag-paypal-installment-banner-is-confirm="true">
+        </div>
+    {% endif %}
+{% endblock %}

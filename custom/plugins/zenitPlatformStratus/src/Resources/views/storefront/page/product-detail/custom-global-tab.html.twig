@@ -1,0 +1,13 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_custom_field_global_container %}
+        <div class="product-detail-custom-field1 tab-pane-container">
+
+            {% block page_product_detail_custom_field_global_content %}
+                {{ zenconfig.customTabText|raw }}
+            {% endblock %}
+
+        </div>
+    {% endblock %}
+{% endblock %}

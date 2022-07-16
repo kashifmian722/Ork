@@ -1,0 +1,16 @@
+.service-booking__container {
+    border: 1px solid $sw-color-brand-primary;
+    background: rgba(1, 123, 134, 0.06);
+    padding: $spacer;
+    margin-bottom: $spacer-xl;
+    border-radius: 5px;
+
+    .service-booking__title {
+        color: $sw-color-brand-primary;   
+    }
+
+    .non--selected {
+        color: $sw-color-brand-secondary;
+        font-style: italic;
+    }
+}

@@ -1,0 +1,43 @@
+:host {
+  .button-wrapper {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: flex-start;
+    gap: 12px;
+  }
+
+  h2 {
+    font-size: 24px;
+    font-weight: 600;
+    color: #142432;
+  }
+
+  .sub-text {
+    width: 600px;
+    font-size: 15px;
+    color: var(--sw-regular);
+    margin: 0;
+  }
+
+  form {
+    label {
+      color: var(--sw-regular);
+      font-weight: normal;
+      height: 24px;
+    }
+
+    .input-group {
+      margin-bottom: 40px;
+    }
+  }
+}
+
+.button-wrapper {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 8px;
+}
+
+.password-button {
+  margin-top: 16px !important;
+}

@@ -1,0 +1,23 @@
+{% sw_extends '@Storefront/storefront/utilities/offcanvas.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_video_container %}
+        <div class="product-detail-video tab-pane-container">
+            {% block page_product_detail_video_content %}
+
+                {% set ids = page.product.translated["customFields"]["zenit_stratus_youtube_ids"]|split(',') %}
+
+                {% for id in ids %}
+                    {% block page_product_detail_video_embed %}
+                        <div class="product-video embed-responsive embed-responsive-16by9" itemprop="video">
+                            <div class="responsive-video">
+                                <iframe class="embed-responsive-item" src="https://www.youtube-nocookie.com/embed/{{ id|trim }}" frameborder="0" allowfullscreen></iframe>
+                            </div>
+                        </div>
+                    {% endblock %}
+                {% endfor %}
+
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

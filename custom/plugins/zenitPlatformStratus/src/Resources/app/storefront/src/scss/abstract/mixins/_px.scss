@@ -1,0 +1,4 @@
+@function px($size) {
+    $pxSize: $size;
+    @return #{$pxSize}px;
+}

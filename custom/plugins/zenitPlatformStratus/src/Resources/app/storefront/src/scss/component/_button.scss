@@ -1,0 +1,19 @@
+/*
+Button
+==============================================
+Custom skin styling for bootstrap button component.
+
+https://getbootstrap.com/docs/4.3/components/buttons/
+*/
+
+.btn {
+    @include border-radius($zen-layout-button-radius * 1px);
+}
+
+.btn,
+.btn-buy {
+    &.disabled,
+    &:disabled {
+        color: $disabled-btn-color;
+    }
+}

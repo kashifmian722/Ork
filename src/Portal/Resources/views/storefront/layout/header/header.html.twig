@@ -1,0 +1,188 @@
+{% sw_extends "@Storefront/storefront/layout/header/header.html.twig" %}
+
+{# Hide currency and language switch in top bar #}
+{% block layout_top_bar %}{% endblock %}
+
+{% block layout_header_logo %}
+    <div class="col-12 col-lg-4 header-logo-col h-sidebar">
+{#        {% sw_include '@Storefront/storefront/layout/header/logo.html.twig' %}#}
+        <div class="header-txt left-hdr small--hide medium--hide">
+            <a href="#"><i class="fa fa-phone" aria-hidden="true"></i>  123 4566 885</a>
+            <a href="#"><i class="fa fa-envelope" aria-hidden="true"></i> sales@yourstorename.com</a>
+        </div>
+    </div>
+{% endblock %}
+
+{#{% block layout_header_search %}#}
+{#    <div class="col-12 order-2 col-sm col-lg-4 order-sm-1 header-search-col">#}
+{#        <div class="row">#}
+
+{#            <div class="col-sm-auto d-none d-sm-block d-lg-none">#}
+{#                {% block layout_header_navigation_toggle_tablet %}#}
+{#                    {{ parent() }}#}
+{#                {% endblock %}#}
+{#            </div>#}
+{#            <div class="col">#}
+{#                <p>Increase & Maximize sales with AVONE.</p>#}
+{#                {% sw_include '@Storefront/storefront/layout/header/search.html.twig' %}#}
+{#            </div>#}
+{#        </div>#}
+{#    </div>#}
+{#{% endblock %}#}
+
+{% block layout_header_actions %}
+    <div class="col-12 order-1 col-sm-auto col-lg-4 orderF-sm-2 header-actions-col">
+        <ul class="list--inline social-icons">
+            <li><a href="#"  target="_blank"><i class="fa fa-facebook-f" aria-hidden="true"></i>  </a> </li>
+            <li><a href="#"  target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i>  </a> </li>
+            <li><a href="#"  target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i> </a> </li>
+            <li><a href="#"  target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i>  </a> </li>
+            <li><a href="#" target="_blank"><i class="fa fa-youtube" aria-hidden="true"></i> </a> </li>
+        </ul>
+{#        <div class="row no-gutters justify-content-end">#}
+{#            {% block layout_header_navigation_toggle %}#}
+{#                {{ parent() }}#}
+{#            {% endblock %}#}
+
+{#            {% block layout_header_search_toggle %}#}
+{#                {{ parent() }}#}
+{#            {% endblock %}#}
+
+{#            {% block layout_header_actions_account %}#}
+{#                {{ parent() }}#}
+{#            {% endblock %}#}
+
+{#            {% block layout_header_actions_cart %}#}
+{#                {{ parent() }}#}
+{#            {% endblock %}#}
+{#        </div>#}
+    </div>
+    <style>
+        .h-sidebar a {
+            padding: 0 8px 0 0;
+            font-size: 13px !important;
+            color: #fff;
+        }
+
+        .h-sidebar a i {
+            color: #1E52B5 !important;
+        }
+
+        i.fa.fa-phone {
+            font-size: 17px;
+            position: relative;
+            top: 1px;
+        }
+        .top-head {
+            background: #000;
+        }
+
+        .top-head .header-row {
+            padding: 2px 0 0;
+        }
+
+        .top-head svg {color:#fff;}
+        .social-icons li {
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+            padding: 0 5px;
+            /* font-size: 20px;*/
+        }
+        .social-icons {
+            display: inline-block;
+            vertical-align: middle;
+            margin: -2px -5px 0 4px;
+            line-height: 11px;
+            float: right;
+        }
+        .social-icons i {
+            font-size: 14px;
+            color: #fff;
+        }
+        .header-logo-col {
+            padding-bottom: 0;
+        }
+        .phone-wrapper {width: 105px;float:left;padding: 5px 15px 2px;background-color: #2e5d96;border-color: #2e5d96;font-size: 14px !important;}
+        .phone-wrapper a, .phone-wrapper svg{color:#fff;font-size: 12px !important;font-weight: 400 !important;}
+        .phone-wrapper svg{position : relative;top: 2px !important;}
+        span.icon-holder {
+            margin-right: 8px !important;
+        }
+        .mail-wrapper {width: 120px;float:right;padding: 11px 11px 3px;background-color: #161616;border: 2px solid #161616;font-size: 14px !important;}
+        .mail-wrapper a, .mail-wrapper svg{color:#fff;font-size: 12px !important;font-weight: 400 !important;}
+
+
+
+        .phone-wrapper:hover {
+            background-color: #274d7b;
+            box-shadow: 2px 2px 2px #f1f1f1;
+            cursor: pointer;
+        }
+        .mail-wrapper:hover {
+            background-color:#131212;
+            box-shadow: 2px 2px 2px #f1f1f1;
+            cursor: pointer;
+        }
+        .mail-wrapper a, .mail-wrapper a:hover{text-decoration:none !important;}
+        .cen-btn {
+            top: 15px;
+            position:relative;
+        }
+        .product-box:hover {
+            -webkit-box-shadow: 0px 1px 35px 0px rgb(0 0 0 / 30%);
+            -moz-box-shadow: 0px 1px 35px 0px rgba(0, 0, 0, 0.3);
+            box-shadow: 0px 1px 35px 0px rgb(0 0 0 / 30%);
+            -webkit-transition: all 0.3s linear 0s;
+            -moz-transition: all 0.3s linear 0s;
+            -ms-transition: all 0.3s linear 0s;
+            -o-transition: all 0.3s linear 0s;
+            transition: all 0.3s linear 0s;
+        }
+        .product-box img:hover{opacity: 0.7;
+            -webkit-transition: all 0.3s linear 0s;
+            -moz-transition: all 0.3s linear 0s;
+            -ms-transition: all 0.3s linear 0s;
+            -o-transition: all 0.3s linear 0s;
+            transition: all 0.3s linear 0s;
+        }
+        .merchant-box .card-body {
+            padding: 25px 18px 40px;
+        }
+        .availability-wrapper {
+            position: relative;
+            margin-top: -61px;
+            background-color: #2e5d96;
+            width: 107% !important;
+        }
+        .availability-wrapper .availability-badge.normal {
+            color: #fff;
+
+            border-radius: 0;
+            margin-left: -18px;
+            padding: 9px 16px 8px 16px;
+            text-align: center;;
+        }
+        .availability-wrapper .availability-badge.normal {
+            color: #fff;
+            background-color: #2e5d96;
+        }
+        .service-headline {
+            overflow: hidden;
+            display: none;
+        }
+
+        .service-items {
+            display: none !important;
+        }
+        .merchant-box .card-body {
+            padding: 25px 18px 40px;
+        }
+        a.ml-1 svg {
+            font-size: 5px !important;
+            width: 16px;
+            margin: 6px 0 0;
+            color: #fff;
+        }
+    </style>
+{% endblock %}

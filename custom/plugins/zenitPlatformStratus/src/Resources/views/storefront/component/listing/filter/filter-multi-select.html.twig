@@ -1,0 +1,11 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter/filter-multi-select.html.twig' %}
+
+{% block component_filter_multi_select_toggle_icon %}
+    {% if zentheme['zen-category-filter-icon'] is same as ('plus') %}
+        {% sw_icon 'plus' style {
+            'pack': 'solid', 'size': 'xs', 'class': 'filter-panel-item-toggle'
+        } %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

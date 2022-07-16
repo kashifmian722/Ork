@@ -1,0 +1,15 @@
+{% sw_extends '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+
+{% block layout_header_minimal_button %}
+    <div class="col-6 col-md-4 header-minimal-back-to-shop">
+        <a href="{{ path('frontend.home.page') }}"
+           class="btn header-minimal-back-to-shop-button"
+           title="{{ "checkout.finishButtonBackToShop"|trans|striptags }}">
+            {% sw_icon 'arrow-medium-left' style {
+                'size': 'sm',
+                'pack': 'solid'
+            } %}
+            <span class="d-none d-sm-inline-block">{{ "checkout.finishButtonBackToShop"|trans|striptags }}</span>
+        </a>
+    </div>
+{% endblock %}

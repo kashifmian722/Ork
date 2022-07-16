@@ -1,0 +1,20 @@
+{% sw_extends '@Storefront/storefront/layout/meta.html.twig' %}
+
+{% block layout_head_stylesheet %}
+    {{ parent() }}
+
+    <style type="text/css" data-plugin="zenitStratus">
+        {% if zentheme['zen-layout-bg-img'] %}
+            body {
+                background-image: url({{ zentheme['zen-layout-bg-img'] }});
+            }
+        {% endif %}
+    </style>
+
+    {% if zenconfig.customCssActive %}
+        <style type="text/css" data-plugin="zenitStratusCustomCss">
+            {{ zenconfig.customCss|raw }}
+        </style>
+    {% endif %}
+
+{% endblock %}

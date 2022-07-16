@@ -1,0 +1,54 @@
+.quickview-modal {
+    .modal-dialog {
+        @extend .modal-dialog-centered;
+        @extend .modal-xl;
+    }
+}
+
+.quickview-minimal-product {
+    overflow: hidden;
+
+    .quickview-minimal-product-manufacturer-logo {
+        height: auto;
+        width: auto;
+        float: right;
+        @extend .product-detail-manufacturer-logo;
+    }
+}
+
+.quickview-minimal-product-name {
+    @include font-size($h1-font-size);
+    color: $zen-product-details-name-color;
+    font-size: px($zen-product-details-name-font-size);
+    font-weight: $zen-product-details-name-font-weight;
+    line-height: 1.2;
+}
+
+.quickview-minimal-product-short-description {
+    border-bottom: 1px solid $border-color;
+    padding-bottom: $spacer-md;
+    margin-bottom: $spacer-md;
+}
+
+.quickview-minimal-product-price {
+    .product-price {
+        height: auto;
+        @include font-size($zen-product-price-font-size);
+        line-height: 1;
+        color: $zen-product-details-price-color;
+        font-size: px($zen-product-details-price-font-size);
+        font-weight: $zen-product-details-price-font-weight;
+        text-align: left;
+    }
+}
+
+.quickview-minimal-footer {
+    .btn-details {
+        position: absolute;
+        top: calc(100% + 16px);
+        left: 0;
+        right: 0;
+        margin: auto;
+        max-width: 320px;
+    }
+}
